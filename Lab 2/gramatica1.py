@@ -34,6 +34,8 @@ def t_error(t):
 import ply.lex as lex
 lexer = lex.lex()
 
+# Sintactical Analysis
+
 def p_init(t):
     'init : suma'
     print("El resultado es: " + str(t[1]))

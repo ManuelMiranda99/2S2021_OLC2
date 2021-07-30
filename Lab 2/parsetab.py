@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'COMMA DTOKEN L NUMBER PARDER PARIZQ RTOKEN SEMICOLON US : RR : PI movPI : PARDER NUMBER COMMA NUMBER PARIZQmov : mov SEMICOLON d\n           | dd :   U\n        |    DTOKEN\n        |    RTOKEN\n        |    L'
+_lr_signature = 'COMMA DTOKEN L NUMBER PARDER PARIZQ RTOKEN SEMICOLON US : RR : COSA_RANDOM PI movCOSA_RANDOM : UPI : PARDER NUMBER COMMA NUMBER PARIZQmov : mov SEMICOLON d\n           | dd :   U\n        |    DTOKEN\n        |    RTOKEN\n        |    L'
     
-_lr_action_items = {'PARDER':([0,],[4,]),'$end':([1,2,5,6,7,8,9,10,14,],[0,-1,-2,-5,-6,-7,-8,-9,-4,]),'U':([3,12,16,],[7,7,-3,]),'DTOKEN':([3,12,16,],[8,8,-3,]),'RTOKEN':([3,12,16,],[9,9,-3,]),'L':([3,12,16,],[10,10,-3,]),'NUMBER':([4,13,],[11,15,]),'SEMICOLON':([5,6,7,8,9,10,14,],[12,-5,-6,-7,-8,-9,-4,]),'COMMA':([11,],[13,]),'PARIZQ':([15,],[16,]),}
+_lr_action_items = {'U':([0,5,14,18,],[4,9,9,-4,]),'$end':([1,2,7,8,9,10,11,12,16,],[0,-1,-2,-6,-7,-8,-9,-10,-5,]),'PARDER':([3,4,],[6,-3,]),'DTOKEN':([5,14,18,],[10,10,-4,]),'RTOKEN':([5,14,18,],[11,11,-4,]),'L':([5,14,18,],[12,12,-4,]),'NUMBER':([6,15,],[13,17,]),'SEMICOLON':([7,8,9,10,11,12,16,],[14,-6,-7,-8,-9,-10,-5,]),'COMMA':([13,],[15,]),'PARIZQ':([17,],[18,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'S':([0,],[1,]),'R':([0,],[2,]),'PI':([0,],[3,]),'mov':([3,],[5,]),'d':([3,12,],[6,14,]),}
+_lr_goto_items = {'S':([0,],[1,]),'R':([0,],[2,]),'COSA_RANDOM':([0,],[3,]),'PI':([3,],[5,]),'mov':([5,],[7,]),'d':([5,14,],[8,16,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -28,12 +28,13 @@ del _lr_goto_items
 _lr_productions = [
   ("S' -> S","S'",1,None,None,None),
   ('S -> R','S',1,'p_s','gramatica3.py',45),
-  ('R -> PI mov','R',2,'p_r','gramatica3.py',50),
-  ('PI -> PARDER NUMBER COMMA NUMBER PARIZQ','PI',5,'p_pi','gramatica3.py',54),
-  ('mov -> mov SEMICOLON d','mov',3,'p_mov','gramatica3.py',58),
-  ('mov -> d','mov',1,'p_mov','gramatica3.py',59),
-  ('d -> U','d',1,'p_d','gramatica3.py',64),
-  ('d -> DTOKEN','d',1,'p_d','gramatica3.py',65),
-  ('d -> RTOKEN','d',1,'p_d','gramatica3.py',66),
-  ('d -> L','d',1,'p_d','gramatica3.py',67),
+  ('R -> COSA_RANDOM PI mov','R',3,'p_r','gramatica3.py',50),
+  ('COSA_RANDOM -> U','COSA_RANDOM',1,'p_cosa_random','gramatica3.py',54),
+  ('PI -> PARDER NUMBER COMMA NUMBER PARIZQ','PI',5,'p_pi','gramatica3.py',58),
+  ('mov -> mov SEMICOLON d','mov',3,'p_mov','gramatica3.py',62),
+  ('mov -> d','mov',1,'p_mov','gramatica3.py',63),
+  ('d -> U','d',1,'p_d','gramatica3.py',73),
+  ('d -> DTOKEN','d',1,'p_d','gramatica3.py',74),
+  ('d -> RTOKEN','d',1,'p_d','gramatica3.py',75),
+  ('d -> L','d',1,'p_d','gramatica3.py',76),
 ]

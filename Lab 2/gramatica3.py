@@ -47,8 +47,12 @@ def p_s(t):
     print("(x: " + str(t[0][0]) + ", y: " + str(t[0][1]) + ")")
 
 def p_r(t):
-    'R : PI mov'
-    t[0] = [t[1][0] + t[2][0], t[1][1] + t[2][1]]
+    'R : COSA_RANDOM PI mov'
+    t[0] = [t[2][0], t[2][1]]
+
+def p_cosa_random(t):
+    'COSA_RANDOM : U'
+    t[0] = "Hola, estoy en la pila"
 
 def p_pi(t):
     'PI : PARDER NUMBER COMMA NUMBER PARIZQ'
@@ -57,8 +61,13 @@ def p_pi(t):
 def p_mov(t):
     '''mov : mov SEMICOLON d
            | d'''
-    if len(t) == 2 : t[0] = [t[1][0], t[1][1]]
-    else : t[0] = [t[1][0] + t[3][0], t[1][1] + t[3][1]]
+    if len(t) == 2 :
+        print(t[-2])
+        t[0] = [t[-1][0] + t[1][0], t[-1][1] + t[1][1]]
+
+    else :
+        t[0] = [t[1][0] + t[3][0], t[1][1] + t[3][1]]
+
 
 def p_d(t):
     '''d :   U
