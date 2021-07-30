@@ -1,0 +1,191 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> S
+Rule 1     S -> R
+Rule 2     R -> PI mov
+Rule 3     PI -> PARDER NUMBER COMMA NUMBER PARIZQ
+Rule 4     mov -> mov SEMICOLON d
+Rule 5     mov -> d
+Rule 6     d -> U
+Rule 7     d -> DTOKEN
+Rule 8     d -> RTOKEN
+Rule 9     d -> L
+
+Terminals, with rules where they appear
+
+COMMA                : 3
+DTOKEN               : 7
+L                    : 9
+NUMBER               : 3 3
+PARDER               : 3
+PARIZQ               : 3
+RTOKEN               : 8
+SEMICOLON            : 4
+U                    : 6
+error                : 
+
+Nonterminals, with rules where they appear
+
+PI                   : 2
+R                    : 1
+S                    : 0
+d                    : 4 5
+mov                  : 2 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . S
+    (1) S -> . R
+    (2) R -> . PI mov
+    (3) PI -> . PARDER NUMBER COMMA NUMBER PARIZQ
+
+    PARDER          shift and go to state 4
+
+    S                              shift and go to state 1
+    R                              shift and go to state 2
+    PI                             shift and go to state 3
+
+state 1
+
+    (0) S' -> S .
+
+
+
+state 2
+
+    (1) S -> R .
+
+    $end            reduce using rule 1 (S -> R .)
+
+
+state 3
+
+    (2) R -> PI . mov
+    (4) mov -> . mov SEMICOLON d
+    (5) mov -> . d
+    (6) d -> . U
+    (7) d -> . DTOKEN
+    (8) d -> . RTOKEN
+    (9) d -> . L
+
+    U               shift and go to state 7
+    DTOKEN          shift and go to state 8
+    RTOKEN          shift and go to state 9
+    L               shift and go to state 10
+
+    mov                            shift and go to state 5
+    d                              shift and go to state 6
+
+state 4
+
+    (3) PI -> PARDER . NUMBER COMMA NUMBER PARIZQ
+
+    NUMBER          shift and go to state 11
+
+
+state 5
+
+    (2) R -> PI mov .
+    (4) mov -> mov . SEMICOLON d
+
+    $end            reduce using rule 2 (R -> PI mov .)
+    SEMICOLON       shift and go to state 12
+
+
+state 6
+
+    (5) mov -> d .
+
+    SEMICOLON       reduce using rule 5 (mov -> d .)
+    $end            reduce using rule 5 (mov -> d .)
+
+
+state 7
+
+    (6) d -> U .
+
+    SEMICOLON       reduce using rule 6 (d -> U .)
+    $end            reduce using rule 6 (d -> U .)
+
+
+state 8
+
+    (7) d -> DTOKEN .
+
+    SEMICOLON       reduce using rule 7 (d -> DTOKEN .)
+    $end            reduce using rule 7 (d -> DTOKEN .)
+
+
+state 9
+
+    (8) d -> RTOKEN .
+
+    SEMICOLON       reduce using rule 8 (d -> RTOKEN .)
+    $end            reduce using rule 8 (d -> RTOKEN .)
+
+
+state 10
+
+    (9) d -> L .
+
+    SEMICOLON       reduce using rule 9 (d -> L .)
+    $end            reduce using rule 9 (d -> L .)
+
+
+state 11
+
+    (3) PI -> PARDER NUMBER . COMMA NUMBER PARIZQ
+
+    COMMA           shift and go to state 13
+
+
+state 12
+
+    (4) mov -> mov SEMICOLON . d
+    (6) d -> . U
+    (7) d -> . DTOKEN
+    (8) d -> . RTOKEN
+    (9) d -> . L
+
+    U               shift and go to state 7
+    DTOKEN          shift and go to state 8
+    RTOKEN          shift and go to state 9
+    L               shift and go to state 10
+
+    d                              shift and go to state 14
+
+state 13
+
+    (3) PI -> PARDER NUMBER COMMA . NUMBER PARIZQ
+
+    NUMBER          shift and go to state 15
+
+
+state 14
+
+    (4) mov -> mov SEMICOLON d .
+
+    SEMICOLON       reduce using rule 4 (mov -> mov SEMICOLON d .)
+    $end            reduce using rule 4 (mov -> mov SEMICOLON d .)
+
+
+state 15
+
+    (3) PI -> PARDER NUMBER COMMA NUMBER . PARIZQ
+
+    PARIZQ          shift and go to state 16
+
+
+state 16
+
+    (3) PI -> PARDER NUMBER COMMA NUMBER PARIZQ .
+
+    U               reduce using rule 3 (PI -> PARDER NUMBER COMMA NUMBER PARIZQ .)
+    DTOKEN          reduce using rule 3 (PI -> PARDER NUMBER COMMA NUMBER PARIZQ .)
+    RTOKEN          reduce using rule 3 (PI -> PARDER NUMBER COMMA NUMBER PARIZQ .)
+    L               reduce using rule 3 (PI -> PARDER NUMBER COMMA NUMBER PARIZQ .)
+
