@@ -1,0 +1,209 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> S
+Rule 1     S -> R
+Rule 2     R -> COSA_RANDOM PI mov
+Rule 3     COSA_RANDOM -> U
+Rule 4     PI -> PARDER NUMBER COMMA NUMBER PARIZQ
+Rule 5     mov -> mov SEMICOLON d
+Rule 6     mov -> d
+Rule 7     d -> U
+Rule 8     d -> DTOKEN
+Rule 9     d -> RTOKEN
+Rule 10    d -> L
+
+Terminals, with rules where they appear
+
+COMMA                : 4
+DTOKEN               : 8
+L                    : 10
+NUMBER               : 4 4
+PARDER               : 4
+PARIZQ               : 4
+RTOKEN               : 9
+SEMICOLON            : 5
+U                    : 3 7
+error                : 
+
+Nonterminals, with rules where they appear
+
+COSA_RANDOM          : 2
+PI                   : 2
+R                    : 1
+S                    : 0
+d                    : 5 6
+mov                  : 2 5
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . S
+    (1) S -> . R
+    (2) R -> . COSA_RANDOM PI mov
+    (3) COSA_RANDOM -> . U
+
+    U               shift and go to state 4
+
+    S                              shift and go to state 1
+    R                              shift and go to state 2
+    COSA_RANDOM                    shift and go to state 3
+
+state 1
+
+    (0) S' -> S .
+
+
+
+state 2
+
+    (1) S -> R .
+
+    $end            reduce using rule 1 (S -> R .)
+
+
+state 3
+
+    (2) R -> COSA_RANDOM . PI mov
+    (4) PI -> . PARDER NUMBER COMMA NUMBER PARIZQ
+
+    PARDER          shift and go to state 6
+
+    PI                             shift and go to state 5
+
+state 4
+
+    (3) COSA_RANDOM -> U .
+
+    PARDER          reduce using rule 3 (COSA_RANDOM -> U .)
+
+
+state 5
+
+    (2) R -> COSA_RANDOM PI . mov
+    (5) mov -> . mov SEMICOLON d
+    (6) mov -> . d
+    (7) d -> . U
+    (8) d -> . DTOKEN
+    (9) d -> . RTOKEN
+    (10) d -> . L
+
+    U               shift and go to state 9
+    DTOKEN          shift and go to state 10
+    RTOKEN          shift and go to state 11
+    L               shift and go to state 12
+
+    mov                            shift and go to state 7
+    d                              shift and go to state 8
+
+state 6
+
+    (4) PI -> PARDER . NUMBER COMMA NUMBER PARIZQ
+
+    NUMBER          shift and go to state 13
+
+
+state 7
+
+    (2) R -> COSA_RANDOM PI mov .
+    (5) mov -> mov . SEMICOLON d
+
+    $end            reduce using rule 2 (R -> COSA_RANDOM PI mov .)
+    SEMICOLON       shift and go to state 14
+
+
+state 8
+
+    (6) mov -> d .
+
+    SEMICOLON       reduce using rule 6 (mov -> d .)
+    $end            reduce using rule 6 (mov -> d .)
+
+
+state 9
+
+    (7) d -> U .
+
+    SEMICOLON       reduce using rule 7 (d -> U .)
+    $end            reduce using rule 7 (d -> U .)
+
+
+state 10
+
+    (8) d -> DTOKEN .
+
+    SEMICOLON       reduce using rule 8 (d -> DTOKEN .)
+    $end            reduce using rule 8 (d -> DTOKEN .)
+
+
+state 11
+
+    (9) d -> RTOKEN .
+
+    SEMICOLON       reduce using rule 9 (d -> RTOKEN .)
+    $end            reduce using rule 9 (d -> RTOKEN .)
+
+
+state 12
+
+    (10) d -> L .
+
+    SEMICOLON       reduce using rule 10 (d -> L .)
+    $end            reduce using rule 10 (d -> L .)
+
+
+state 13
+
+    (4) PI -> PARDER NUMBER . COMMA NUMBER PARIZQ
+
+    COMMA           shift and go to state 15
+
+
+state 14
+
+    (5) mov -> mov SEMICOLON . d
+    (7) d -> . U
+    (8) d -> . DTOKEN
+    (9) d -> . RTOKEN
+    (10) d -> . L
+
+    U               shift and go to state 9
+    DTOKEN          shift and go to state 10
+    RTOKEN          shift and go to state 11
+    L               shift and go to state 12
+
+    d                              shift and go to state 16
+
+state 15
+
+    (4) PI -> PARDER NUMBER COMMA . NUMBER PARIZQ
+
+    NUMBER          shift and go to state 17
+
+
+state 16
+
+    (5) mov -> mov SEMICOLON d .
+
+    SEMICOLON       reduce using rule 5 (mov -> mov SEMICOLON d .)
+    $end            reduce using rule 5 (mov -> mov SEMICOLON d .)
+
+
+state 17
+
+    (4) PI -> PARDER NUMBER COMMA NUMBER . PARIZQ
+
+    PARIZQ          shift and go to state 18
+
+
+state 18
+
+    (4) PI -> PARDER NUMBER COMMA NUMBER PARIZQ .
+
+    U               reduce using rule 4 (PI -> PARDER NUMBER COMMA NUMBER PARIZQ .)
+    DTOKEN          reduce using rule 4 (PI -> PARDER NUMBER COMMA NUMBER PARIZQ .)
+    RTOKEN          reduce using rule 4 (PI -> PARDER NUMBER COMMA NUMBER PARIZQ .)
+    L               reduce using rule 4 (PI -> PARDER NUMBER COMMA NUMBER PARIZQ .)
+
