@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'COMMA DTOKEN L NUMBER PARDER PARIZQ RTOKEN SEMICOLON US : RR : COSA_RANDOM PI movCOSA_RANDOM : UPI : PARDER NUMBER COMMA NUMBER PARIZQmov : mov SEMICOLON d\n           | dd :   U\n        |    DTOKEN\n        |    RTOKEN\n        |    L'
+_lr_signature = 'leftPLUSMINUSleftTIMESDIVDIV MINUS NUMBER PLUS TIMESexpression : ee : e PLUS ee : e MINUS ee : e TIMES ee : e DIV ee : NUMBER'
     
-_lr_action_items = {'U':([0,5,14,18,],[4,9,9,-4,]),'$end':([1,2,7,8,9,10,11,12,16,],[0,-1,-2,-6,-7,-8,-9,-10,-5,]),'PARDER':([3,4,],[6,-3,]),'DTOKEN':([5,14,18,],[10,10,-4,]),'RTOKEN':([5,14,18,],[11,11,-4,]),'L':([5,14,18,],[12,12,-4,]),'NUMBER':([6,15,],[13,17,]),'SEMICOLON':([7,8,9,10,11,12,16,],[14,-6,-7,-8,-9,-10,-5,]),'COMMA':([13,],[15,]),'PARIZQ':([17,],[18,]),}
+_lr_action_items = {'NUMBER':([0,4,5,6,7,],[3,3,3,3,3,]),'$end':([1,2,3,8,9,10,11,],[0,-1,-6,-2,-3,-4,-5,]),'PLUS':([2,3,8,9,10,11,],[4,-6,-2,-3,-4,-5,]),'MINUS':([2,3,8,9,10,11,],[5,-6,-2,-3,-4,-5,]),'TIMES':([2,3,8,9,10,11,],[6,-6,6,6,-4,-5,]),'DIV':([2,3,8,9,10,11,],[7,-6,7,7,-4,-5,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'S':([0,],[1,]),'R':([0,],[2,]),'COSA_RANDOM':([0,],[3,]),'PI':([3,],[5,]),'mov':([5,],[7,]),'d':([5,14,],[8,16,]),}
+_lr_goto_items = {'expression':([0,],[1,]),'e':([0,4,5,6,7,],[2,8,9,10,11,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,15 +26,11 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> S","S'",1,None,None,None),
-  ('S -> R','S',1,'p_s','gramatica3.py',45),
-  ('R -> COSA_RANDOM PI mov','R',3,'p_r','gramatica3.py',50),
-  ('COSA_RANDOM -> U','COSA_RANDOM',1,'p_cosa_random','gramatica3.py',54),
-  ('PI -> PARDER NUMBER COMMA NUMBER PARIZQ','PI',5,'p_pi','gramatica3.py',58),
-  ('mov -> mov SEMICOLON d','mov',3,'p_mov','gramatica3.py',62),
-  ('mov -> d','mov',1,'p_mov','gramatica3.py',63),
-  ('d -> U','d',1,'p_d','gramatica3.py',73),
-  ('d -> DTOKEN','d',1,'p_d','gramatica3.py',74),
-  ('d -> RTOKEN','d',1,'p_d','gramatica3.py',75),
-  ('d -> L','d',1,'p_d','gramatica3.py',76),
+  ("S' -> expression","S'",1,None,None,None),
+  ('expression -> e','expression',1,'p_expression','gramatica2.py',46),
+  ('e -> e PLUS e','e',3,'p_e_suma','gramatica2.py',50),
+  ('e -> e MINUS e','e',3,'p_e_resta','gramatica2.py',56),
+  ('e -> e TIMES e','e',3,'p_e_mult','gramatica2.py',62),
+  ('e -> e DIV e','e',3,'p_e_div','gramatica2.py',68),
+  ('e -> NUMBER','e',1,'p_e_valor','gramatica2.py',74),
 ]

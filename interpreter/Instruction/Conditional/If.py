@@ -13,6 +13,7 @@ class If(Instruction):
         cond = self.condition.execute(environment)
         if cond.type != Type.BOOLEAN:
             print("Condición de tipo no boolean")
+            return
         if cond.value:
             return self.instructions.execute(environment)
         elif self.elseSt != None:
