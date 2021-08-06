@@ -1,16 +1,16 @@
 
-    a = 10
+a = 10
+println(a)
+if true
+    local a = "Hola"
     println(a)
-    if true
-        local a = "Hola"
+    local i = 5
+    while i > 0
+        local a = i
         println(a)
-        local i = 5
-        while i > 0
-            local a = i
-            println(a)
-            i = i - 1
-        end;
-        println(a)
+        i = i - 1
     end;
-    println(a);
+    println(a)
+end;
+println(a);
 

@@ -1,3 +1,6 @@
+c3d = ""
+count = 0
+
 # Lexical Analysis
 tokens = (
     "NUMBER",
@@ -41,27 +44,44 @@ precedence = (
 
 def p_expression(t):
     'expression : e'
-    print("El resultado es: " + str(t[1]))
+    global c3d
+    print(c3d)
 
 def p_e_suma(t):
     'e : e PLUS e'
-    t[0] = t[1] + t[3]
+    global count
+    global c3d
+    c3d += "t" + str(count) + " = " + t[1] + " + " + t[3] + "\n"
+    t[0] = "t" + str(count)
+    count+=1
 
 def p_e_resta(t):
     'e : e MINUS e'
-    t[0] = t[1] - t[3]
+    global count
+    global c3d
+    c3d += "t" + str(count) + " = " + t[1] + " - " + t[3] + "\n"
+    t[0] = "t" + str(count)
+    count+=1
 
 def p_e_mult(t):
     'e : e TIMES e'
-    t[0] = t[1] * t[3]
+    global count
+    global c3d
+    c3d += "t" + str(count) + " = " + t[1] + " * " + t[3] + "\n"
+    t[0] = "t" + str(count)
+    count+=1
 
 def p_e_div(t):
     'e : e DIV e'
-    t[0] = t[1] / t[3]
+    global count
+    global c3d
+    c3d += "t" + str(count) + " = " + t[1] + " / " + t[3] + "\n"
+    t[0] = "t" + str(count)
+    count+=1
 
 def p_e_valor(t):
     'e : NUMBER'
-    t[0] = t[1]
+    t[0] = str(t[1])
 
 def p_error(t):
     print("Error sintáctico en '%s'" % t.value)
@@ -72,3 +92,12 @@ parser = yacc.yacc()
 f = open("./entradaCalc.txt", "r")
 input = f.read()
 parser.parse(input)
+
+'''
+    1 + 1 - 2 * 3 / 2
+
+    t0 = 2 * 3
+    t1 = t0 / 2
+    t2 = 1 + 1
+    t3 = t2 - t1
+'''

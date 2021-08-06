@@ -9,11 +9,4 @@ class Literal(Expression):
         self.type = type
     
     def execute(self, environment):
-        if self.type == Type.INT:
-            return Return(self.value, Type.INT)
-        elif self.type == Type.FLOAT:
-            return Return(self.value, Type.FLOAT)
-        elif self.type == Type.BOOLEAN:
-            return Return(self.value, Type.BOOLEAN)
-        else:
-            return Return(self.value, Type.STRING)
+        return Return(self.value, self.type)
