@@ -1,4 +1,4 @@
-from Symbol import *
+from Symbol.Symbol import *
 
 class Environment:
     
@@ -36,3 +36,9 @@ class Environment:
             return self.functions[idFunc]
         else:
             return None
+        
+    def getGlobal(self):
+        env = self
+        while env.prev != None:
+            env = env.prev
+        return env

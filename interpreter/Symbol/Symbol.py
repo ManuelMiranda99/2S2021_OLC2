@@ -1,4 +1,4 @@
-from Abstract.Type import Type
+from Abstract.Return import *
 
 class Symbol:
 
