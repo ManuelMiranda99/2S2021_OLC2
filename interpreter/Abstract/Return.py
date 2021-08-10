@@ -9,6 +9,7 @@ class Type(Enum):
     STRING = 5
     ARRAY = 6
     STRUCT = 7
+    UNDEFINED = 8
 
 class Return:
     def __init__(self, val, retType):

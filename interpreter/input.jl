@@ -1,3 +1,4 @@
+#=
 println(true);
 println(false);
 println("Hola");
@@ -43,3 +44,48 @@ elseif false
 else
     println("If Elseif*2 Else en Else");
 end;
+
+# Ifs anidados
+if 5 > 1
+    println("If Normal");
+    if true
+        println("If dentro de If");
+        if false
+            println("If dentro de If dentro de If");
+        else
+            println("If dentro de If dentro de If en Else");
+        end;
+    elseif false
+        println("Else if dentro de If");
+    else
+        println("Else dentro de If");
+    end;
+end;
+=#
+a = 10;
+while a > 0
+    print("El valor de a es: ");
+    println(a);
+    a = a - 1;
+end;
+
+while a < 5
+    if a == 3
+        println("a");
+        # continue;
+    elseif a == 4
+        println("b");
+        # break;
+    end;
+    
+    print("El valor de a es: ");
+    println(a);
+    a = a + 1;
+end;
+
+function suma(a, b)
+    result = a + b;
+    println(result);
+end;
+
+suma(10, 5);
