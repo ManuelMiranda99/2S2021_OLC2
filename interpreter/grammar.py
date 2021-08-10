@@ -3,14 +3,44 @@
 from Instruction.Statement import *
 from Instruction.Print import *
 from Instruction.Conditional.If import *
+from Instruction.Functions.Function import *            # /
+from Instruction.Functions.Param import *               # /
+from Instruction.Loops.While import *                   # /
+from Instruction.Variables.Declaration import *         # /
 
 # Expressions
 from Expressions.Arithmetic import *
 from Expressions.Literal import *
 from Expressions.Relational import *
+from Expressions.Access import *                        # /
+from Expressions.CallFunc import *                      # /
 
 # LEXICAL ANALYSIS
-tokens = (
+rw = {
+    # GENERAL RW
+    "END" : "END",
+    "TRUE" : "TRUE",
+    "FALSE" : "FALSE",
+
+    # FUNCTIONS SENTENCE
+    "FUNCTION" : "FUNCTION",
+
+    # IFELSE SENTENCE
+    "IF" : "IF",
+    "ELSE" : "ELSE",
+    "ELSEIF" : "ELSEIF",
+
+    # WHILE SENTENCE
+    "WHILE" : "WHILE",
+
+    # NATIVES
+    "PRINTLN" : "PRINTLN",
+    "PRINT" : "PRINT",
+}
+
+tokens = [
+    "ID",
+
     # NATIVE VALUES
     "INTLITERAL",
     "FLOATLITERAL",
@@ -20,6 +50,7 @@ tokens = (
     # GENERAL SYMBOLS
     "EQUALS",
     "SEMICOLON",
+    "COMMA",
     "LEPAR",
     "RIPAR",
 
@@ -40,23 +71,8 @@ tokens = (
     "GREATEREQUAL",
     "LESSEQUAL",
     "EQUALSEQUALS",
-    "DISTINT",
-
-    # RESERVED WORDS
-    # GENERAL RW
-    "END",
-    "TRUE",
-    "FALSE",
-
-    # IFELSE SENTENCE
-    "IF",
-    "ELSE",
-    "ELSEIF",
-
-    # NATIVES
-    "PRINTLN",
-    "PRINT",
-)
+    "DISTINT"
+] + list(rw.values())
 
 # TOKENS
 
@@ -64,6 +80,7 @@ tokens = (
 # GENERAL SYMBOLS
 t_EQUALS                = r'='
 t_SEMICOLON             = r';'
+t_COMMA                 = r','
 t_LEPAR                 = r'\('
 t_RIPAR                 = r'\)'
 
@@ -86,20 +103,10 @@ t_LESSEQUAL             = r'<='
 t_EQUALSEQUALS          = r'=='
 t_DISTINT               = r'!='
 
-# RESERVED WORDS
-# GENERAL RW
-t_END                   = r'end'
-t_TRUE                  = r'true'
-t_FALSE                 = r'false'
-
-# IFELSE SENTENCE
-t_IF                    = r'if'
-t_ELSE                  = r'else'
-t_ELSEIF                = r'elseif'
-
-# NATIVES
-t_PRINTLN               = r'println'
-t_PRINT                 = r'print'
+def t_ID(t):
+    r'[a-zA-Z_][a-zA-Z_0-9]*'
+    t.type = rw.get(t.value.upper(), 'ID')
+    return t
 
 def t_FLOATLITERAL(t):
     r'\d+\.\d+'
@@ -174,13 +181,40 @@ def p_instructions(t):
 
 def p_instruction(t):
     '''instruction  : printST SEMICOLON
-                    | ifST SEMICOLON'''
+                    | ifST SEMICOLON
+                    | declarationST SEMICOLON
+                    | whileST SEMICOLON
+                    | callFunc SEMICOLON
+                    | declareFunc SEMICOLON'''
     t[0] = t[1]
 
 # STATEMENT
 def p_statement(t):
     '''statement : instructions'''
     t[0] = Statement(t[1], t.lineno(1), t.lexpos(0))
+
+# FUNCTION ST
+def p_function(t):
+    '''declareFunc :  FUNCTION ID LEPAR RIPAR statement END
+                    | FUNCTION ID LEPAR decParams RIPAR statement END'''
+    if len(t) == 7:
+        t[0] = Function(t[2], [], t[5], t.lineno(1), t.lexpos(1))
+    else:
+        t[0] = Function(t[2], t[4], t[6], t.lineno(1), t.lexpos(1))
+
+def p_decParams(t):
+    '''decParams :    decParams COMMA ID
+                    | ID'''
+    if len(t) == 2:
+        t[0] = [Param(t[1], t.lineno(1), t.lexpos(1))]
+    else:
+        t[1].append(Param(t[3], t.lineno(3), t.lexpos(3)))
+        t[0] = t[1]
+
+# DECLARATION ST
+def p_declaration(t):
+    '''declarationST : ID EQUALS expression'''
+    t[0] = Declaration(t[1], t[3], t.lineno(2), t.lexpos(2))
 
 # PRINT ST
 def p_printlnST(t):
@@ -191,7 +225,7 @@ def p_printST(t):
     'printST  : PRINT LEPAR expression RIPAR'
     t[0] = Print(t[3], t.lineno(1), t.lexpos(0))
 
-# IFST
+# IF ST
 def p_ifST(t):
     '''ifST : IF expression statement END
             | IF expression statement ELSE statement END
@@ -214,6 +248,31 @@ def p_elseIfList(t):
     elif len(t) == 5:
         t[0] = If(t[2], t[3], t.lineno(1), t.lexpos(0), t[4])
 
+# WHILE ST
+def p_while(t):
+    'whileST : WHILE expression statement END'
+    t[0] = While(t[2], t[3], t.lineno(1), t.lexpos(1))
+
+# CALL FUNCTION ST
+def p_callfunc(t):
+    '''callFunc : ID LEPAR RIPAR
+                | ID LEPAR expList RIPAR'''
+    if len(t) == 4:
+        t[0] = CallFunc(t[1], [], t.lineno(1), t.lexpos(1))
+    else:
+        t[0] = CallFunc(t[1], t[3], t.lineno(1), t.lexpos(1))
+
+# CALL PARAMS
+def p_callparams(t):
+    '''expList :  expList COMMA expression
+                | expression'''
+    if len(t) == 2:
+        t[0] = [t[1]]
+    else:
+        t[1].append(t[3])
+        t[0] = t[1]
+
+# EXPRESSIONS
 def p_expression(t):
     '''expression   : MINUS expression %prec UMINUS
                     | NOT expression %prec UMINUS
@@ -271,12 +330,16 @@ def p_finalExp(t):
                 | FLOATLITERAL
                 | STRINGLITERAL
                 | TRUE
-                | FALSE'''
+                | FALSE
+                | ID
+                | callFunc'''
     if len(t) == 2:
-        if isinstance(t[1], int):
+        if t.slice[1].type == "INTLITERAL":
             t[0] = Literal(int(t[1]), Type.INT, t.lineno(1), t.lexpos(0))
-        elif isinstance(t[1], float):
+        elif t.slice[1].type == "FLOATLITERAL":
             t[0] = Literal(float(t[1]), Type.FLOAT, t.lineno(1), t.lexpos(0))
+        elif t.slice[1].type == "ID":
+            t[0] = Access(t[1], t.lineno(1), t.lexpos(1))
         elif isinstance(t[1], str):
             value = str(t[1])
             if "true" in value:
