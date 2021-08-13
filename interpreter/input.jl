@@ -1,4 +1,4 @@
-#=
+
 println(true);
 println(false);
 println("Hola");
@@ -61,7 +61,7 @@ if 5 > 1
         println("Else dentro de If");
     end;
 end;
-=#
+
 a = 10;
 while a > 0
     print("El valor de a es: ");
@@ -84,8 +84,7 @@ while a < 5
 end;
 
 function suma(a, b)
-    result = a + b;
-    println(result);
+    return a + b;
 end;
 
-suma(10, 5);
+println(suma(10, 5));

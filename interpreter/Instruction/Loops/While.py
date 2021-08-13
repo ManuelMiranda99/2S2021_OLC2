@@ -13,7 +13,7 @@ class While(Instruction):
         if cond.type != Type.BOOLEAN:
             print("La condicion no es booleana")
             return
-        while cond.value == True:
+        while cond.value:
             element = self.instr.execute(environment)
             cond = self.cond.execute(environment)
             if cond.type != Type.BOOLEAN:
