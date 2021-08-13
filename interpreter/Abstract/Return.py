@@ -11,6 +11,10 @@ class Type(Enum):
     STRUCT = 7
     UNDEFINED = 8
 
+    RETURNST = 9
+    CONTINUEST = 10
+    BREAKSTI = 11
+
 class Return:
     def __init__(self, val, retType):
         self.value = val

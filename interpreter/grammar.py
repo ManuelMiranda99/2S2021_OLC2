@@ -14,6 +14,7 @@ from Expressions.Literal import *
 from Expressions.Relational import *
 from Expressions.Access import *                        # /
 from Expressions.CallFunc import *                      # /
+from Instruction.Functions.ReturnST import *
 
 # LEXICAL ANALYSIS
 rw = {
@@ -24,6 +25,7 @@ rw = {
 
     # FUNCTIONS SENTENCE
     "FUNCTION" : "FUNCTION",
+    "RETURN" : "RETURN",
 
     # IFELSE SENTENCE
     "IF" : "IF",
@@ -185,7 +187,8 @@ def p_instruction(t):
                     | declarationST SEMICOLON
                     | whileST SEMICOLON
                     | callFunc SEMICOLON
-                    | declareFunc SEMICOLON'''
+                    | declareFunc SEMICOLON
+                    | returnST SEMICOLON'''
     t[0] = t[1]
 
 # STATEMENT
@@ -210,6 +213,15 @@ def p_decParams(t):
     else:
         t[1].append(Param(t[3], t.lineno(3), t.lexpos(3)))
         t[0] = t[1]
+
+# RETURN ST
+def p_return(t):
+    '''returnST : RETURN
+                | RETURN expression'''
+    if len(t) == 2:
+        t[0] = ReturnST(None, t.lineno(1), t.lexpos(1))
+    else:
+        t[0] = ReturnST(t[2], t.lineno(1), t.lexpos(1))
 
 # DECLARATION ST
 def p_declaration(t):
@@ -340,6 +352,8 @@ def p_finalExp(t):
             t[0] = Literal(float(t[1]), Type.FLOAT, t.lineno(1), t.lexpos(0))
         elif t.slice[1].type == "ID":
             t[0] = Access(t[1], t.lineno(1), t.lexpos(1))
+        elif t.slice[1].type == "callFunc":
+            t[0] = t[1]
         elif isinstance(t[1], str):
             value = str(t[1])
             if "true" in value:
