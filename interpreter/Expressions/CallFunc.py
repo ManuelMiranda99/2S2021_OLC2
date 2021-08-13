@@ -1,4 +1,5 @@
 from Abstract.Expression import *
+from Abstract.Return import *
 from Symbol.Environment import *
 
 class CallFunc(Expression):
@@ -9,10 +10,18 @@ class CallFunc(Expression):
         self.params = params
     
     def execute(self, environment):
-        func = environment.getFunc(self.id)
-        if func != None:
-            newEnv = Environment(environment.getGlobal())
-            for i in range(len(self.params)):
-                value = self.params[i].execute(environment)
-                newEnv.saveVar(func.params[i].id, value.value, value.type)
-            func.instr.execute(newEnv)
+        try:
+            func = environment.getFunc(self.id)
+            if func != None:
+                newEnv = Environment(environment.getGlobal())
+                for i in range(len(self.params)):
+                    value = self.params[i].execute(environment)
+                    newEnv.saveVar(func.params[i].id, value.value, value.type)
+                ret = func.instr.execute(newEnv)
+                if ret != None:
+                    if ret["type"] == Type.RETURNST:
+                        return ret["value"]
+                    else:
+                        return ret
+        except:
+            print("Error en llamada a funcion")

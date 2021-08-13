@@ -1,4 +1,5 @@
 from Abstract.Instruction import *
+from Abstract.Return import *
 from Symbol.Environment import *
 
 class Statement(Instruction):
@@ -10,4 +11,6 @@ class Statement(Instruction):
     def execute(self, environment):
         newEnv = Environment(environment)
         for ins in self.instructions:
-            ins.execute(newEnv)
+            ret = ins.execute(newEnv)
+            if ret != None:
+                return ret
