@@ -10,4 +10,7 @@ class Declaration(Instruction):
     
     def execute(self, environment):
         value = self.value.execute(environment)
-        environment.saveVar(self.id, value.value, value.type)
+        if value.type == Type.STRUCT:
+            environment.saveVarStruct(self.id, value.value, value.auxType)
+        else:
+            environment.saveVar(self.id, value.value, value.type)

@@ -3,18 +3,24 @@
 from Instruction.Statement import *
 from Instruction.Print import *
 from Instruction.Conditional.If import *
-from Instruction.Functions.Function import *            # /
-from Instruction.Functions.Param import *               # /
-from Instruction.Loops.While import *                   # /
-from Instruction.Variables.Declaration import *         # /
+from Instruction.Functions.Function import *
+from Instruction.Functions.Param import *
+from Instruction.Loops.While import *
+from Instruction.Loops.Break import *
+from Instruction.Loops.Continue import *
+from Instruction.Variables.Declaration import *
+from Instruction.Structs.CreateStruct import *
+from Instruction.Structs.DeclareStruct import *
+from Instruction.Structs.AssignAccess import *
 
 # Expressions
 from Expressions.Arithmetic import *
 from Expressions.Literal import *
 from Expressions.Relational import *
-from Expressions.Access import *                        # /
-from Expressions.CallFunc import *                      # /
+from Expressions.Access import *
+from Expressions.CallFunc import *
 from Instruction.Functions.ReturnST import *
+from Expressions.AccessStruct import *
 
 # LEXICAL ANALYSIS
 rw = {
@@ -34,6 +40,11 @@ rw = {
 
     # WHILE SENTENCE
     "WHILE" : "WHILE",
+    "CONTINUE" : "CONTINUE",
+    "BREAK": "BREAK",
+
+    # STRUCTS
+    "STRUCT" : "STRUCT",
 
     # NATIVES
     "PRINTLN" : "PRINTLN",
@@ -51,6 +62,8 @@ tokens = [
     # SYMBOLS
     # GENERAL SYMBOLS
     "EQUALS",
+    "POINT",
+    "COLON",
     "SEMICOLON",
     "COMMA",
     "LEPAR",
@@ -81,6 +94,8 @@ tokens = [
 # SYMBOLS
 # GENERAL SYMBOLS
 t_EQUALS                = r'='
+t_POINT                 = r'\.'
+t_COLON                 = r':'
 t_SEMICOLON             = r';'
 t_COMMA                 = r','
 t_LEPAR                 = r'\('
@@ -188,7 +203,12 @@ def p_instruction(t):
                     | whileST SEMICOLON
                     | callFunc SEMICOLON
                     | declareFunc SEMICOLON
-                    | returnST SEMICOLON'''
+                    | returnST SEMICOLON
+                    | breakST SEMICOLON
+                    | continueST SEMICOLON
+                    | createStruct SEMICOLON
+                    | declareStructST SEMICOLON
+                    | assignAccessST SEMICOLON'''
     t[0] = t[1]
 
 # STATEMENT
@@ -260,10 +280,45 @@ def p_elseIfList(t):
     elif len(t) == 5:
         t[0] = If(t[2], t[3], t.lineno(1), t.lexpos(0), t[4])
 
+# STRUCTS
+# CREATE STRUCT
+def p_createStruct(t):
+    'createStruct : STRUCT ID attList END'
+    t[0] = CreateStruct(t[2], t[3], t.lineno(1), t.lexpos(1))
+
+def p_attList(t):
+    '''attList :  attList SEMICOLON ID SEMICOLON
+                | ID'''
+    if len(t) == 2:
+        t[0] = [t[1]]
+    else:
+        t[1].append(t[3])
+        t[0] = t[1]
+
+# DECLARE STRUCT
+def p_declareStruct(t):
+    'declareStructST : ID COLON COLON ID'
+    t[0] = DeclareStruct(t[1], t[4], t.lineno(1), t.lexpos(1))
+
+# ASSIGN ACCESS
+def p_assignAccess(t):
+    'assignAccessST : ID POINT ID EQUALS expression'
+    t[0] = AssignAccess(t[1], t[3], t[5], t.lineno(1), t.lexpos(1))
+
 # WHILE ST
 def p_while(t):
     'whileST : WHILE expression statement END'
     t[0] = While(t[2], t[3], t.lineno(1), t.lexpos(1))
+
+# BREAK ST
+def p_break(t):
+    'breakST : BREAK'
+    t[0] = Break(t.lineno(1), t.lexpos(1))
+
+# CONTINUE ST
+def p_continue(t):
+    'continueST : CONTINUE'
+    t[0] = Continue(t.lineno(1), t.lexpos(1))
 
 # CALL FUNCTION ST
 def p_callfunc(t):
@@ -344,7 +399,8 @@ def p_finalExp(t):
                 | TRUE
                 | FALSE
                 | ID
-                | callFunc'''
+                | callFunc
+                | accessST'''
     if len(t) == 2:
         if t.slice[1].type == "INTLITERAL":
             t[0] = Literal(int(t[1]), Type.INT, t.lineno(1), t.lexpos(0))
@@ -352,7 +408,7 @@ def p_finalExp(t):
             t[0] = Literal(float(t[1]), Type.FLOAT, t.lineno(1), t.lexpos(0))
         elif t.slice[1].type == "ID":
             t[0] = Access(t[1], t.lineno(1), t.lexpos(1))
-        elif t.slice[1].type == "callFunc":
+        elif t.slice[1].type == "callFunc" or t.slice[1].type == "accessST":
             t[0] = t[1]
         elif isinstance(t[1], str):
             value = str(t[1])
@@ -364,6 +420,10 @@ def p_finalExp(t):
                 t[0] = Literal(str(t[1]), Type.STRING, t.lineno(1), t.lexpos(0))
     else:
         t[0] = t[2]
+
+def p_accessST(t):
+    '''accessST : ID POINT ID'''
+    t[0] = AccessStruct(t[1], t[3], t.lineno(1), t.lexpos(1))
 
 def p_error(t):
     print(t)
