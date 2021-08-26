@@ -23,5 +23,15 @@ class CallFunc(Expression):
                         return ret["value"]
                     else:
                         return ret
+            else:
+                struct = environment.getStruct(self.id)
+                if struct != None:
+                    attrs = {}
+                    for i in range(len(self.params)):
+                        value = self.params[i].execute(environment)
+                        attrs.update({
+                            struct[i] : value
+                        })
+                    return Return(attrs, Type.STRUCT, self.id)
         except:
             print("Error en llamada a funcion")

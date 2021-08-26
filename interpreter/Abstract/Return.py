@@ -13,9 +13,10 @@ class Type(Enum):
 
     RETURNST = 9
     CONTINUEST = 10
-    BREAKSTI = 11
+    BREAKST = 11
 
 class Return:
-    def __init__(self, val, retType):
+    def __init__(self, val, retType, auxType = ""):
         self.value = val
         self.type = retType
+        self.auxType = auxType

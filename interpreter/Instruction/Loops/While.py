@@ -15,6 +15,13 @@ class While(Instruction):
             return
         while cond.value:
             element = self.instr.execute(environment)
+            if element != None:
+                if element.type == Type.BREAKST:
+                    break
+                elif element.type == Type.CONTINUEST:
+                    continue
+                else:
+                    return element
             cond = self.cond.execute(environment)
             if cond.type != Type.BOOLEAN:
                 print("La condicion no es booleana")
