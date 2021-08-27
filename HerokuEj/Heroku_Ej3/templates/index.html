@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>JOLC Interpreter</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    </head>
+<body>
+    <h1>JOLC Interpreter</h1>
+    <a href="#" id="execute"><button class="btn btn-e">Execute</button></a>
+    <a href="#" id="getTree"><button class="btn btn-g">Get Tree</button></a>
+    <pre id="code"></pre>
+    <pre id="output">SALIDA:</pre>
+    <!--<input type="text" name="code" id="code">
+    <input type="text" name="output" id="output">-->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='src-noconflict/ace.js') }}" type="text/javascript" charset="utf-8"></script>
+<script>
+    var codeEditor = ace.edit("code");
+    codeEditor.setTheme("ace/theme/twilight");
+    codeEditor.session.setMode("ace/mode/julia");
+    codeEditor.setShowPrintMargin(false);
+    document.getElementById('code').style.fontSize='18px';
+
+    var output = ace.edit("output");
+    output.setTheme("ace/theme/monokai");
+    output.session.setMode("ace/mode/plain_text");
+    output.setReadOnly(true);
+    output.setShowPrintMargin(false);
+    output.renderer.setShowGutter(false);
+    document.getElementById('output').style.fontSize='18px';
+    
+    $(function(){
+        $('a#execute').on('click', function(e) {
+            var code = codeEditor.getValue();
+            console.log(code);
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '/execute',
+                data: JSON.stringify({ input: code }),
+                success: function(data){
+                    console.log(data);
+                    output.setValue(data.msg);
+                },
+                contentType: 'application/json',
+                dataType: 'json'
+            });
+        });
+        $('a#getTree').on('click', function(e) {
+            var code = codeEditor.getValue();
+            console.log(code);
+            e.preventDefault();
+            $.ajax({
+                type: 'GET',
+                url: '/getTree',
+                success: function(data){
+                    console.log(data);
+                    output.setValue(data.msg);
+                },
+                contentType: 'application/json',
+                dataType: 'json'
+            });
+        });
+    })
+</script>
+</body>
+</html>
