@@ -1,0 +1,4179 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> instructions
+Rule 2     instructions -> instructions instruction
+Rule 3     instructions -> instruction
+Rule 4     instruction -> printST SEMICOLON
+Rule 5     instruction -> ifST SEMICOLON
+Rule 6     instruction -> declarationST SEMICOLON
+Rule 7     instruction -> whileST SEMICOLON
+Rule 8     instruction -> callFunc SEMICOLON
+Rule 9     instruction -> declareFunc SEMICOLON
+Rule 10    instruction -> returnST SEMICOLON
+Rule 11    instruction -> breakST SEMICOLON
+Rule 12    instruction -> continueST SEMICOLON
+Rule 13    instruction -> createStruct SEMICOLON
+Rule 14    instruction -> declareStructST SEMICOLON
+Rule 15    instruction -> assignAccessST SEMICOLON
+Rule 16    statement -> instructions
+Rule 17    declareFunc -> FUNCTION ID LEPAR RIPAR statement END
+Rule 18    declareFunc -> FUNCTION ID LEPAR decParams RIPAR statement END
+Rule 19    decParams -> decParams COMMA ID
+Rule 20    decParams -> ID
+Rule 21    returnST -> RETURN
+Rule 22    returnST -> RETURN expression
+Rule 23    declarationST -> ID EQUALS expression
+Rule 24    printST -> PRINTLN LEPAR expression RIPAR
+Rule 25    printST -> PRINT LEPAR expression RIPAR
+Rule 26    ifST -> IF expression statement END
+Rule 27    ifST -> IF expression statement ELSE statement END
+Rule 28    ifST -> IF expression statement elseIfList END
+Rule 29    elseIfList -> ELSEIF expression statement
+Rule 30    elseIfList -> ELSEIF expression statement ELSE statement
+Rule 31    elseIfList -> ELSEIF expression statement elseIfList
+Rule 32    createStruct -> STRUCT ID attList END
+Rule 33    attList -> attList SEMICOLON ID SEMICOLON
+Rule 34    attList -> ID
+Rule 35    declareStructST -> ID COLON COLON ID
+Rule 36    assignAccessST -> ID POINT ID EQUALS expression
+Rule 37    whileST -> WHILE expression statement END
+Rule 38    breakST -> BREAK
+Rule 39    continueST -> CONTINUE
+Rule 40    callFunc -> ID LEPAR RIPAR
+Rule 41    callFunc -> ID LEPAR expList RIPAR
+Rule 42    expList -> expList COMMA expression
+Rule 43    expList -> expression
+Rule 44    expression -> MINUS expression
+Rule 45    expression -> NOT expression
+Rule 46    expression -> expression PLUS expression
+Rule 47    expression -> expression MINUS expression
+Rule 48    expression -> expression TIMES expression
+Rule 49    expression -> expression DIV expression
+Rule 50    expression -> expression GREATER expression
+Rule 51    expression -> expression LESS expression
+Rule 52    expression -> expression GREATEREQUAL expression
+Rule 53    expression -> expression LESSEQUAL expression
+Rule 54    expression -> expression EQUALSEQUALS expression
+Rule 55    expression -> expression DISTINT expression
+Rule 56    expression -> expression OR expression
+Rule 57    expression -> expression AND expression
+Rule 58    expression -> finalExp
+Rule 59    finalExp -> LEPAR expression RIPAR
+Rule 60    finalExp -> INTLITERAL
+Rule 61    finalExp -> FLOATLITERAL
+Rule 62    finalExp -> STRINGLITERAL
+Rule 63    finalExp -> TRUE
+Rule 64    finalExp -> FALSE
+Rule 65    finalExp -> ID
+Rule 66    finalExp -> callFunc
+Rule 67    finalExp -> accessST
+Rule 68    accessST -> ID POINT ID
+
+Terminals, with rules where they appear
+
+AND                  : 57
+BREAK                : 38
+COLON                : 35 35
+COMMA                : 19 42
+CONTINUE             : 39
+DISTINT              : 55
+DIV                  : 49
+ELSE                 : 27 30
+ELSEIF               : 29 30 31
+END                  : 17 18 26 27 28 32 37
+EQUALS               : 23 36
+EQUALSEQUALS         : 54
+FALSE                : 64
+FLOATLITERAL         : 61
+FUNCTION             : 17 18
+GREATER              : 50
+GREATEREQUAL         : 52
+ID                   : 17 18 19 20 23 32 33 34 35 35 36 36 40 41 65 68 68
+IF                   : 26 27 28
+INTLITERAL           : 60
+LEPAR                : 17 18 24 25 40 41 59
+LESS                 : 51
+LESSEQUAL            : 53
+MINUS                : 44 47
+NOT                  : 45
+OR                   : 56
+PLUS                 : 46
+POINT                : 36 68
+PRINT                : 25
+PRINTLN              : 24
+RETURN               : 21 22
+RIPAR                : 17 18 24 25 40 41 59
+SEMICOLON            : 4 5 6 7 8 9 10 11 12 13 14 15 33 33
+STRINGLITERAL        : 62
+STRUCT               : 32
+TIMES                : 48
+TRUE                 : 63
+WHILE                : 37
+error                : 
+
+Nonterminals, with rules where they appear
+
+accessST             : 67
+assignAccessST       : 15
+attList              : 32 33
+breakST              : 11
+callFunc             : 8 66
+continueST           : 12
+createStruct         : 13
+decParams            : 18 19
+declarationST        : 6
+declareFunc          : 9
+declareStructST      : 14
+elseIfList           : 28 31
+expList              : 41 42
+expression           : 22 23 24 25 26 27 28 29 30 31 36 37 42 43 44 45 46 46 47 47 48 48 49 49 50 50 51 51 52 52 53 53 54 54 55 55 56 56 57 57 59
+finalExp             : 58
+ifST                 : 5
+instruction          : 2 3
+instructions         : 1 2 16
+printST              : 4
+returnST             : 10
+start                : 0
+statement            : 17 18 26 27 27 28 29 30 30 31 37
+whileST              : 7
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . instructions
+    (2) instructions -> . instructions instruction
+    (3) instructions -> . instruction
+    (4) instruction -> . printST SEMICOLON
+    (5) instruction -> . ifST SEMICOLON
+    (6) instruction -> . declarationST SEMICOLON
+    (7) instruction -> . whileST SEMICOLON
+    (8) instruction -> . callFunc SEMICOLON
+    (9) instruction -> . declareFunc SEMICOLON
+    (10) instruction -> . returnST SEMICOLON
+    (11) instruction -> . breakST SEMICOLON
+    (12) instruction -> . continueST SEMICOLON
+    (13) instruction -> . createStruct SEMICOLON
+    (14) instruction -> . declareStructST SEMICOLON
+    (15) instruction -> . assignAccessST SEMICOLON
+    (24) printST -> . PRINTLN LEPAR expression RIPAR
+    (25) printST -> . PRINT LEPAR expression RIPAR
+    (26) ifST -> . IF expression statement END
+    (27) ifST -> . IF expression statement ELSE statement END
+    (28) ifST -> . IF expression statement elseIfList END
+    (23) declarationST -> . ID EQUALS expression
+    (37) whileST -> . WHILE expression statement END
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (17) declareFunc -> . FUNCTION ID LEPAR RIPAR statement END
+    (18) declareFunc -> . FUNCTION ID LEPAR decParams RIPAR statement END
+    (21) returnST -> . RETURN
+    (22) returnST -> . RETURN expression
+    (38) breakST -> . BREAK
+    (39) continueST -> . CONTINUE
+    (32) createStruct -> . STRUCT ID attList END
+    (35) declareStructST -> . ID COLON COLON ID
+    (36) assignAccessST -> . ID POINT ID EQUALS expression
+
+    PRINTLN         shift and go to state 16
+    PRINT           shift and go to state 17
+    IF              shift and go to state 18
+    ID              shift and go to state 19
+    WHILE           shift and go to state 20
+    FUNCTION        shift and go to state 21
+    RETURN          shift and go to state 22
+    BREAK           shift and go to state 23
+    CONTINUE        shift and go to state 24
+    STRUCT          shift and go to state 25
+
+    start                          shift and go to state 1
+    instructions                   shift and go to state 2
+    instruction                    shift and go to state 3
+    printST                        shift and go to state 4
+    ifST                           shift and go to state 5
+    declarationST                  shift and go to state 6
+    whileST                        shift and go to state 7
+    callFunc                       shift and go to state 8
+    declareFunc                    shift and go to state 9
+    returnST                       shift and go to state 10
+    breakST                        shift and go to state 11
+    continueST                     shift and go to state 12
+    createStruct                   shift and go to state 13
+    declareStructST                shift and go to state 14
+    assignAccessST                 shift and go to state 15
+
+state 1
+
+    (0) S' -> start .
+
+
+
+state 2
+
+    (1) start -> instructions .
+    (2) instructions -> instructions . instruction
+    (4) instruction -> . printST SEMICOLON
+    (5) instruction -> . ifST SEMICOLON
+    (6) instruction -> . declarationST SEMICOLON
+    (7) instruction -> . whileST SEMICOLON
+    (8) instruction -> . callFunc SEMICOLON
+    (9) instruction -> . declareFunc SEMICOLON
+    (10) instruction -> . returnST SEMICOLON
+    (11) instruction -> . breakST SEMICOLON
+    (12) instruction -> . continueST SEMICOLON
+    (13) instruction -> . createStruct SEMICOLON
+    (14) instruction -> . declareStructST SEMICOLON
+    (15) instruction -> . assignAccessST SEMICOLON
+    (24) printST -> . PRINTLN LEPAR expression RIPAR
+    (25) printST -> . PRINT LEPAR expression RIPAR
+    (26) ifST -> . IF expression statement END
+    (27) ifST -> . IF expression statement ELSE statement END
+    (28) ifST -> . IF expression statement elseIfList END
+    (23) declarationST -> . ID EQUALS expression
+    (37) whileST -> . WHILE expression statement END
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (17) declareFunc -> . FUNCTION ID LEPAR RIPAR statement END
+    (18) declareFunc -> . FUNCTION ID LEPAR decParams RIPAR statement END
+    (21) returnST -> . RETURN
+    (22) returnST -> . RETURN expression
+    (38) breakST -> . BREAK
+    (39) continueST -> . CONTINUE
+    (32) createStruct -> . STRUCT ID attList END
+    (35) declareStructST -> . ID COLON COLON ID
+    (36) assignAccessST -> . ID POINT ID EQUALS expression
+
+    $end            reduce using rule 1 (start -> instructions .)
+    PRINTLN         shift and go to state 16
+    PRINT           shift and go to state 17
+    IF              shift and go to state 18
+    ID              shift and go to state 19
+    WHILE           shift and go to state 20
+    FUNCTION        shift and go to state 21
+    RETURN          shift and go to state 22
+    BREAK           shift and go to state 23
+    CONTINUE        shift and go to state 24
+    STRUCT          shift and go to state 25
+
+    instruction                    shift and go to state 26
+    printST                        shift and go to state 4
+    ifST                           shift and go to state 5
+    declarationST                  shift and go to state 6
+    whileST                        shift and go to state 7
+    callFunc                       shift and go to state 8
+    declareFunc                    shift and go to state 9
+    returnST                       shift and go to state 10
+    breakST                        shift and go to state 11
+    continueST                     shift and go to state 12
+    createStruct                   shift and go to state 13
+    declareStructST                shift and go to state 14
+    assignAccessST                 shift and go to state 15
+
+state 3
+
+    (3) instructions -> instruction .
+
+    PRINTLN         reduce using rule 3 (instructions -> instruction .)
+    PRINT           reduce using rule 3 (instructions -> instruction .)
+    IF              reduce using rule 3 (instructions -> instruction .)
+    ID              reduce using rule 3 (instructions -> instruction .)
+    WHILE           reduce using rule 3 (instructions -> instruction .)
+    FUNCTION        reduce using rule 3 (instructions -> instruction .)
+    RETURN          reduce using rule 3 (instructions -> instruction .)
+    BREAK           reduce using rule 3 (instructions -> instruction .)
+    CONTINUE        reduce using rule 3 (instructions -> instruction .)
+    STRUCT          reduce using rule 3 (instructions -> instruction .)
+    $end            reduce using rule 3 (instructions -> instruction .)
+    END             reduce using rule 3 (instructions -> instruction .)
+    ELSE            reduce using rule 3 (instructions -> instruction .)
+    ELSEIF          reduce using rule 3 (instructions -> instruction .)
+
+
+state 4
+
+    (4) instruction -> printST . SEMICOLON
+
+    SEMICOLON       shift and go to state 27
+
+
+state 5
+
+    (5) instruction -> ifST . SEMICOLON
+
+    SEMICOLON       shift and go to state 28
+
+
+state 6
+
+    (6) instruction -> declarationST . SEMICOLON
+
+    SEMICOLON       shift and go to state 29
+
+
+state 7
+
+    (7) instruction -> whileST . SEMICOLON
+
+    SEMICOLON       shift and go to state 30
+
+
+state 8
+
+    (8) instruction -> callFunc . SEMICOLON
+
+    SEMICOLON       shift and go to state 31
+
+
+state 9
+
+    (9) instruction -> declareFunc . SEMICOLON
+
+    SEMICOLON       shift and go to state 32
+
+
+state 10
+
+    (10) instruction -> returnST . SEMICOLON
+
+    SEMICOLON       shift and go to state 33
+
+
+state 11
+
+    (11) instruction -> breakST . SEMICOLON
+
+    SEMICOLON       shift and go to state 34
+
+
+state 12
+
+    (12) instruction -> continueST . SEMICOLON
+
+    SEMICOLON       shift and go to state 35
+
+
+state 13
+
+    (13) instruction -> createStruct . SEMICOLON
+
+    SEMICOLON       shift and go to state 36
+
+
+state 14
+
+    (14) instruction -> declareStructST . SEMICOLON
+
+    SEMICOLON       shift and go to state 37
+
+
+state 15
+
+    (15) instruction -> assignAccessST . SEMICOLON
+
+    SEMICOLON       shift and go to state 38
+
+
+state 16
+
+    (24) printST -> PRINTLN . LEPAR expression RIPAR
+
+    LEPAR           shift and go to state 39
+
+
+state 17
+
+    (25) printST -> PRINT . LEPAR expression RIPAR
+
+    LEPAR           shift and go to state 40
+
+
+state 18
+
+    (26) ifST -> IF . expression statement END
+    (27) ifST -> IF . expression statement ELSE statement END
+    (28) ifST -> IF . expression statement elseIfList END
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 41
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 19
+
+    (23) declarationST -> ID . EQUALS expression
+    (40) callFunc -> ID . LEPAR RIPAR
+    (41) callFunc -> ID . LEPAR expList RIPAR
+    (35) declareStructST -> ID . COLON COLON ID
+    (36) assignAccessST -> ID . POINT ID EQUALS expression
+
+    EQUALS          shift and go to state 54
+    LEPAR           shift and go to state 55
+    COLON           shift and go to state 56
+    POINT           shift and go to state 57
+
+
+state 20
+
+    (37) whileST -> WHILE . expression statement END
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 58
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 21
+
+    (17) declareFunc -> FUNCTION . ID LEPAR RIPAR statement END
+    (18) declareFunc -> FUNCTION . ID LEPAR decParams RIPAR statement END
+
+    ID              shift and go to state 59
+
+
+state 22
+
+    (21) returnST -> RETURN .
+    (22) returnST -> RETURN . expression
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    SEMICOLON       reduce using rule 21 (returnST -> RETURN .)
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 60
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 23
+
+    (38) breakST -> BREAK .
+
+    SEMICOLON       reduce using rule 38 (breakST -> BREAK .)
+
+
+state 24
+
+    (39) continueST -> CONTINUE .
+
+    SEMICOLON       reduce using rule 39 (continueST -> CONTINUE .)
+
+
+state 25
+
+    (32) createStruct -> STRUCT . ID attList END
+
+    ID              shift and go to state 61
+
+
+state 26
+
+    (2) instructions -> instructions instruction .
+
+    PRINTLN         reduce using rule 2 (instructions -> instructions instruction .)
+    PRINT           reduce using rule 2 (instructions -> instructions instruction .)
+    IF              reduce using rule 2 (instructions -> instructions instruction .)
+    ID              reduce using rule 2 (instructions -> instructions instruction .)
+    WHILE           reduce using rule 2 (instructions -> instructions instruction .)
+    FUNCTION        reduce using rule 2 (instructions -> instructions instruction .)
+    RETURN          reduce using rule 2 (instructions -> instructions instruction .)
+    BREAK           reduce using rule 2 (instructions -> instructions instruction .)
+    CONTINUE        reduce using rule 2 (instructions -> instructions instruction .)
+    STRUCT          reduce using rule 2 (instructions -> instructions instruction .)
+    $end            reduce using rule 2 (instructions -> instructions instruction .)
+    END             reduce using rule 2 (instructions -> instructions instruction .)
+    ELSE            reduce using rule 2 (instructions -> instructions instruction .)
+    ELSEIF          reduce using rule 2 (instructions -> instructions instruction .)
+
+
+state 27
+
+    (4) instruction -> printST SEMICOLON .
+
+    PRINTLN         reduce using rule 4 (instruction -> printST SEMICOLON .)
+    PRINT           reduce using rule 4 (instruction -> printST SEMICOLON .)
+    IF              reduce using rule 4 (instruction -> printST SEMICOLON .)
+    ID              reduce using rule 4 (instruction -> printST SEMICOLON .)
+    WHILE           reduce using rule 4 (instruction -> printST SEMICOLON .)
+    FUNCTION        reduce using rule 4 (instruction -> printST SEMICOLON .)
+    RETURN          reduce using rule 4 (instruction -> printST SEMICOLON .)
+    BREAK           reduce using rule 4 (instruction -> printST SEMICOLON .)
+    CONTINUE        reduce using rule 4 (instruction -> printST SEMICOLON .)
+    STRUCT          reduce using rule 4 (instruction -> printST SEMICOLON .)
+    $end            reduce using rule 4 (instruction -> printST SEMICOLON .)
+    END             reduce using rule 4 (instruction -> printST SEMICOLON .)
+    ELSE            reduce using rule 4 (instruction -> printST SEMICOLON .)
+    ELSEIF          reduce using rule 4 (instruction -> printST SEMICOLON .)
+
+
+state 28
+
+    (5) instruction -> ifST SEMICOLON .
+
+    PRINTLN         reduce using rule 5 (instruction -> ifST SEMICOLON .)
+    PRINT           reduce using rule 5 (instruction -> ifST SEMICOLON .)
+    IF              reduce using rule 5 (instruction -> ifST SEMICOLON .)
+    ID              reduce using rule 5 (instruction -> ifST SEMICOLON .)
+    WHILE           reduce using rule 5 (instruction -> ifST SEMICOLON .)
+    FUNCTION        reduce using rule 5 (instruction -> ifST SEMICOLON .)
+    RETURN          reduce using rule 5 (instruction -> ifST SEMICOLON .)
+    BREAK           reduce using rule 5 (instruction -> ifST SEMICOLON .)
+    CONTINUE        reduce using rule 5 (instruction -> ifST SEMICOLON .)
+    STRUCT          reduce using rule 5 (instruction -> ifST SEMICOLON .)
+    $end            reduce using rule 5 (instruction -> ifST SEMICOLON .)
+    END             reduce using rule 5 (instruction -> ifST SEMICOLON .)
+    ELSE            reduce using rule 5 (instruction -> ifST SEMICOLON .)
+    ELSEIF          reduce using rule 5 (instruction -> ifST SEMICOLON .)
+
+
+state 29
+
+    (6) instruction -> declarationST SEMICOLON .
+
+    PRINTLN         reduce using rule 6 (instruction -> declarationST SEMICOLON .)
+    PRINT           reduce using rule 6 (instruction -> declarationST SEMICOLON .)
+    IF              reduce using rule 6 (instruction -> declarationST SEMICOLON .)
+    ID              reduce using rule 6 (instruction -> declarationST SEMICOLON .)
+    WHILE           reduce using rule 6 (instruction -> declarationST SEMICOLON .)
+    FUNCTION        reduce using rule 6 (instruction -> declarationST SEMICOLON .)
+    RETURN          reduce using rule 6 (instruction -> declarationST SEMICOLON .)
+    BREAK           reduce using rule 6 (instruction -> declarationST SEMICOLON .)
+    CONTINUE        reduce using rule 6 (instruction -> declarationST SEMICOLON .)
+    STRUCT          reduce using rule 6 (instruction -> declarationST SEMICOLON .)
+    $end            reduce using rule 6 (instruction -> declarationST SEMICOLON .)
+    END             reduce using rule 6 (instruction -> declarationST SEMICOLON .)
+    ELSE            reduce using rule 6 (instruction -> declarationST SEMICOLON .)
+    ELSEIF          reduce using rule 6 (instruction -> declarationST SEMICOLON .)
+
+
+state 30
+
+    (7) instruction -> whileST SEMICOLON .
+
+    PRINTLN         reduce using rule 7 (instruction -> whileST SEMICOLON .)
+    PRINT           reduce using rule 7 (instruction -> whileST SEMICOLON .)
+    IF              reduce using rule 7 (instruction -> whileST SEMICOLON .)
+    ID              reduce using rule 7 (instruction -> whileST SEMICOLON .)
+    WHILE           reduce using rule 7 (instruction -> whileST SEMICOLON .)
+    FUNCTION        reduce using rule 7 (instruction -> whileST SEMICOLON .)
+    RETURN          reduce using rule 7 (instruction -> whileST SEMICOLON .)
+    BREAK           reduce using rule 7 (instruction -> whileST SEMICOLON .)
+    CONTINUE        reduce using rule 7 (instruction -> whileST SEMICOLON .)
+    STRUCT          reduce using rule 7 (instruction -> whileST SEMICOLON .)
+    $end            reduce using rule 7 (instruction -> whileST SEMICOLON .)
+    END             reduce using rule 7 (instruction -> whileST SEMICOLON .)
+    ELSE            reduce using rule 7 (instruction -> whileST SEMICOLON .)
+    ELSEIF          reduce using rule 7 (instruction -> whileST SEMICOLON .)
+
+
+state 31
+
+    (8) instruction -> callFunc SEMICOLON .
+
+    PRINTLN         reduce using rule 8 (instruction -> callFunc SEMICOLON .)
+    PRINT           reduce using rule 8 (instruction -> callFunc SEMICOLON .)
+    IF              reduce using rule 8 (instruction -> callFunc SEMICOLON .)
+    ID              reduce using rule 8 (instruction -> callFunc SEMICOLON .)
+    WHILE           reduce using rule 8 (instruction -> callFunc SEMICOLON .)
+    FUNCTION        reduce using rule 8 (instruction -> callFunc SEMICOLON .)
+    RETURN          reduce using rule 8 (instruction -> callFunc SEMICOLON .)
+    BREAK           reduce using rule 8 (instruction -> callFunc SEMICOLON .)
+    CONTINUE        reduce using rule 8 (instruction -> callFunc SEMICOLON .)
+    STRUCT          reduce using rule 8 (instruction -> callFunc SEMICOLON .)
+    $end            reduce using rule 8 (instruction -> callFunc SEMICOLON .)
+    END             reduce using rule 8 (instruction -> callFunc SEMICOLON .)
+    ELSE            reduce using rule 8 (instruction -> callFunc SEMICOLON .)
+    ELSEIF          reduce using rule 8 (instruction -> callFunc SEMICOLON .)
+
+
+state 32
+
+    (9) instruction -> declareFunc SEMICOLON .
+
+    PRINTLN         reduce using rule 9 (instruction -> declareFunc SEMICOLON .)
+    PRINT           reduce using rule 9 (instruction -> declareFunc SEMICOLON .)
+    IF              reduce using rule 9 (instruction -> declareFunc SEMICOLON .)
+    ID              reduce using rule 9 (instruction -> declareFunc SEMICOLON .)
+    WHILE           reduce using rule 9 (instruction -> declareFunc SEMICOLON .)
+    FUNCTION        reduce using rule 9 (instruction -> declareFunc SEMICOLON .)
+    RETURN          reduce using rule 9 (instruction -> declareFunc SEMICOLON .)
+    BREAK           reduce using rule 9 (instruction -> declareFunc SEMICOLON .)
+    CONTINUE        reduce using rule 9 (instruction -> declareFunc SEMICOLON .)
+    STRUCT          reduce using rule 9 (instruction -> declareFunc SEMICOLON .)
+    $end            reduce using rule 9 (instruction -> declareFunc SEMICOLON .)
+    END             reduce using rule 9 (instruction -> declareFunc SEMICOLON .)
+    ELSE            reduce using rule 9 (instruction -> declareFunc SEMICOLON .)
+    ELSEIF          reduce using rule 9 (instruction -> declareFunc SEMICOLON .)
+
+
+state 33
+
+    (10) instruction -> returnST SEMICOLON .
+
+    PRINTLN         reduce using rule 10 (instruction -> returnST SEMICOLON .)
+    PRINT           reduce using rule 10 (instruction -> returnST SEMICOLON .)
+    IF              reduce using rule 10 (instruction -> returnST SEMICOLON .)
+    ID              reduce using rule 10 (instruction -> returnST SEMICOLON .)
+    WHILE           reduce using rule 10 (instruction -> returnST SEMICOLON .)
+    FUNCTION        reduce using rule 10 (instruction -> returnST SEMICOLON .)
+    RETURN          reduce using rule 10 (instruction -> returnST SEMICOLON .)
+    BREAK           reduce using rule 10 (instruction -> returnST SEMICOLON .)
+    CONTINUE        reduce using rule 10 (instruction -> returnST SEMICOLON .)
+    STRUCT          reduce using rule 10 (instruction -> returnST SEMICOLON .)
+    $end            reduce using rule 10 (instruction -> returnST SEMICOLON .)
+    END             reduce using rule 10 (instruction -> returnST SEMICOLON .)
+    ELSE            reduce using rule 10 (instruction -> returnST SEMICOLON .)
+    ELSEIF          reduce using rule 10 (instruction -> returnST SEMICOLON .)
+
+
+state 34
+
+    (11) instruction -> breakST SEMICOLON .
+
+    PRINTLN         reduce using rule 11 (instruction -> breakST SEMICOLON .)
+    PRINT           reduce using rule 11 (instruction -> breakST SEMICOLON .)
+    IF              reduce using rule 11 (instruction -> breakST SEMICOLON .)
+    ID              reduce using rule 11 (instruction -> breakST SEMICOLON .)
+    WHILE           reduce using rule 11 (instruction -> breakST SEMICOLON .)
+    FUNCTION        reduce using rule 11 (instruction -> breakST SEMICOLON .)
+    RETURN          reduce using rule 11 (instruction -> breakST SEMICOLON .)
+    BREAK           reduce using rule 11 (instruction -> breakST SEMICOLON .)
+    CONTINUE        reduce using rule 11 (instruction -> breakST SEMICOLON .)
+    STRUCT          reduce using rule 11 (instruction -> breakST SEMICOLON .)
+    $end            reduce using rule 11 (instruction -> breakST SEMICOLON .)
+    END             reduce using rule 11 (instruction -> breakST SEMICOLON .)
+    ELSE            reduce using rule 11 (instruction -> breakST SEMICOLON .)
+    ELSEIF          reduce using rule 11 (instruction -> breakST SEMICOLON .)
+
+
+state 35
+
+    (12) instruction -> continueST SEMICOLON .
+
+    PRINTLN         reduce using rule 12 (instruction -> continueST SEMICOLON .)
+    PRINT           reduce using rule 12 (instruction -> continueST SEMICOLON .)
+    IF              reduce using rule 12 (instruction -> continueST SEMICOLON .)
+    ID              reduce using rule 12 (instruction -> continueST SEMICOLON .)
+    WHILE           reduce using rule 12 (instruction -> continueST SEMICOLON .)
+    FUNCTION        reduce using rule 12 (instruction -> continueST SEMICOLON .)
+    RETURN          reduce using rule 12 (instruction -> continueST SEMICOLON .)
+    BREAK           reduce using rule 12 (instruction -> continueST SEMICOLON .)
+    CONTINUE        reduce using rule 12 (instruction -> continueST SEMICOLON .)
+    STRUCT          reduce using rule 12 (instruction -> continueST SEMICOLON .)
+    $end            reduce using rule 12 (instruction -> continueST SEMICOLON .)
+    END             reduce using rule 12 (instruction -> continueST SEMICOLON .)
+    ELSE            reduce using rule 12 (instruction -> continueST SEMICOLON .)
+    ELSEIF          reduce using rule 12 (instruction -> continueST SEMICOLON .)
+
+
+state 36
+
+    (13) instruction -> createStruct SEMICOLON .
+
+    PRINTLN         reduce using rule 13 (instruction -> createStruct SEMICOLON .)
+    PRINT           reduce using rule 13 (instruction -> createStruct SEMICOLON .)
+    IF              reduce using rule 13 (instruction -> createStruct SEMICOLON .)
+    ID              reduce using rule 13 (instruction -> createStruct SEMICOLON .)
+    WHILE           reduce using rule 13 (instruction -> createStruct SEMICOLON .)
+    FUNCTION        reduce using rule 13 (instruction -> createStruct SEMICOLON .)
+    RETURN          reduce using rule 13 (instruction -> createStruct SEMICOLON .)
+    BREAK           reduce using rule 13 (instruction -> createStruct SEMICOLON .)
+    CONTINUE        reduce using rule 13 (instruction -> createStruct SEMICOLON .)
+    STRUCT          reduce using rule 13 (instruction -> createStruct SEMICOLON .)
+    $end            reduce using rule 13 (instruction -> createStruct SEMICOLON .)
+    END             reduce using rule 13 (instruction -> createStruct SEMICOLON .)
+    ELSE            reduce using rule 13 (instruction -> createStruct SEMICOLON .)
+    ELSEIF          reduce using rule 13 (instruction -> createStruct SEMICOLON .)
+
+
+state 37
+
+    (14) instruction -> declareStructST SEMICOLON .
+
+    PRINTLN         reduce using rule 14 (instruction -> declareStructST SEMICOLON .)
+    PRINT           reduce using rule 14 (instruction -> declareStructST SEMICOLON .)
+    IF              reduce using rule 14 (instruction -> declareStructST SEMICOLON .)
+    ID              reduce using rule 14 (instruction -> declareStructST SEMICOLON .)
+    WHILE           reduce using rule 14 (instruction -> declareStructST SEMICOLON .)
+    FUNCTION        reduce using rule 14 (instruction -> declareStructST SEMICOLON .)
+    RETURN          reduce using rule 14 (instruction -> declareStructST SEMICOLON .)
+    BREAK           reduce using rule 14 (instruction -> declareStructST SEMICOLON .)
+    CONTINUE        reduce using rule 14 (instruction -> declareStructST SEMICOLON .)
+    STRUCT          reduce using rule 14 (instruction -> declareStructST SEMICOLON .)
+    $end            reduce using rule 14 (instruction -> declareStructST SEMICOLON .)
+    END             reduce using rule 14 (instruction -> declareStructST SEMICOLON .)
+    ELSE            reduce using rule 14 (instruction -> declareStructST SEMICOLON .)
+    ELSEIF          reduce using rule 14 (instruction -> declareStructST SEMICOLON .)
+
+
+state 38
+
+    (15) instruction -> assignAccessST SEMICOLON .
+
+    PRINTLN         reduce using rule 15 (instruction -> assignAccessST SEMICOLON .)
+    PRINT           reduce using rule 15 (instruction -> assignAccessST SEMICOLON .)
+    IF              reduce using rule 15 (instruction -> assignAccessST SEMICOLON .)
+    ID              reduce using rule 15 (instruction -> assignAccessST SEMICOLON .)
+    WHILE           reduce using rule 15 (instruction -> assignAccessST SEMICOLON .)
+    FUNCTION        reduce using rule 15 (instruction -> assignAccessST SEMICOLON .)
+    RETURN          reduce using rule 15 (instruction -> assignAccessST SEMICOLON .)
+    BREAK           reduce using rule 15 (instruction -> assignAccessST SEMICOLON .)
+    CONTINUE        reduce using rule 15 (instruction -> assignAccessST SEMICOLON .)
+    STRUCT          reduce using rule 15 (instruction -> assignAccessST SEMICOLON .)
+    $end            reduce using rule 15 (instruction -> assignAccessST SEMICOLON .)
+    END             reduce using rule 15 (instruction -> assignAccessST SEMICOLON .)
+    ELSE            reduce using rule 15 (instruction -> assignAccessST SEMICOLON .)
+    ELSEIF          reduce using rule 15 (instruction -> assignAccessST SEMICOLON .)
+
+
+state 39
+
+    (24) printST -> PRINTLN LEPAR . expression RIPAR
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 62
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 40
+
+    (25) printST -> PRINT LEPAR . expression RIPAR
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 63
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 41
+
+    (26) ifST -> IF expression . statement END
+    (27) ifST -> IF expression . statement ELSE statement END
+    (28) ifST -> IF expression . statement elseIfList END
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+    (16) statement -> . instructions
+    (2) instructions -> . instructions instruction
+    (3) instructions -> . instruction
+    (4) instruction -> . printST SEMICOLON
+    (5) instruction -> . ifST SEMICOLON
+    (6) instruction -> . declarationST SEMICOLON
+    (7) instruction -> . whileST SEMICOLON
+    (8) instruction -> . callFunc SEMICOLON
+    (9) instruction -> . declareFunc SEMICOLON
+    (10) instruction -> . returnST SEMICOLON
+    (11) instruction -> . breakST SEMICOLON
+    (12) instruction -> . continueST SEMICOLON
+    (13) instruction -> . createStruct SEMICOLON
+    (14) instruction -> . declareStructST SEMICOLON
+    (15) instruction -> . assignAccessST SEMICOLON
+    (24) printST -> . PRINTLN LEPAR expression RIPAR
+    (25) printST -> . PRINT LEPAR expression RIPAR
+    (26) ifST -> . IF expression statement END
+    (27) ifST -> . IF expression statement ELSE statement END
+    (28) ifST -> . IF expression statement elseIfList END
+    (23) declarationST -> . ID EQUALS expression
+    (37) whileST -> . WHILE expression statement END
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (17) declareFunc -> . FUNCTION ID LEPAR RIPAR statement END
+    (18) declareFunc -> . FUNCTION ID LEPAR decParams RIPAR statement END
+    (21) returnST -> . RETURN
+    (22) returnST -> . RETURN expression
+    (38) breakST -> . BREAK
+    (39) continueST -> . CONTINUE
+    (32) createStruct -> . STRUCT ID attList END
+    (35) declareStructST -> . ID COLON COLON ID
+    (36) assignAccessST -> . ID POINT ID EQUALS expression
+
+    PLUS            shift and go to state 65
+    MINUS           shift and go to state 66
+    TIMES           shift and go to state 67
+    DIV             shift and go to state 68
+    GREATER         shift and go to state 69
+    LESS            shift and go to state 70
+    GREATEREQUAL    shift and go to state 71
+    LESSEQUAL       shift and go to state 72
+    EQUALSEQUALS    shift and go to state 73
+    DISTINT         shift and go to state 74
+    OR              shift and go to state 75
+    AND             shift and go to state 76
+    PRINTLN         shift and go to state 16
+    PRINT           shift and go to state 17
+    IF              shift and go to state 18
+    ID              shift and go to state 19
+    WHILE           shift and go to state 20
+    FUNCTION        shift and go to state 21
+    RETURN          shift and go to state 22
+    BREAK           shift and go to state 23
+    CONTINUE        shift and go to state 24
+    STRUCT          shift and go to state 25
+
+    statement                      shift and go to state 64
+    instructions                   shift and go to state 77
+    instruction                    shift and go to state 3
+    printST                        shift and go to state 4
+    ifST                           shift and go to state 5
+    declarationST                  shift and go to state 6
+    whileST                        shift and go to state 7
+    callFunc                       shift and go to state 8
+    declareFunc                    shift and go to state 9
+    returnST                       shift and go to state 10
+    breakST                        shift and go to state 11
+    continueST                     shift and go to state 12
+    createStruct                   shift and go to state 13
+    declareStructST                shift and go to state 14
+    assignAccessST                 shift and go to state 15
+
+state 42
+
+    (44) expression -> MINUS . expression
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 78
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 43
+
+    (45) expression -> NOT . expression
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 79
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 44
+
+    (58) expression -> finalExp .
+
+    PLUS            reduce using rule 58 (expression -> finalExp .)
+    MINUS           reduce using rule 58 (expression -> finalExp .)
+    TIMES           reduce using rule 58 (expression -> finalExp .)
+    DIV             reduce using rule 58 (expression -> finalExp .)
+    GREATER         reduce using rule 58 (expression -> finalExp .)
+    LESS            reduce using rule 58 (expression -> finalExp .)
+    GREATEREQUAL    reduce using rule 58 (expression -> finalExp .)
+    LESSEQUAL       reduce using rule 58 (expression -> finalExp .)
+    EQUALSEQUALS    reduce using rule 58 (expression -> finalExp .)
+    DISTINT         reduce using rule 58 (expression -> finalExp .)
+    OR              reduce using rule 58 (expression -> finalExp .)
+    AND             reduce using rule 58 (expression -> finalExp .)
+    PRINTLN         reduce using rule 58 (expression -> finalExp .)
+    PRINT           reduce using rule 58 (expression -> finalExp .)
+    IF              reduce using rule 58 (expression -> finalExp .)
+    ID              reduce using rule 58 (expression -> finalExp .)
+    WHILE           reduce using rule 58 (expression -> finalExp .)
+    FUNCTION        reduce using rule 58 (expression -> finalExp .)
+    RETURN          reduce using rule 58 (expression -> finalExp .)
+    BREAK           reduce using rule 58 (expression -> finalExp .)
+    CONTINUE        reduce using rule 58 (expression -> finalExp .)
+    STRUCT          reduce using rule 58 (expression -> finalExp .)
+    SEMICOLON       reduce using rule 58 (expression -> finalExp .)
+    RIPAR           reduce using rule 58 (expression -> finalExp .)
+    COMMA           reduce using rule 58 (expression -> finalExp .)
+
+
+state 45
+
+    (59) finalExp -> LEPAR . expression RIPAR
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 80
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 46
+
+    (60) finalExp -> INTLITERAL .
+
+    PLUS            reduce using rule 60 (finalExp -> INTLITERAL .)
+    MINUS           reduce using rule 60 (finalExp -> INTLITERAL .)
+    TIMES           reduce using rule 60 (finalExp -> INTLITERAL .)
+    DIV             reduce using rule 60 (finalExp -> INTLITERAL .)
+    GREATER         reduce using rule 60 (finalExp -> INTLITERAL .)
+    LESS            reduce using rule 60 (finalExp -> INTLITERAL .)
+    GREATEREQUAL    reduce using rule 60 (finalExp -> INTLITERAL .)
+    LESSEQUAL       reduce using rule 60 (finalExp -> INTLITERAL .)
+    EQUALSEQUALS    reduce using rule 60 (finalExp -> INTLITERAL .)
+    DISTINT         reduce using rule 60 (finalExp -> INTLITERAL .)
+    OR              reduce using rule 60 (finalExp -> INTLITERAL .)
+    AND             reduce using rule 60 (finalExp -> INTLITERAL .)
+    PRINTLN         reduce using rule 60 (finalExp -> INTLITERAL .)
+    PRINT           reduce using rule 60 (finalExp -> INTLITERAL .)
+    IF              reduce using rule 60 (finalExp -> INTLITERAL .)
+    ID              reduce using rule 60 (finalExp -> INTLITERAL .)
+    WHILE           reduce using rule 60 (finalExp -> INTLITERAL .)
+    FUNCTION        reduce using rule 60 (finalExp -> INTLITERAL .)
+    RETURN          reduce using rule 60 (finalExp -> INTLITERAL .)
+    BREAK           reduce using rule 60 (finalExp -> INTLITERAL .)
+    CONTINUE        reduce using rule 60 (finalExp -> INTLITERAL .)
+    STRUCT          reduce using rule 60 (finalExp -> INTLITERAL .)
+    SEMICOLON       reduce using rule 60 (finalExp -> INTLITERAL .)
+    RIPAR           reduce using rule 60 (finalExp -> INTLITERAL .)
+    COMMA           reduce using rule 60 (finalExp -> INTLITERAL .)
+
+
+state 47
+
+    (61) finalExp -> FLOATLITERAL .
+
+    PLUS            reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    MINUS           reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    TIMES           reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    DIV             reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    GREATER         reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    LESS            reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    GREATEREQUAL    reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    LESSEQUAL       reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    EQUALSEQUALS    reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    DISTINT         reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    OR              reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    AND             reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    PRINTLN         reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    PRINT           reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    IF              reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    ID              reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    WHILE           reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    FUNCTION        reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    RETURN          reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    BREAK           reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    CONTINUE        reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    STRUCT          reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    SEMICOLON       reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    RIPAR           reduce using rule 61 (finalExp -> FLOATLITERAL .)
+    COMMA           reduce using rule 61 (finalExp -> FLOATLITERAL .)
+
+
+state 48
+
+    (62) finalExp -> STRINGLITERAL .
+
+    PLUS            reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    MINUS           reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    TIMES           reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    DIV             reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    GREATER         reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    LESS            reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    GREATEREQUAL    reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    LESSEQUAL       reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    EQUALSEQUALS    reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    DISTINT         reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    OR              reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    AND             reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    PRINTLN         reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    PRINT           reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    IF              reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    ID              reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    WHILE           reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    FUNCTION        reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    RETURN          reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    BREAK           reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    CONTINUE        reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    STRUCT          reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    SEMICOLON       reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    RIPAR           reduce using rule 62 (finalExp -> STRINGLITERAL .)
+    COMMA           reduce using rule 62 (finalExp -> STRINGLITERAL .)
+
+
+state 49
+
+    (63) finalExp -> TRUE .
+
+    PLUS            reduce using rule 63 (finalExp -> TRUE .)
+    MINUS           reduce using rule 63 (finalExp -> TRUE .)
+    TIMES           reduce using rule 63 (finalExp -> TRUE .)
+    DIV             reduce using rule 63 (finalExp -> TRUE .)
+    GREATER         reduce using rule 63 (finalExp -> TRUE .)
+    LESS            reduce using rule 63 (finalExp -> TRUE .)
+    GREATEREQUAL    reduce using rule 63 (finalExp -> TRUE .)
+    LESSEQUAL       reduce using rule 63 (finalExp -> TRUE .)
+    EQUALSEQUALS    reduce using rule 63 (finalExp -> TRUE .)
+    DISTINT         reduce using rule 63 (finalExp -> TRUE .)
+    OR              reduce using rule 63 (finalExp -> TRUE .)
+    AND             reduce using rule 63 (finalExp -> TRUE .)
+    PRINTLN         reduce using rule 63 (finalExp -> TRUE .)
+    PRINT           reduce using rule 63 (finalExp -> TRUE .)
+    IF              reduce using rule 63 (finalExp -> TRUE .)
+    ID              reduce using rule 63 (finalExp -> TRUE .)
+    WHILE           reduce using rule 63 (finalExp -> TRUE .)
+    FUNCTION        reduce using rule 63 (finalExp -> TRUE .)
+    RETURN          reduce using rule 63 (finalExp -> TRUE .)
+    BREAK           reduce using rule 63 (finalExp -> TRUE .)
+    CONTINUE        reduce using rule 63 (finalExp -> TRUE .)
+    STRUCT          reduce using rule 63 (finalExp -> TRUE .)
+    SEMICOLON       reduce using rule 63 (finalExp -> TRUE .)
+    RIPAR           reduce using rule 63 (finalExp -> TRUE .)
+    COMMA           reduce using rule 63 (finalExp -> TRUE .)
+
+
+state 50
+
+    (64) finalExp -> FALSE .
+
+    PLUS            reduce using rule 64 (finalExp -> FALSE .)
+    MINUS           reduce using rule 64 (finalExp -> FALSE .)
+    TIMES           reduce using rule 64 (finalExp -> FALSE .)
+    DIV             reduce using rule 64 (finalExp -> FALSE .)
+    GREATER         reduce using rule 64 (finalExp -> FALSE .)
+    LESS            reduce using rule 64 (finalExp -> FALSE .)
+    GREATEREQUAL    reduce using rule 64 (finalExp -> FALSE .)
+    LESSEQUAL       reduce using rule 64 (finalExp -> FALSE .)
+    EQUALSEQUALS    reduce using rule 64 (finalExp -> FALSE .)
+    DISTINT         reduce using rule 64 (finalExp -> FALSE .)
+    OR              reduce using rule 64 (finalExp -> FALSE .)
+    AND             reduce using rule 64 (finalExp -> FALSE .)
+    PRINTLN         reduce using rule 64 (finalExp -> FALSE .)
+    PRINT           reduce using rule 64 (finalExp -> FALSE .)
+    IF              reduce using rule 64 (finalExp -> FALSE .)
+    ID              reduce using rule 64 (finalExp -> FALSE .)
+    WHILE           reduce using rule 64 (finalExp -> FALSE .)
+    FUNCTION        reduce using rule 64 (finalExp -> FALSE .)
+    RETURN          reduce using rule 64 (finalExp -> FALSE .)
+    BREAK           reduce using rule 64 (finalExp -> FALSE .)
+    CONTINUE        reduce using rule 64 (finalExp -> FALSE .)
+    STRUCT          reduce using rule 64 (finalExp -> FALSE .)
+    SEMICOLON       reduce using rule 64 (finalExp -> FALSE .)
+    RIPAR           reduce using rule 64 (finalExp -> FALSE .)
+    COMMA           reduce using rule 64 (finalExp -> FALSE .)
+
+
+state 51
+
+    (65) finalExp -> ID .
+    (40) callFunc -> ID . LEPAR RIPAR
+    (41) callFunc -> ID . LEPAR expList RIPAR
+    (68) accessST -> ID . POINT ID
+
+    PLUS            reduce using rule 65 (finalExp -> ID .)
+    MINUS           reduce using rule 65 (finalExp -> ID .)
+    TIMES           reduce using rule 65 (finalExp -> ID .)
+    DIV             reduce using rule 65 (finalExp -> ID .)
+    GREATER         reduce using rule 65 (finalExp -> ID .)
+    LESS            reduce using rule 65 (finalExp -> ID .)
+    GREATEREQUAL    reduce using rule 65 (finalExp -> ID .)
+    LESSEQUAL       reduce using rule 65 (finalExp -> ID .)
+    EQUALSEQUALS    reduce using rule 65 (finalExp -> ID .)
+    DISTINT         reduce using rule 65 (finalExp -> ID .)
+    OR              reduce using rule 65 (finalExp -> ID .)
+    AND             reduce using rule 65 (finalExp -> ID .)
+    PRINTLN         reduce using rule 65 (finalExp -> ID .)
+    PRINT           reduce using rule 65 (finalExp -> ID .)
+    IF              reduce using rule 65 (finalExp -> ID .)
+    ID              reduce using rule 65 (finalExp -> ID .)
+    WHILE           reduce using rule 65 (finalExp -> ID .)
+    FUNCTION        reduce using rule 65 (finalExp -> ID .)
+    RETURN          reduce using rule 65 (finalExp -> ID .)
+    BREAK           reduce using rule 65 (finalExp -> ID .)
+    CONTINUE        reduce using rule 65 (finalExp -> ID .)
+    STRUCT          reduce using rule 65 (finalExp -> ID .)
+    SEMICOLON       reduce using rule 65 (finalExp -> ID .)
+    RIPAR           reduce using rule 65 (finalExp -> ID .)
+    COMMA           reduce using rule 65 (finalExp -> ID .)
+    LEPAR           shift and go to state 55
+    POINT           shift and go to state 81
+
+
+state 52
+
+    (66) finalExp -> callFunc .
+
+    PLUS            reduce using rule 66 (finalExp -> callFunc .)
+    MINUS           reduce using rule 66 (finalExp -> callFunc .)
+    TIMES           reduce using rule 66 (finalExp -> callFunc .)
+    DIV             reduce using rule 66 (finalExp -> callFunc .)
+    GREATER         reduce using rule 66 (finalExp -> callFunc .)
+    LESS            reduce using rule 66 (finalExp -> callFunc .)
+    GREATEREQUAL    reduce using rule 66 (finalExp -> callFunc .)
+    LESSEQUAL       reduce using rule 66 (finalExp -> callFunc .)
+    EQUALSEQUALS    reduce using rule 66 (finalExp -> callFunc .)
+    DISTINT         reduce using rule 66 (finalExp -> callFunc .)
+    OR              reduce using rule 66 (finalExp -> callFunc .)
+    AND             reduce using rule 66 (finalExp -> callFunc .)
+    PRINTLN         reduce using rule 66 (finalExp -> callFunc .)
+    PRINT           reduce using rule 66 (finalExp -> callFunc .)
+    IF              reduce using rule 66 (finalExp -> callFunc .)
+    ID              reduce using rule 66 (finalExp -> callFunc .)
+    WHILE           reduce using rule 66 (finalExp -> callFunc .)
+    FUNCTION        reduce using rule 66 (finalExp -> callFunc .)
+    RETURN          reduce using rule 66 (finalExp -> callFunc .)
+    BREAK           reduce using rule 66 (finalExp -> callFunc .)
+    CONTINUE        reduce using rule 66 (finalExp -> callFunc .)
+    STRUCT          reduce using rule 66 (finalExp -> callFunc .)
+    SEMICOLON       reduce using rule 66 (finalExp -> callFunc .)
+    RIPAR           reduce using rule 66 (finalExp -> callFunc .)
+    COMMA           reduce using rule 66 (finalExp -> callFunc .)
+
+
+state 53
+
+    (67) finalExp -> accessST .
+
+    PLUS            reduce using rule 67 (finalExp -> accessST .)
+    MINUS           reduce using rule 67 (finalExp -> accessST .)
+    TIMES           reduce using rule 67 (finalExp -> accessST .)
+    DIV             reduce using rule 67 (finalExp -> accessST .)
+    GREATER         reduce using rule 67 (finalExp -> accessST .)
+    LESS            reduce using rule 67 (finalExp -> accessST .)
+    GREATEREQUAL    reduce using rule 67 (finalExp -> accessST .)
+    LESSEQUAL       reduce using rule 67 (finalExp -> accessST .)
+    EQUALSEQUALS    reduce using rule 67 (finalExp -> accessST .)
+    DISTINT         reduce using rule 67 (finalExp -> accessST .)
+    OR              reduce using rule 67 (finalExp -> accessST .)
+    AND             reduce using rule 67 (finalExp -> accessST .)
+    PRINTLN         reduce using rule 67 (finalExp -> accessST .)
+    PRINT           reduce using rule 67 (finalExp -> accessST .)
+    IF              reduce using rule 67 (finalExp -> accessST .)
+    ID              reduce using rule 67 (finalExp -> accessST .)
+    WHILE           reduce using rule 67 (finalExp -> accessST .)
+    FUNCTION        reduce using rule 67 (finalExp -> accessST .)
+    RETURN          reduce using rule 67 (finalExp -> accessST .)
+    BREAK           reduce using rule 67 (finalExp -> accessST .)
+    CONTINUE        reduce using rule 67 (finalExp -> accessST .)
+    STRUCT          reduce using rule 67 (finalExp -> accessST .)
+    SEMICOLON       reduce using rule 67 (finalExp -> accessST .)
+    RIPAR           reduce using rule 67 (finalExp -> accessST .)
+    COMMA           reduce using rule 67 (finalExp -> accessST .)
+
+
+state 54
+
+    (23) declarationST -> ID EQUALS . expression
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 82
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 55
+
+    (40) callFunc -> ID LEPAR . RIPAR
+    (41) callFunc -> ID LEPAR . expList RIPAR
+    (42) expList -> . expList COMMA expression
+    (43) expList -> . expression
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    RIPAR           shift and go to state 83
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expList                        shift and go to state 84
+    expression                     shift and go to state 85
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 56
+
+    (35) declareStructST -> ID COLON . COLON ID
+
+    COLON           shift and go to state 86
+
+
+state 57
+
+    (36) assignAccessST -> ID POINT . ID EQUALS expression
+
+    ID              shift and go to state 87
+
+
+state 58
+
+    (37) whileST -> WHILE expression . statement END
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+    (16) statement -> . instructions
+    (2) instructions -> . instructions instruction
+    (3) instructions -> . instruction
+    (4) instruction -> . printST SEMICOLON
+    (5) instruction -> . ifST SEMICOLON
+    (6) instruction -> . declarationST SEMICOLON
+    (7) instruction -> . whileST SEMICOLON
+    (8) instruction -> . callFunc SEMICOLON
+    (9) instruction -> . declareFunc SEMICOLON
+    (10) instruction -> . returnST SEMICOLON
+    (11) instruction -> . breakST SEMICOLON
+    (12) instruction -> . continueST SEMICOLON
+    (13) instruction -> . createStruct SEMICOLON
+    (14) instruction -> . declareStructST SEMICOLON
+    (15) instruction -> . assignAccessST SEMICOLON
+    (24) printST -> . PRINTLN LEPAR expression RIPAR
+    (25) printST -> . PRINT LEPAR expression RIPAR
+    (26) ifST -> . IF expression statement END
+    (27) ifST -> . IF expression statement ELSE statement END
+    (28) ifST -> . IF expression statement elseIfList END
+    (23) declarationST -> . ID EQUALS expression
+    (37) whileST -> . WHILE expression statement END
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (17) declareFunc -> . FUNCTION ID LEPAR RIPAR statement END
+    (18) declareFunc -> . FUNCTION ID LEPAR decParams RIPAR statement END
+    (21) returnST -> . RETURN
+    (22) returnST -> . RETURN expression
+    (38) breakST -> . BREAK
+    (39) continueST -> . CONTINUE
+    (32) createStruct -> . STRUCT ID attList END
+    (35) declareStructST -> . ID COLON COLON ID
+    (36) assignAccessST -> . ID POINT ID EQUALS expression
+
+    PLUS            shift and go to state 65
+    MINUS           shift and go to state 66
+    TIMES           shift and go to state 67
+    DIV             shift and go to state 68
+    GREATER         shift and go to state 69
+    LESS            shift and go to state 70
+    GREATEREQUAL    shift and go to state 71
+    LESSEQUAL       shift and go to state 72
+    EQUALSEQUALS    shift and go to state 73
+    DISTINT         shift and go to state 74
+    OR              shift and go to state 75
+    AND             shift and go to state 76
+    PRINTLN         shift and go to state 16
+    PRINT           shift and go to state 17
+    IF              shift and go to state 18
+    ID              shift and go to state 19
+    WHILE           shift and go to state 20
+    FUNCTION        shift and go to state 21
+    RETURN          shift and go to state 22
+    BREAK           shift and go to state 23
+    CONTINUE        shift and go to state 24
+    STRUCT          shift and go to state 25
+
+    statement                      shift and go to state 88
+    instructions                   shift and go to state 77
+    instruction                    shift and go to state 3
+    printST                        shift and go to state 4
+    ifST                           shift and go to state 5
+    declarationST                  shift and go to state 6
+    whileST                        shift and go to state 7
+    callFunc                       shift and go to state 8
+    declareFunc                    shift and go to state 9
+    returnST                       shift and go to state 10
+    breakST                        shift and go to state 11
+    continueST                     shift and go to state 12
+    createStruct                   shift and go to state 13
+    declareStructST                shift and go to state 14
+    assignAccessST                 shift and go to state 15
+
+state 59
+
+    (17) declareFunc -> FUNCTION ID . LEPAR RIPAR statement END
+    (18) declareFunc -> FUNCTION ID . LEPAR decParams RIPAR statement END
+
+    LEPAR           shift and go to state 89
+
+
+state 60
+
+    (22) returnST -> RETURN expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    SEMICOLON       reduce using rule 22 (returnST -> RETURN expression .)
+    PLUS            shift and go to state 65
+    MINUS           shift and go to state 66
+    TIMES           shift and go to state 67
+    DIV             shift and go to state 68
+    GREATER         shift and go to state 69
+    LESS            shift and go to state 70
+    GREATEREQUAL    shift and go to state 71
+    LESSEQUAL       shift and go to state 72
+    EQUALSEQUALS    shift and go to state 73
+    DISTINT         shift and go to state 74
+    OR              shift and go to state 75
+    AND             shift and go to state 76
+
+
+state 61
+
+    (32) createStruct -> STRUCT ID . attList END
+    (33) attList -> . attList SEMICOLON ID SEMICOLON
+    (34) attList -> . ID
+
+    ID              shift and go to state 90
+
+    attList                        shift and go to state 91
+
+state 62
+
+    (24) printST -> PRINTLN LEPAR expression . RIPAR
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    RIPAR           shift and go to state 92
+    PLUS            shift and go to state 65
+    MINUS           shift and go to state 66
+    TIMES           shift and go to state 67
+    DIV             shift and go to state 68
+    GREATER         shift and go to state 69
+    LESS            shift and go to state 70
+    GREATEREQUAL    shift and go to state 71
+    LESSEQUAL       shift and go to state 72
+    EQUALSEQUALS    shift and go to state 73
+    DISTINT         shift and go to state 74
+    OR              shift and go to state 75
+    AND             shift and go to state 76
+
+
+state 63
+
+    (25) printST -> PRINT LEPAR expression . RIPAR
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    RIPAR           shift and go to state 93
+    PLUS            shift and go to state 65
+    MINUS           shift and go to state 66
+    TIMES           shift and go to state 67
+    DIV             shift and go to state 68
+    GREATER         shift and go to state 69
+    LESS            shift and go to state 70
+    GREATEREQUAL    shift and go to state 71
+    LESSEQUAL       shift and go to state 72
+    EQUALSEQUALS    shift and go to state 73
+    DISTINT         shift and go to state 74
+    OR              shift and go to state 75
+    AND             shift and go to state 76
+
+
+state 64
+
+    (26) ifST -> IF expression statement . END
+    (27) ifST -> IF expression statement . ELSE statement END
+    (28) ifST -> IF expression statement . elseIfList END
+    (29) elseIfList -> . ELSEIF expression statement
+    (30) elseIfList -> . ELSEIF expression statement ELSE statement
+    (31) elseIfList -> . ELSEIF expression statement elseIfList
+
+    END             shift and go to state 94
+    ELSE            shift and go to state 95
+    ELSEIF          shift and go to state 97
+
+    elseIfList                     shift and go to state 96
+
+state 65
+
+    (46) expression -> expression PLUS . expression
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 98
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 66
+
+    (47) expression -> expression MINUS . expression
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 99
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 67
+
+    (48) expression -> expression TIMES . expression
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 100
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 68
+
+    (49) expression -> expression DIV . expression
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 101
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 69
+
+    (50) expression -> expression GREATER . expression
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 102
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 70
+
+    (51) expression -> expression LESS . expression
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 103
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 71
+
+    (52) expression -> expression GREATEREQUAL . expression
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 104
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 72
+
+    (53) expression -> expression LESSEQUAL . expression
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 105
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 73
+
+    (54) expression -> expression EQUALSEQUALS . expression
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 106
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 74
+
+    (55) expression -> expression DISTINT . expression
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 107
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 75
+
+    (56) expression -> expression OR . expression
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 108
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 76
+
+    (57) expression -> expression AND . expression
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 109
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 77
+
+    (16) statement -> instructions .
+    (2) instructions -> instructions . instruction
+    (4) instruction -> . printST SEMICOLON
+    (5) instruction -> . ifST SEMICOLON
+    (6) instruction -> . declarationST SEMICOLON
+    (7) instruction -> . whileST SEMICOLON
+    (8) instruction -> . callFunc SEMICOLON
+    (9) instruction -> . declareFunc SEMICOLON
+    (10) instruction -> . returnST SEMICOLON
+    (11) instruction -> . breakST SEMICOLON
+    (12) instruction -> . continueST SEMICOLON
+    (13) instruction -> . createStruct SEMICOLON
+    (14) instruction -> . declareStructST SEMICOLON
+    (15) instruction -> . assignAccessST SEMICOLON
+    (24) printST -> . PRINTLN LEPAR expression RIPAR
+    (25) printST -> . PRINT LEPAR expression RIPAR
+    (26) ifST -> . IF expression statement END
+    (27) ifST -> . IF expression statement ELSE statement END
+    (28) ifST -> . IF expression statement elseIfList END
+    (23) declarationST -> . ID EQUALS expression
+    (37) whileST -> . WHILE expression statement END
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (17) declareFunc -> . FUNCTION ID LEPAR RIPAR statement END
+    (18) declareFunc -> . FUNCTION ID LEPAR decParams RIPAR statement END
+    (21) returnST -> . RETURN
+    (22) returnST -> . RETURN expression
+    (38) breakST -> . BREAK
+    (39) continueST -> . CONTINUE
+    (32) createStruct -> . STRUCT ID attList END
+    (35) declareStructST -> . ID COLON COLON ID
+    (36) assignAccessST -> . ID POINT ID EQUALS expression
+
+    END             reduce using rule 16 (statement -> instructions .)
+    ELSE            reduce using rule 16 (statement -> instructions .)
+    ELSEIF          reduce using rule 16 (statement -> instructions .)
+    PRINTLN         shift and go to state 16
+    PRINT           shift and go to state 17
+    IF              shift and go to state 18
+    ID              shift and go to state 19
+    WHILE           shift and go to state 20
+    FUNCTION        shift and go to state 21
+    RETURN          shift and go to state 22
+    BREAK           shift and go to state 23
+    CONTINUE        shift and go to state 24
+    STRUCT          shift and go to state 25
+
+    instruction                    shift and go to state 26
+    printST                        shift and go to state 4
+    ifST                           shift and go to state 5
+    declarationST                  shift and go to state 6
+    whileST                        shift and go to state 7
+    callFunc                       shift and go to state 8
+    declareFunc                    shift and go to state 9
+    returnST                       shift and go to state 10
+    breakST                        shift and go to state 11
+    continueST                     shift and go to state 12
+    createStruct                   shift and go to state 13
+    declareStructST                shift and go to state 14
+    assignAccessST                 shift and go to state 15
+
+state 78
+
+    (44) expression -> MINUS expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    PLUS            reduce using rule 44 (expression -> MINUS expression .)
+    MINUS           reduce using rule 44 (expression -> MINUS expression .)
+    TIMES           reduce using rule 44 (expression -> MINUS expression .)
+    DIV             reduce using rule 44 (expression -> MINUS expression .)
+    GREATER         reduce using rule 44 (expression -> MINUS expression .)
+    LESS            reduce using rule 44 (expression -> MINUS expression .)
+    GREATEREQUAL    reduce using rule 44 (expression -> MINUS expression .)
+    LESSEQUAL       reduce using rule 44 (expression -> MINUS expression .)
+    EQUALSEQUALS    reduce using rule 44 (expression -> MINUS expression .)
+    DISTINT         reduce using rule 44 (expression -> MINUS expression .)
+    OR              reduce using rule 44 (expression -> MINUS expression .)
+    AND             reduce using rule 44 (expression -> MINUS expression .)
+    PRINTLN         reduce using rule 44 (expression -> MINUS expression .)
+    PRINT           reduce using rule 44 (expression -> MINUS expression .)
+    IF              reduce using rule 44 (expression -> MINUS expression .)
+    ID              reduce using rule 44 (expression -> MINUS expression .)
+    WHILE           reduce using rule 44 (expression -> MINUS expression .)
+    FUNCTION        reduce using rule 44 (expression -> MINUS expression .)
+    RETURN          reduce using rule 44 (expression -> MINUS expression .)
+    BREAK           reduce using rule 44 (expression -> MINUS expression .)
+    CONTINUE        reduce using rule 44 (expression -> MINUS expression .)
+    STRUCT          reduce using rule 44 (expression -> MINUS expression .)
+    SEMICOLON       reduce using rule 44 (expression -> MINUS expression .)
+    RIPAR           reduce using rule 44 (expression -> MINUS expression .)
+    COMMA           reduce using rule 44 (expression -> MINUS expression .)
+
+  ! PLUS            [ shift and go to state 65 ]
+  ! MINUS           [ shift and go to state 66 ]
+  ! TIMES           [ shift and go to state 67 ]
+  ! DIV             [ shift and go to state 68 ]
+  ! GREATER         [ shift and go to state 69 ]
+  ! LESS            [ shift and go to state 70 ]
+  ! GREATEREQUAL    [ shift and go to state 71 ]
+  ! LESSEQUAL       [ shift and go to state 72 ]
+  ! EQUALSEQUALS    [ shift and go to state 73 ]
+  ! DISTINT         [ shift and go to state 74 ]
+  ! OR              [ shift and go to state 75 ]
+  ! AND             [ shift and go to state 76 ]
+
+
+state 79
+
+    (45) expression -> NOT expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    PLUS            reduce using rule 45 (expression -> NOT expression .)
+    MINUS           reduce using rule 45 (expression -> NOT expression .)
+    TIMES           reduce using rule 45 (expression -> NOT expression .)
+    DIV             reduce using rule 45 (expression -> NOT expression .)
+    GREATER         reduce using rule 45 (expression -> NOT expression .)
+    LESS            reduce using rule 45 (expression -> NOT expression .)
+    GREATEREQUAL    reduce using rule 45 (expression -> NOT expression .)
+    LESSEQUAL       reduce using rule 45 (expression -> NOT expression .)
+    EQUALSEQUALS    reduce using rule 45 (expression -> NOT expression .)
+    DISTINT         reduce using rule 45 (expression -> NOT expression .)
+    OR              reduce using rule 45 (expression -> NOT expression .)
+    AND             reduce using rule 45 (expression -> NOT expression .)
+    PRINTLN         reduce using rule 45 (expression -> NOT expression .)
+    PRINT           reduce using rule 45 (expression -> NOT expression .)
+    IF              reduce using rule 45 (expression -> NOT expression .)
+    ID              reduce using rule 45 (expression -> NOT expression .)
+    WHILE           reduce using rule 45 (expression -> NOT expression .)
+    FUNCTION        reduce using rule 45 (expression -> NOT expression .)
+    RETURN          reduce using rule 45 (expression -> NOT expression .)
+    BREAK           reduce using rule 45 (expression -> NOT expression .)
+    CONTINUE        reduce using rule 45 (expression -> NOT expression .)
+    STRUCT          reduce using rule 45 (expression -> NOT expression .)
+    SEMICOLON       reduce using rule 45 (expression -> NOT expression .)
+    RIPAR           reduce using rule 45 (expression -> NOT expression .)
+    COMMA           reduce using rule 45 (expression -> NOT expression .)
+
+  ! PLUS            [ shift and go to state 65 ]
+  ! MINUS           [ shift and go to state 66 ]
+  ! TIMES           [ shift and go to state 67 ]
+  ! DIV             [ shift and go to state 68 ]
+  ! GREATER         [ shift and go to state 69 ]
+  ! LESS            [ shift and go to state 70 ]
+  ! GREATEREQUAL    [ shift and go to state 71 ]
+  ! LESSEQUAL       [ shift and go to state 72 ]
+  ! EQUALSEQUALS    [ shift and go to state 73 ]
+  ! DISTINT         [ shift and go to state 74 ]
+  ! OR              [ shift and go to state 75 ]
+  ! AND             [ shift and go to state 76 ]
+
+
+state 80
+
+    (59) finalExp -> LEPAR expression . RIPAR
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    RIPAR           shift and go to state 110
+    PLUS            shift and go to state 65
+    MINUS           shift and go to state 66
+    TIMES           shift and go to state 67
+    DIV             shift and go to state 68
+    GREATER         shift and go to state 69
+    LESS            shift and go to state 70
+    GREATEREQUAL    shift and go to state 71
+    LESSEQUAL       shift and go to state 72
+    EQUALSEQUALS    shift and go to state 73
+    DISTINT         shift and go to state 74
+    OR              shift and go to state 75
+    AND             shift and go to state 76
+
+
+state 81
+
+    (68) accessST -> ID POINT . ID
+
+    ID              shift and go to state 111
+
+
+state 82
+
+    (23) declarationST -> ID EQUALS expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    SEMICOLON       reduce using rule 23 (declarationST -> ID EQUALS expression .)
+    PLUS            shift and go to state 65
+    MINUS           shift and go to state 66
+    TIMES           shift and go to state 67
+    DIV             shift and go to state 68
+    GREATER         shift and go to state 69
+    LESS            shift and go to state 70
+    GREATEREQUAL    shift and go to state 71
+    LESSEQUAL       shift and go to state 72
+    EQUALSEQUALS    shift and go to state 73
+    DISTINT         shift and go to state 74
+    OR              shift and go to state 75
+    AND             shift and go to state 76
+
+
+state 83
+
+    (40) callFunc -> ID LEPAR RIPAR .
+
+    SEMICOLON       reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    PLUS            reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    MINUS           reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    TIMES           reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    DIV             reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    GREATER         reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    LESS            reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    GREATEREQUAL    reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    LESSEQUAL       reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    EQUALSEQUALS    reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    DISTINT         reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    OR              reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    AND             reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    PRINTLN         reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    PRINT           reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    IF              reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    ID              reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    WHILE           reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    FUNCTION        reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    RETURN          reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    BREAK           reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    CONTINUE        reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    STRUCT          reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    RIPAR           reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+    COMMA           reduce using rule 40 (callFunc -> ID LEPAR RIPAR .)
+
+
+state 84
+
+    (41) callFunc -> ID LEPAR expList . RIPAR
+    (42) expList -> expList . COMMA expression
+
+    RIPAR           shift and go to state 112
+    COMMA           shift and go to state 113
+
+
+state 85
+
+    (43) expList -> expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    RIPAR           reduce using rule 43 (expList -> expression .)
+    COMMA           reduce using rule 43 (expList -> expression .)
+    PLUS            shift and go to state 65
+    MINUS           shift and go to state 66
+    TIMES           shift and go to state 67
+    DIV             shift and go to state 68
+    GREATER         shift and go to state 69
+    LESS            shift and go to state 70
+    GREATEREQUAL    shift and go to state 71
+    LESSEQUAL       shift and go to state 72
+    EQUALSEQUALS    shift and go to state 73
+    DISTINT         shift and go to state 74
+    OR              shift and go to state 75
+    AND             shift and go to state 76
+
+
+state 86
+
+    (35) declareStructST -> ID COLON COLON . ID
+
+    ID              shift and go to state 114
+
+
+state 87
+
+    (36) assignAccessST -> ID POINT ID . EQUALS expression
+
+    EQUALS          shift and go to state 115
+
+
+state 88
+
+    (37) whileST -> WHILE expression statement . END
+
+    END             shift and go to state 116
+
+
+state 89
+
+    (17) declareFunc -> FUNCTION ID LEPAR . RIPAR statement END
+    (18) declareFunc -> FUNCTION ID LEPAR . decParams RIPAR statement END
+    (19) decParams -> . decParams COMMA ID
+    (20) decParams -> . ID
+
+    RIPAR           shift and go to state 118
+    ID              shift and go to state 117
+
+    decParams                      shift and go to state 119
+
+state 90
+
+    (34) attList -> ID .
+
+    END             reduce using rule 34 (attList -> ID .)
+    SEMICOLON       reduce using rule 34 (attList -> ID .)
+
+
+state 91
+
+    (32) createStruct -> STRUCT ID attList . END
+    (33) attList -> attList . SEMICOLON ID SEMICOLON
+
+    END             shift and go to state 120
+    SEMICOLON       shift and go to state 121
+
+
+state 92
+
+    (24) printST -> PRINTLN LEPAR expression RIPAR .
+
+    SEMICOLON       reduce using rule 24 (printST -> PRINTLN LEPAR expression RIPAR .)
+
+
+state 93
+
+    (25) printST -> PRINT LEPAR expression RIPAR .
+
+    SEMICOLON       reduce using rule 25 (printST -> PRINT LEPAR expression RIPAR .)
+
+
+state 94
+
+    (26) ifST -> IF expression statement END .
+
+    SEMICOLON       reduce using rule 26 (ifST -> IF expression statement END .)
+
+
+state 95
+
+    (27) ifST -> IF expression statement ELSE . statement END
+    (16) statement -> . instructions
+    (2) instructions -> . instructions instruction
+    (3) instructions -> . instruction
+    (4) instruction -> . printST SEMICOLON
+    (5) instruction -> . ifST SEMICOLON
+    (6) instruction -> . declarationST SEMICOLON
+    (7) instruction -> . whileST SEMICOLON
+    (8) instruction -> . callFunc SEMICOLON
+    (9) instruction -> . declareFunc SEMICOLON
+    (10) instruction -> . returnST SEMICOLON
+    (11) instruction -> . breakST SEMICOLON
+    (12) instruction -> . continueST SEMICOLON
+    (13) instruction -> . createStruct SEMICOLON
+    (14) instruction -> . declareStructST SEMICOLON
+    (15) instruction -> . assignAccessST SEMICOLON
+    (24) printST -> . PRINTLN LEPAR expression RIPAR
+    (25) printST -> . PRINT LEPAR expression RIPAR
+    (26) ifST -> . IF expression statement END
+    (27) ifST -> . IF expression statement ELSE statement END
+    (28) ifST -> . IF expression statement elseIfList END
+    (23) declarationST -> . ID EQUALS expression
+    (37) whileST -> . WHILE expression statement END
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (17) declareFunc -> . FUNCTION ID LEPAR RIPAR statement END
+    (18) declareFunc -> . FUNCTION ID LEPAR decParams RIPAR statement END
+    (21) returnST -> . RETURN
+    (22) returnST -> . RETURN expression
+    (38) breakST -> . BREAK
+    (39) continueST -> . CONTINUE
+    (32) createStruct -> . STRUCT ID attList END
+    (35) declareStructST -> . ID COLON COLON ID
+    (36) assignAccessST -> . ID POINT ID EQUALS expression
+
+    PRINTLN         shift and go to state 16
+    PRINT           shift and go to state 17
+    IF              shift and go to state 18
+    ID              shift and go to state 19
+    WHILE           shift and go to state 20
+    FUNCTION        shift and go to state 21
+    RETURN          shift and go to state 22
+    BREAK           shift and go to state 23
+    CONTINUE        shift and go to state 24
+    STRUCT          shift and go to state 25
+
+    statement                      shift and go to state 122
+    instructions                   shift and go to state 77
+    instruction                    shift and go to state 3
+    printST                        shift and go to state 4
+    ifST                           shift and go to state 5
+    declarationST                  shift and go to state 6
+    whileST                        shift and go to state 7
+    callFunc                       shift and go to state 8
+    declareFunc                    shift and go to state 9
+    returnST                       shift and go to state 10
+    breakST                        shift and go to state 11
+    continueST                     shift and go to state 12
+    createStruct                   shift and go to state 13
+    declareStructST                shift and go to state 14
+    assignAccessST                 shift and go to state 15
+
+state 96
+
+    (28) ifST -> IF expression statement elseIfList . END
+
+    END             shift and go to state 123
+
+
+state 97
+
+    (29) elseIfList -> ELSEIF . expression statement
+    (30) elseIfList -> ELSEIF . expression statement ELSE statement
+    (31) elseIfList -> ELSEIF . expression statement elseIfList
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 124
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 98
+
+    (46) expression -> expression PLUS expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    PLUS            reduce using rule 46 (expression -> expression PLUS expression .)
+    MINUS           reduce using rule 46 (expression -> expression PLUS expression .)
+    GREATER         reduce using rule 46 (expression -> expression PLUS expression .)
+    LESS            reduce using rule 46 (expression -> expression PLUS expression .)
+    GREATEREQUAL    reduce using rule 46 (expression -> expression PLUS expression .)
+    LESSEQUAL       reduce using rule 46 (expression -> expression PLUS expression .)
+    EQUALSEQUALS    reduce using rule 46 (expression -> expression PLUS expression .)
+    DISTINT         reduce using rule 46 (expression -> expression PLUS expression .)
+    OR              reduce using rule 46 (expression -> expression PLUS expression .)
+    AND             reduce using rule 46 (expression -> expression PLUS expression .)
+    PRINTLN         reduce using rule 46 (expression -> expression PLUS expression .)
+    PRINT           reduce using rule 46 (expression -> expression PLUS expression .)
+    IF              reduce using rule 46 (expression -> expression PLUS expression .)
+    ID              reduce using rule 46 (expression -> expression PLUS expression .)
+    WHILE           reduce using rule 46 (expression -> expression PLUS expression .)
+    FUNCTION        reduce using rule 46 (expression -> expression PLUS expression .)
+    RETURN          reduce using rule 46 (expression -> expression PLUS expression .)
+    BREAK           reduce using rule 46 (expression -> expression PLUS expression .)
+    CONTINUE        reduce using rule 46 (expression -> expression PLUS expression .)
+    STRUCT          reduce using rule 46 (expression -> expression PLUS expression .)
+    SEMICOLON       reduce using rule 46 (expression -> expression PLUS expression .)
+    RIPAR           reduce using rule 46 (expression -> expression PLUS expression .)
+    COMMA           reduce using rule 46 (expression -> expression PLUS expression .)
+    TIMES           shift and go to state 67
+    DIV             shift and go to state 68
+
+  ! TIMES           [ reduce using rule 46 (expression -> expression PLUS expression .) ]
+  ! DIV             [ reduce using rule 46 (expression -> expression PLUS expression .) ]
+  ! PLUS            [ shift and go to state 65 ]
+  ! MINUS           [ shift and go to state 66 ]
+  ! GREATER         [ shift and go to state 69 ]
+  ! LESS            [ shift and go to state 70 ]
+  ! GREATEREQUAL    [ shift and go to state 71 ]
+  ! LESSEQUAL       [ shift and go to state 72 ]
+  ! EQUALSEQUALS    [ shift and go to state 73 ]
+  ! DISTINT         [ shift and go to state 74 ]
+  ! OR              [ shift and go to state 75 ]
+  ! AND             [ shift and go to state 76 ]
+
+
+state 99
+
+    (47) expression -> expression MINUS expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    PLUS            reduce using rule 47 (expression -> expression MINUS expression .)
+    MINUS           reduce using rule 47 (expression -> expression MINUS expression .)
+    GREATER         reduce using rule 47 (expression -> expression MINUS expression .)
+    LESS            reduce using rule 47 (expression -> expression MINUS expression .)
+    GREATEREQUAL    reduce using rule 47 (expression -> expression MINUS expression .)
+    LESSEQUAL       reduce using rule 47 (expression -> expression MINUS expression .)
+    EQUALSEQUALS    reduce using rule 47 (expression -> expression MINUS expression .)
+    DISTINT         reduce using rule 47 (expression -> expression MINUS expression .)
+    OR              reduce using rule 47 (expression -> expression MINUS expression .)
+    AND             reduce using rule 47 (expression -> expression MINUS expression .)
+    PRINTLN         reduce using rule 47 (expression -> expression MINUS expression .)
+    PRINT           reduce using rule 47 (expression -> expression MINUS expression .)
+    IF              reduce using rule 47 (expression -> expression MINUS expression .)
+    ID              reduce using rule 47 (expression -> expression MINUS expression .)
+    WHILE           reduce using rule 47 (expression -> expression MINUS expression .)
+    FUNCTION        reduce using rule 47 (expression -> expression MINUS expression .)
+    RETURN          reduce using rule 47 (expression -> expression MINUS expression .)
+    BREAK           reduce using rule 47 (expression -> expression MINUS expression .)
+    CONTINUE        reduce using rule 47 (expression -> expression MINUS expression .)
+    STRUCT          reduce using rule 47 (expression -> expression MINUS expression .)
+    SEMICOLON       reduce using rule 47 (expression -> expression MINUS expression .)
+    RIPAR           reduce using rule 47 (expression -> expression MINUS expression .)
+    COMMA           reduce using rule 47 (expression -> expression MINUS expression .)
+    TIMES           shift and go to state 67
+    DIV             shift and go to state 68
+
+  ! TIMES           [ reduce using rule 47 (expression -> expression MINUS expression .) ]
+  ! DIV             [ reduce using rule 47 (expression -> expression MINUS expression .) ]
+  ! PLUS            [ shift and go to state 65 ]
+  ! MINUS           [ shift and go to state 66 ]
+  ! GREATER         [ shift and go to state 69 ]
+  ! LESS            [ shift and go to state 70 ]
+  ! GREATEREQUAL    [ shift and go to state 71 ]
+  ! LESSEQUAL       [ shift and go to state 72 ]
+  ! EQUALSEQUALS    [ shift and go to state 73 ]
+  ! DISTINT         [ shift and go to state 74 ]
+  ! OR              [ shift and go to state 75 ]
+  ! AND             [ shift and go to state 76 ]
+
+
+state 100
+
+    (48) expression -> expression TIMES expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    PLUS            reduce using rule 48 (expression -> expression TIMES expression .)
+    MINUS           reduce using rule 48 (expression -> expression TIMES expression .)
+    TIMES           reduce using rule 48 (expression -> expression TIMES expression .)
+    DIV             reduce using rule 48 (expression -> expression TIMES expression .)
+    GREATER         reduce using rule 48 (expression -> expression TIMES expression .)
+    LESS            reduce using rule 48 (expression -> expression TIMES expression .)
+    GREATEREQUAL    reduce using rule 48 (expression -> expression TIMES expression .)
+    LESSEQUAL       reduce using rule 48 (expression -> expression TIMES expression .)
+    EQUALSEQUALS    reduce using rule 48 (expression -> expression TIMES expression .)
+    DISTINT         reduce using rule 48 (expression -> expression TIMES expression .)
+    OR              reduce using rule 48 (expression -> expression TIMES expression .)
+    AND             reduce using rule 48 (expression -> expression TIMES expression .)
+    PRINTLN         reduce using rule 48 (expression -> expression TIMES expression .)
+    PRINT           reduce using rule 48 (expression -> expression TIMES expression .)
+    IF              reduce using rule 48 (expression -> expression TIMES expression .)
+    ID              reduce using rule 48 (expression -> expression TIMES expression .)
+    WHILE           reduce using rule 48 (expression -> expression TIMES expression .)
+    FUNCTION        reduce using rule 48 (expression -> expression TIMES expression .)
+    RETURN          reduce using rule 48 (expression -> expression TIMES expression .)
+    BREAK           reduce using rule 48 (expression -> expression TIMES expression .)
+    CONTINUE        reduce using rule 48 (expression -> expression TIMES expression .)
+    STRUCT          reduce using rule 48 (expression -> expression TIMES expression .)
+    SEMICOLON       reduce using rule 48 (expression -> expression TIMES expression .)
+    RIPAR           reduce using rule 48 (expression -> expression TIMES expression .)
+    COMMA           reduce using rule 48 (expression -> expression TIMES expression .)
+
+  ! PLUS            [ shift and go to state 65 ]
+  ! MINUS           [ shift and go to state 66 ]
+  ! TIMES           [ shift and go to state 67 ]
+  ! DIV             [ shift and go to state 68 ]
+  ! GREATER         [ shift and go to state 69 ]
+  ! LESS            [ shift and go to state 70 ]
+  ! GREATEREQUAL    [ shift and go to state 71 ]
+  ! LESSEQUAL       [ shift and go to state 72 ]
+  ! EQUALSEQUALS    [ shift and go to state 73 ]
+  ! DISTINT         [ shift and go to state 74 ]
+  ! OR              [ shift and go to state 75 ]
+  ! AND             [ shift and go to state 76 ]
+
+
+state 101
+
+    (49) expression -> expression DIV expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    PLUS            reduce using rule 49 (expression -> expression DIV expression .)
+    MINUS           reduce using rule 49 (expression -> expression DIV expression .)
+    TIMES           reduce using rule 49 (expression -> expression DIV expression .)
+    DIV             reduce using rule 49 (expression -> expression DIV expression .)
+    GREATER         reduce using rule 49 (expression -> expression DIV expression .)
+    LESS            reduce using rule 49 (expression -> expression DIV expression .)
+    GREATEREQUAL    reduce using rule 49 (expression -> expression DIV expression .)
+    LESSEQUAL       reduce using rule 49 (expression -> expression DIV expression .)
+    EQUALSEQUALS    reduce using rule 49 (expression -> expression DIV expression .)
+    DISTINT         reduce using rule 49 (expression -> expression DIV expression .)
+    OR              reduce using rule 49 (expression -> expression DIV expression .)
+    AND             reduce using rule 49 (expression -> expression DIV expression .)
+    PRINTLN         reduce using rule 49 (expression -> expression DIV expression .)
+    PRINT           reduce using rule 49 (expression -> expression DIV expression .)
+    IF              reduce using rule 49 (expression -> expression DIV expression .)
+    ID              reduce using rule 49 (expression -> expression DIV expression .)
+    WHILE           reduce using rule 49 (expression -> expression DIV expression .)
+    FUNCTION        reduce using rule 49 (expression -> expression DIV expression .)
+    RETURN          reduce using rule 49 (expression -> expression DIV expression .)
+    BREAK           reduce using rule 49 (expression -> expression DIV expression .)
+    CONTINUE        reduce using rule 49 (expression -> expression DIV expression .)
+    STRUCT          reduce using rule 49 (expression -> expression DIV expression .)
+    SEMICOLON       reduce using rule 49 (expression -> expression DIV expression .)
+    RIPAR           reduce using rule 49 (expression -> expression DIV expression .)
+    COMMA           reduce using rule 49 (expression -> expression DIV expression .)
+
+  ! PLUS            [ shift and go to state 65 ]
+  ! MINUS           [ shift and go to state 66 ]
+  ! TIMES           [ shift and go to state 67 ]
+  ! DIV             [ shift and go to state 68 ]
+  ! GREATER         [ shift and go to state 69 ]
+  ! LESS            [ shift and go to state 70 ]
+  ! GREATEREQUAL    [ shift and go to state 71 ]
+  ! LESSEQUAL       [ shift and go to state 72 ]
+  ! EQUALSEQUALS    [ shift and go to state 73 ]
+  ! DISTINT         [ shift and go to state 74 ]
+  ! OR              [ shift and go to state 75 ]
+  ! AND             [ shift and go to state 76 ]
+
+
+state 102
+
+    (50) expression -> expression GREATER expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    GREATER         reduce using rule 50 (expression -> expression GREATER expression .)
+    LESS            reduce using rule 50 (expression -> expression GREATER expression .)
+    GREATEREQUAL    reduce using rule 50 (expression -> expression GREATER expression .)
+    LESSEQUAL       reduce using rule 50 (expression -> expression GREATER expression .)
+    EQUALSEQUALS    reduce using rule 50 (expression -> expression GREATER expression .)
+    DISTINT         reduce using rule 50 (expression -> expression GREATER expression .)
+    OR              reduce using rule 50 (expression -> expression GREATER expression .)
+    AND             reduce using rule 50 (expression -> expression GREATER expression .)
+    PRINTLN         reduce using rule 50 (expression -> expression GREATER expression .)
+    PRINT           reduce using rule 50 (expression -> expression GREATER expression .)
+    IF              reduce using rule 50 (expression -> expression GREATER expression .)
+    ID              reduce using rule 50 (expression -> expression GREATER expression .)
+    WHILE           reduce using rule 50 (expression -> expression GREATER expression .)
+    FUNCTION        reduce using rule 50 (expression -> expression GREATER expression .)
+    RETURN          reduce using rule 50 (expression -> expression GREATER expression .)
+    BREAK           reduce using rule 50 (expression -> expression GREATER expression .)
+    CONTINUE        reduce using rule 50 (expression -> expression GREATER expression .)
+    STRUCT          reduce using rule 50 (expression -> expression GREATER expression .)
+    SEMICOLON       reduce using rule 50 (expression -> expression GREATER expression .)
+    RIPAR           reduce using rule 50 (expression -> expression GREATER expression .)
+    COMMA           reduce using rule 50 (expression -> expression GREATER expression .)
+    PLUS            shift and go to state 65
+    MINUS           shift and go to state 66
+    TIMES           shift and go to state 67
+    DIV             shift and go to state 68
+
+  ! PLUS            [ reduce using rule 50 (expression -> expression GREATER expression .) ]
+  ! MINUS           [ reduce using rule 50 (expression -> expression GREATER expression .) ]
+  ! TIMES           [ reduce using rule 50 (expression -> expression GREATER expression .) ]
+  ! DIV             [ reduce using rule 50 (expression -> expression GREATER expression .) ]
+  ! GREATER         [ shift and go to state 69 ]
+  ! LESS            [ shift and go to state 70 ]
+  ! GREATEREQUAL    [ shift and go to state 71 ]
+  ! LESSEQUAL       [ shift and go to state 72 ]
+  ! EQUALSEQUALS    [ shift and go to state 73 ]
+  ! DISTINT         [ shift and go to state 74 ]
+  ! OR              [ shift and go to state 75 ]
+  ! AND             [ shift and go to state 76 ]
+
+
+state 103
+
+    (51) expression -> expression LESS expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    GREATER         reduce using rule 51 (expression -> expression LESS expression .)
+    LESS            reduce using rule 51 (expression -> expression LESS expression .)
+    GREATEREQUAL    reduce using rule 51 (expression -> expression LESS expression .)
+    LESSEQUAL       reduce using rule 51 (expression -> expression LESS expression .)
+    EQUALSEQUALS    reduce using rule 51 (expression -> expression LESS expression .)
+    DISTINT         reduce using rule 51 (expression -> expression LESS expression .)
+    OR              reduce using rule 51 (expression -> expression LESS expression .)
+    AND             reduce using rule 51 (expression -> expression LESS expression .)
+    PRINTLN         reduce using rule 51 (expression -> expression LESS expression .)
+    PRINT           reduce using rule 51 (expression -> expression LESS expression .)
+    IF              reduce using rule 51 (expression -> expression LESS expression .)
+    ID              reduce using rule 51 (expression -> expression LESS expression .)
+    WHILE           reduce using rule 51 (expression -> expression LESS expression .)
+    FUNCTION        reduce using rule 51 (expression -> expression LESS expression .)
+    RETURN          reduce using rule 51 (expression -> expression LESS expression .)
+    BREAK           reduce using rule 51 (expression -> expression LESS expression .)
+    CONTINUE        reduce using rule 51 (expression -> expression LESS expression .)
+    STRUCT          reduce using rule 51 (expression -> expression LESS expression .)
+    SEMICOLON       reduce using rule 51 (expression -> expression LESS expression .)
+    RIPAR           reduce using rule 51 (expression -> expression LESS expression .)
+    COMMA           reduce using rule 51 (expression -> expression LESS expression .)
+    PLUS            shift and go to state 65
+    MINUS           shift and go to state 66
+    TIMES           shift and go to state 67
+    DIV             shift and go to state 68
+
+  ! PLUS            [ reduce using rule 51 (expression -> expression LESS expression .) ]
+  ! MINUS           [ reduce using rule 51 (expression -> expression LESS expression .) ]
+  ! TIMES           [ reduce using rule 51 (expression -> expression LESS expression .) ]
+  ! DIV             [ reduce using rule 51 (expression -> expression LESS expression .) ]
+  ! GREATER         [ shift and go to state 69 ]
+  ! LESS            [ shift and go to state 70 ]
+  ! GREATEREQUAL    [ shift and go to state 71 ]
+  ! LESSEQUAL       [ shift and go to state 72 ]
+  ! EQUALSEQUALS    [ shift and go to state 73 ]
+  ! DISTINT         [ shift and go to state 74 ]
+  ! OR              [ shift and go to state 75 ]
+  ! AND             [ shift and go to state 76 ]
+
+
+state 104
+
+    (52) expression -> expression GREATEREQUAL expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    GREATER         reduce using rule 52 (expression -> expression GREATEREQUAL expression .)
+    LESS            reduce using rule 52 (expression -> expression GREATEREQUAL expression .)
+    GREATEREQUAL    reduce using rule 52 (expression -> expression GREATEREQUAL expression .)
+    LESSEQUAL       reduce using rule 52 (expression -> expression GREATEREQUAL expression .)
+    EQUALSEQUALS    reduce using rule 52 (expression -> expression GREATEREQUAL expression .)
+    DISTINT         reduce using rule 52 (expression -> expression GREATEREQUAL expression .)
+    OR              reduce using rule 52 (expression -> expression GREATEREQUAL expression .)
+    AND             reduce using rule 52 (expression -> expression GREATEREQUAL expression .)
+    PRINTLN         reduce using rule 52 (expression -> expression GREATEREQUAL expression .)
+    PRINT           reduce using rule 52 (expression -> expression GREATEREQUAL expression .)
+    IF              reduce using rule 52 (expression -> expression GREATEREQUAL expression .)
+    ID              reduce using rule 52 (expression -> expression GREATEREQUAL expression .)
+    WHILE           reduce using rule 52 (expression -> expression GREATEREQUAL expression .)
+    FUNCTION        reduce using rule 52 (expression -> expression GREATEREQUAL expression .)
+    RETURN          reduce using rule 52 (expression -> expression GREATEREQUAL expression .)
+    BREAK           reduce using rule 52 (expression -> expression GREATEREQUAL expression .)
+    CONTINUE        reduce using rule 52 (expression -> expression GREATEREQUAL expression .)
+    STRUCT          reduce using rule 52 (expression -> expression GREATEREQUAL expression .)
+    SEMICOLON       reduce using rule 52 (expression -> expression GREATEREQUAL expression .)
+    RIPAR           reduce using rule 52 (expression -> expression GREATEREQUAL expression .)
+    COMMA           reduce using rule 52 (expression -> expression GREATEREQUAL expression .)
+    PLUS            shift and go to state 65
+    MINUS           shift and go to state 66
+    TIMES           shift and go to state 67
+    DIV             shift and go to state 68
+
+  ! PLUS            [ reduce using rule 52 (expression -> expression GREATEREQUAL expression .) ]
+  ! MINUS           [ reduce using rule 52 (expression -> expression GREATEREQUAL expression .) ]
+  ! TIMES           [ reduce using rule 52 (expression -> expression GREATEREQUAL expression .) ]
+  ! DIV             [ reduce using rule 52 (expression -> expression GREATEREQUAL expression .) ]
+  ! GREATER         [ shift and go to state 69 ]
+  ! LESS            [ shift and go to state 70 ]
+  ! GREATEREQUAL    [ shift and go to state 71 ]
+  ! LESSEQUAL       [ shift and go to state 72 ]
+  ! EQUALSEQUALS    [ shift and go to state 73 ]
+  ! DISTINT         [ shift and go to state 74 ]
+  ! OR              [ shift and go to state 75 ]
+  ! AND             [ shift and go to state 76 ]
+
+
+state 105
+
+    (53) expression -> expression LESSEQUAL expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    GREATER         reduce using rule 53 (expression -> expression LESSEQUAL expression .)
+    LESS            reduce using rule 53 (expression -> expression LESSEQUAL expression .)
+    GREATEREQUAL    reduce using rule 53 (expression -> expression LESSEQUAL expression .)
+    LESSEQUAL       reduce using rule 53 (expression -> expression LESSEQUAL expression .)
+    EQUALSEQUALS    reduce using rule 53 (expression -> expression LESSEQUAL expression .)
+    DISTINT         reduce using rule 53 (expression -> expression LESSEQUAL expression .)
+    OR              reduce using rule 53 (expression -> expression LESSEQUAL expression .)
+    AND             reduce using rule 53 (expression -> expression LESSEQUAL expression .)
+    PRINTLN         reduce using rule 53 (expression -> expression LESSEQUAL expression .)
+    PRINT           reduce using rule 53 (expression -> expression LESSEQUAL expression .)
+    IF              reduce using rule 53 (expression -> expression LESSEQUAL expression .)
+    ID              reduce using rule 53 (expression -> expression LESSEQUAL expression .)
+    WHILE           reduce using rule 53 (expression -> expression LESSEQUAL expression .)
+    FUNCTION        reduce using rule 53 (expression -> expression LESSEQUAL expression .)
+    RETURN          reduce using rule 53 (expression -> expression LESSEQUAL expression .)
+    BREAK           reduce using rule 53 (expression -> expression LESSEQUAL expression .)
+    CONTINUE        reduce using rule 53 (expression -> expression LESSEQUAL expression .)
+    STRUCT          reduce using rule 53 (expression -> expression LESSEQUAL expression .)
+    SEMICOLON       reduce using rule 53 (expression -> expression LESSEQUAL expression .)
+    RIPAR           reduce using rule 53 (expression -> expression LESSEQUAL expression .)
+    COMMA           reduce using rule 53 (expression -> expression LESSEQUAL expression .)
+    PLUS            shift and go to state 65
+    MINUS           shift and go to state 66
+    TIMES           shift and go to state 67
+    DIV             shift and go to state 68
+
+  ! PLUS            [ reduce using rule 53 (expression -> expression LESSEQUAL expression .) ]
+  ! MINUS           [ reduce using rule 53 (expression -> expression LESSEQUAL expression .) ]
+  ! TIMES           [ reduce using rule 53 (expression -> expression LESSEQUAL expression .) ]
+  ! DIV             [ reduce using rule 53 (expression -> expression LESSEQUAL expression .) ]
+  ! GREATER         [ shift and go to state 69 ]
+  ! LESS            [ shift and go to state 70 ]
+  ! GREATEREQUAL    [ shift and go to state 71 ]
+  ! LESSEQUAL       [ shift and go to state 72 ]
+  ! EQUALSEQUALS    [ shift and go to state 73 ]
+  ! DISTINT         [ shift and go to state 74 ]
+  ! OR              [ shift and go to state 75 ]
+  ! AND             [ shift and go to state 76 ]
+
+
+state 106
+
+    (54) expression -> expression EQUALSEQUALS expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    EQUALSEQUALS    reduce using rule 54 (expression -> expression EQUALSEQUALS expression .)
+    DISTINT         reduce using rule 54 (expression -> expression EQUALSEQUALS expression .)
+    OR              reduce using rule 54 (expression -> expression EQUALSEQUALS expression .)
+    AND             reduce using rule 54 (expression -> expression EQUALSEQUALS expression .)
+    PRINTLN         reduce using rule 54 (expression -> expression EQUALSEQUALS expression .)
+    PRINT           reduce using rule 54 (expression -> expression EQUALSEQUALS expression .)
+    IF              reduce using rule 54 (expression -> expression EQUALSEQUALS expression .)
+    ID              reduce using rule 54 (expression -> expression EQUALSEQUALS expression .)
+    WHILE           reduce using rule 54 (expression -> expression EQUALSEQUALS expression .)
+    FUNCTION        reduce using rule 54 (expression -> expression EQUALSEQUALS expression .)
+    RETURN          reduce using rule 54 (expression -> expression EQUALSEQUALS expression .)
+    BREAK           reduce using rule 54 (expression -> expression EQUALSEQUALS expression .)
+    CONTINUE        reduce using rule 54 (expression -> expression EQUALSEQUALS expression .)
+    STRUCT          reduce using rule 54 (expression -> expression EQUALSEQUALS expression .)
+    SEMICOLON       reduce using rule 54 (expression -> expression EQUALSEQUALS expression .)
+    RIPAR           reduce using rule 54 (expression -> expression EQUALSEQUALS expression .)
+    COMMA           reduce using rule 54 (expression -> expression EQUALSEQUALS expression .)
+    PLUS            shift and go to state 65
+    MINUS           shift and go to state 66
+    TIMES           shift and go to state 67
+    DIV             shift and go to state 68
+    GREATER         shift and go to state 69
+    LESS            shift and go to state 70
+    GREATEREQUAL    shift and go to state 71
+    LESSEQUAL       shift and go to state 72
+
+  ! PLUS            [ reduce using rule 54 (expression -> expression EQUALSEQUALS expression .) ]
+  ! MINUS           [ reduce using rule 54 (expression -> expression EQUALSEQUALS expression .) ]
+  ! TIMES           [ reduce using rule 54 (expression -> expression EQUALSEQUALS expression .) ]
+  ! DIV             [ reduce using rule 54 (expression -> expression EQUALSEQUALS expression .) ]
+  ! GREATER         [ reduce using rule 54 (expression -> expression EQUALSEQUALS expression .) ]
+  ! LESS            [ reduce using rule 54 (expression -> expression EQUALSEQUALS expression .) ]
+  ! GREATEREQUAL    [ reduce using rule 54 (expression -> expression EQUALSEQUALS expression .) ]
+  ! LESSEQUAL       [ reduce using rule 54 (expression -> expression EQUALSEQUALS expression .) ]
+  ! EQUALSEQUALS    [ shift and go to state 73 ]
+  ! DISTINT         [ shift and go to state 74 ]
+  ! OR              [ shift and go to state 75 ]
+  ! AND             [ shift and go to state 76 ]
+
+
+state 107
+
+    (55) expression -> expression DISTINT expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    EQUALSEQUALS    reduce using rule 55 (expression -> expression DISTINT expression .)
+    DISTINT         reduce using rule 55 (expression -> expression DISTINT expression .)
+    OR              reduce using rule 55 (expression -> expression DISTINT expression .)
+    AND             reduce using rule 55 (expression -> expression DISTINT expression .)
+    PRINTLN         reduce using rule 55 (expression -> expression DISTINT expression .)
+    PRINT           reduce using rule 55 (expression -> expression DISTINT expression .)
+    IF              reduce using rule 55 (expression -> expression DISTINT expression .)
+    ID              reduce using rule 55 (expression -> expression DISTINT expression .)
+    WHILE           reduce using rule 55 (expression -> expression DISTINT expression .)
+    FUNCTION        reduce using rule 55 (expression -> expression DISTINT expression .)
+    RETURN          reduce using rule 55 (expression -> expression DISTINT expression .)
+    BREAK           reduce using rule 55 (expression -> expression DISTINT expression .)
+    CONTINUE        reduce using rule 55 (expression -> expression DISTINT expression .)
+    STRUCT          reduce using rule 55 (expression -> expression DISTINT expression .)
+    SEMICOLON       reduce using rule 55 (expression -> expression DISTINT expression .)
+    RIPAR           reduce using rule 55 (expression -> expression DISTINT expression .)
+    COMMA           reduce using rule 55 (expression -> expression DISTINT expression .)
+    PLUS            shift and go to state 65
+    MINUS           shift and go to state 66
+    TIMES           shift and go to state 67
+    DIV             shift and go to state 68
+    GREATER         shift and go to state 69
+    LESS            shift and go to state 70
+    GREATEREQUAL    shift and go to state 71
+    LESSEQUAL       shift and go to state 72
+
+  ! PLUS            [ reduce using rule 55 (expression -> expression DISTINT expression .) ]
+  ! MINUS           [ reduce using rule 55 (expression -> expression DISTINT expression .) ]
+  ! TIMES           [ reduce using rule 55 (expression -> expression DISTINT expression .) ]
+  ! DIV             [ reduce using rule 55 (expression -> expression DISTINT expression .) ]
+  ! GREATER         [ reduce using rule 55 (expression -> expression DISTINT expression .) ]
+  ! LESS            [ reduce using rule 55 (expression -> expression DISTINT expression .) ]
+  ! GREATEREQUAL    [ reduce using rule 55 (expression -> expression DISTINT expression .) ]
+  ! LESSEQUAL       [ reduce using rule 55 (expression -> expression DISTINT expression .) ]
+  ! EQUALSEQUALS    [ shift and go to state 73 ]
+  ! DISTINT         [ shift and go to state 74 ]
+  ! OR              [ shift and go to state 75 ]
+  ! AND             [ shift and go to state 76 ]
+
+
+state 108
+
+    (56) expression -> expression OR expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    OR              reduce using rule 56 (expression -> expression OR expression .)
+    PRINTLN         reduce using rule 56 (expression -> expression OR expression .)
+    PRINT           reduce using rule 56 (expression -> expression OR expression .)
+    IF              reduce using rule 56 (expression -> expression OR expression .)
+    ID              reduce using rule 56 (expression -> expression OR expression .)
+    WHILE           reduce using rule 56 (expression -> expression OR expression .)
+    FUNCTION        reduce using rule 56 (expression -> expression OR expression .)
+    RETURN          reduce using rule 56 (expression -> expression OR expression .)
+    BREAK           reduce using rule 56 (expression -> expression OR expression .)
+    CONTINUE        reduce using rule 56 (expression -> expression OR expression .)
+    STRUCT          reduce using rule 56 (expression -> expression OR expression .)
+    SEMICOLON       reduce using rule 56 (expression -> expression OR expression .)
+    RIPAR           reduce using rule 56 (expression -> expression OR expression .)
+    COMMA           reduce using rule 56 (expression -> expression OR expression .)
+    PLUS            shift and go to state 65
+    MINUS           shift and go to state 66
+    TIMES           shift and go to state 67
+    DIV             shift and go to state 68
+    GREATER         shift and go to state 69
+    LESS            shift and go to state 70
+    GREATEREQUAL    shift and go to state 71
+    LESSEQUAL       shift and go to state 72
+    EQUALSEQUALS    shift and go to state 73
+    DISTINT         shift and go to state 74
+    AND             shift and go to state 76
+
+  ! PLUS            [ reduce using rule 56 (expression -> expression OR expression .) ]
+  ! MINUS           [ reduce using rule 56 (expression -> expression OR expression .) ]
+  ! TIMES           [ reduce using rule 56 (expression -> expression OR expression .) ]
+  ! DIV             [ reduce using rule 56 (expression -> expression OR expression .) ]
+  ! GREATER         [ reduce using rule 56 (expression -> expression OR expression .) ]
+  ! LESS            [ reduce using rule 56 (expression -> expression OR expression .) ]
+  ! GREATEREQUAL    [ reduce using rule 56 (expression -> expression OR expression .) ]
+  ! LESSEQUAL       [ reduce using rule 56 (expression -> expression OR expression .) ]
+  ! EQUALSEQUALS    [ reduce using rule 56 (expression -> expression OR expression .) ]
+  ! DISTINT         [ reduce using rule 56 (expression -> expression OR expression .) ]
+  ! AND             [ reduce using rule 56 (expression -> expression OR expression .) ]
+  ! OR              [ shift and go to state 75 ]
+
+
+state 109
+
+    (57) expression -> expression AND expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    OR              reduce using rule 57 (expression -> expression AND expression .)
+    AND             reduce using rule 57 (expression -> expression AND expression .)
+    PRINTLN         reduce using rule 57 (expression -> expression AND expression .)
+    PRINT           reduce using rule 57 (expression -> expression AND expression .)
+    IF              reduce using rule 57 (expression -> expression AND expression .)
+    ID              reduce using rule 57 (expression -> expression AND expression .)
+    WHILE           reduce using rule 57 (expression -> expression AND expression .)
+    FUNCTION        reduce using rule 57 (expression -> expression AND expression .)
+    RETURN          reduce using rule 57 (expression -> expression AND expression .)
+    BREAK           reduce using rule 57 (expression -> expression AND expression .)
+    CONTINUE        reduce using rule 57 (expression -> expression AND expression .)
+    STRUCT          reduce using rule 57 (expression -> expression AND expression .)
+    SEMICOLON       reduce using rule 57 (expression -> expression AND expression .)
+    RIPAR           reduce using rule 57 (expression -> expression AND expression .)
+    COMMA           reduce using rule 57 (expression -> expression AND expression .)
+    PLUS            shift and go to state 65
+    MINUS           shift and go to state 66
+    TIMES           shift and go to state 67
+    DIV             shift and go to state 68
+    GREATER         shift and go to state 69
+    LESS            shift and go to state 70
+    GREATEREQUAL    shift and go to state 71
+    LESSEQUAL       shift and go to state 72
+    EQUALSEQUALS    shift and go to state 73
+    DISTINT         shift and go to state 74
+
+  ! PLUS            [ reduce using rule 57 (expression -> expression AND expression .) ]
+  ! MINUS           [ reduce using rule 57 (expression -> expression AND expression .) ]
+  ! TIMES           [ reduce using rule 57 (expression -> expression AND expression .) ]
+  ! DIV             [ reduce using rule 57 (expression -> expression AND expression .) ]
+  ! GREATER         [ reduce using rule 57 (expression -> expression AND expression .) ]
+  ! LESS            [ reduce using rule 57 (expression -> expression AND expression .) ]
+  ! GREATEREQUAL    [ reduce using rule 57 (expression -> expression AND expression .) ]
+  ! LESSEQUAL       [ reduce using rule 57 (expression -> expression AND expression .) ]
+  ! EQUALSEQUALS    [ reduce using rule 57 (expression -> expression AND expression .) ]
+  ! DISTINT         [ reduce using rule 57 (expression -> expression AND expression .) ]
+  ! OR              [ shift and go to state 75 ]
+  ! AND             [ shift and go to state 76 ]
+
+
+state 110
+
+    (59) finalExp -> LEPAR expression RIPAR .
+
+    PLUS            reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    MINUS           reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    TIMES           reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    DIV             reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    GREATER         reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    LESS            reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    GREATEREQUAL    reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    LESSEQUAL       reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    EQUALSEQUALS    reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    DISTINT         reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    OR              reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    AND             reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    PRINTLN         reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    PRINT           reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    IF              reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    ID              reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    WHILE           reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    FUNCTION        reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    RETURN          reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    BREAK           reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    CONTINUE        reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    STRUCT          reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    SEMICOLON       reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    RIPAR           reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+    COMMA           reduce using rule 59 (finalExp -> LEPAR expression RIPAR .)
+
+
+state 111
+
+    (68) accessST -> ID POINT ID .
+
+    PLUS            reduce using rule 68 (accessST -> ID POINT ID .)
+    MINUS           reduce using rule 68 (accessST -> ID POINT ID .)
+    TIMES           reduce using rule 68 (accessST -> ID POINT ID .)
+    DIV             reduce using rule 68 (accessST -> ID POINT ID .)
+    GREATER         reduce using rule 68 (accessST -> ID POINT ID .)
+    LESS            reduce using rule 68 (accessST -> ID POINT ID .)
+    GREATEREQUAL    reduce using rule 68 (accessST -> ID POINT ID .)
+    LESSEQUAL       reduce using rule 68 (accessST -> ID POINT ID .)
+    EQUALSEQUALS    reduce using rule 68 (accessST -> ID POINT ID .)
+    DISTINT         reduce using rule 68 (accessST -> ID POINT ID .)
+    OR              reduce using rule 68 (accessST -> ID POINT ID .)
+    AND             reduce using rule 68 (accessST -> ID POINT ID .)
+    PRINTLN         reduce using rule 68 (accessST -> ID POINT ID .)
+    PRINT           reduce using rule 68 (accessST -> ID POINT ID .)
+    IF              reduce using rule 68 (accessST -> ID POINT ID .)
+    ID              reduce using rule 68 (accessST -> ID POINT ID .)
+    WHILE           reduce using rule 68 (accessST -> ID POINT ID .)
+    FUNCTION        reduce using rule 68 (accessST -> ID POINT ID .)
+    RETURN          reduce using rule 68 (accessST -> ID POINT ID .)
+    BREAK           reduce using rule 68 (accessST -> ID POINT ID .)
+    CONTINUE        reduce using rule 68 (accessST -> ID POINT ID .)
+    STRUCT          reduce using rule 68 (accessST -> ID POINT ID .)
+    SEMICOLON       reduce using rule 68 (accessST -> ID POINT ID .)
+    RIPAR           reduce using rule 68 (accessST -> ID POINT ID .)
+    COMMA           reduce using rule 68 (accessST -> ID POINT ID .)
+
+
+state 112
+
+    (41) callFunc -> ID LEPAR expList RIPAR .
+
+    SEMICOLON       reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    PLUS            reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    MINUS           reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    TIMES           reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    DIV             reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    GREATER         reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    LESS            reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    GREATEREQUAL    reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    LESSEQUAL       reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    EQUALSEQUALS    reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    DISTINT         reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    OR              reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    AND             reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    PRINTLN         reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    PRINT           reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    IF              reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    ID              reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    WHILE           reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    FUNCTION        reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    RETURN          reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    BREAK           reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    CONTINUE        reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    STRUCT          reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    RIPAR           reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+    COMMA           reduce using rule 41 (callFunc -> ID LEPAR expList RIPAR .)
+
+
+state 113
+
+    (42) expList -> expList COMMA . expression
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 125
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 114
+
+    (35) declareStructST -> ID COLON COLON ID .
+
+    SEMICOLON       reduce using rule 35 (declareStructST -> ID COLON COLON ID .)
+
+
+state 115
+
+    (36) assignAccessST -> ID POINT ID EQUALS . expression
+    (44) expression -> . MINUS expression
+    (45) expression -> . NOT expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIV expression
+    (50) expression -> . expression GREATER expression
+    (51) expression -> . expression LESS expression
+    (52) expression -> . expression GREATEREQUAL expression
+    (53) expression -> . expression LESSEQUAL expression
+    (54) expression -> . expression EQUALSEQUALS expression
+    (55) expression -> . expression DISTINT expression
+    (56) expression -> . expression OR expression
+    (57) expression -> . expression AND expression
+    (58) expression -> . finalExp
+    (59) finalExp -> . LEPAR expression RIPAR
+    (60) finalExp -> . INTLITERAL
+    (61) finalExp -> . FLOATLITERAL
+    (62) finalExp -> . STRINGLITERAL
+    (63) finalExp -> . TRUE
+    (64) finalExp -> . FALSE
+    (65) finalExp -> . ID
+    (66) finalExp -> . callFunc
+    (67) finalExp -> . accessST
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (68) accessST -> . ID POINT ID
+
+    MINUS           shift and go to state 42
+    NOT             shift and go to state 43
+    LEPAR           shift and go to state 45
+    INTLITERAL      shift and go to state 46
+    FLOATLITERAL    shift and go to state 47
+    STRINGLITERAL   shift and go to state 48
+    TRUE            shift and go to state 49
+    FALSE           shift and go to state 50
+    ID              shift and go to state 51
+
+    expression                     shift and go to state 126
+    finalExp                       shift and go to state 44
+    callFunc                       shift and go to state 52
+    accessST                       shift and go to state 53
+
+state 116
+
+    (37) whileST -> WHILE expression statement END .
+
+    SEMICOLON       reduce using rule 37 (whileST -> WHILE expression statement END .)
+
+
+state 117
+
+    (20) decParams -> ID .
+
+    RIPAR           reduce using rule 20 (decParams -> ID .)
+    COMMA           reduce using rule 20 (decParams -> ID .)
+
+
+state 118
+
+    (17) declareFunc -> FUNCTION ID LEPAR RIPAR . statement END
+    (16) statement -> . instructions
+    (2) instructions -> . instructions instruction
+    (3) instructions -> . instruction
+    (4) instruction -> . printST SEMICOLON
+    (5) instruction -> . ifST SEMICOLON
+    (6) instruction -> . declarationST SEMICOLON
+    (7) instruction -> . whileST SEMICOLON
+    (8) instruction -> . callFunc SEMICOLON
+    (9) instruction -> . declareFunc SEMICOLON
+    (10) instruction -> . returnST SEMICOLON
+    (11) instruction -> . breakST SEMICOLON
+    (12) instruction -> . continueST SEMICOLON
+    (13) instruction -> . createStruct SEMICOLON
+    (14) instruction -> . declareStructST SEMICOLON
+    (15) instruction -> . assignAccessST SEMICOLON
+    (24) printST -> . PRINTLN LEPAR expression RIPAR
+    (25) printST -> . PRINT LEPAR expression RIPAR
+    (26) ifST -> . IF expression statement END
+    (27) ifST -> . IF expression statement ELSE statement END
+    (28) ifST -> . IF expression statement elseIfList END
+    (23) declarationST -> . ID EQUALS expression
+    (37) whileST -> . WHILE expression statement END
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (17) declareFunc -> . FUNCTION ID LEPAR RIPAR statement END
+    (18) declareFunc -> . FUNCTION ID LEPAR decParams RIPAR statement END
+    (21) returnST -> . RETURN
+    (22) returnST -> . RETURN expression
+    (38) breakST -> . BREAK
+    (39) continueST -> . CONTINUE
+    (32) createStruct -> . STRUCT ID attList END
+    (35) declareStructST -> . ID COLON COLON ID
+    (36) assignAccessST -> . ID POINT ID EQUALS expression
+
+    PRINTLN         shift and go to state 16
+    PRINT           shift and go to state 17
+    IF              shift and go to state 18
+    ID              shift and go to state 19
+    WHILE           shift and go to state 20
+    FUNCTION        shift and go to state 21
+    RETURN          shift and go to state 22
+    BREAK           shift and go to state 23
+    CONTINUE        shift and go to state 24
+    STRUCT          shift and go to state 25
+
+    statement                      shift and go to state 127
+    instructions                   shift and go to state 77
+    instruction                    shift and go to state 3
+    printST                        shift and go to state 4
+    ifST                           shift and go to state 5
+    declarationST                  shift and go to state 6
+    whileST                        shift and go to state 7
+    callFunc                       shift and go to state 8
+    declareFunc                    shift and go to state 9
+    returnST                       shift and go to state 10
+    breakST                        shift and go to state 11
+    continueST                     shift and go to state 12
+    createStruct                   shift and go to state 13
+    declareStructST                shift and go to state 14
+    assignAccessST                 shift and go to state 15
+
+state 119
+
+    (18) declareFunc -> FUNCTION ID LEPAR decParams . RIPAR statement END
+    (19) decParams -> decParams . COMMA ID
+
+    RIPAR           shift and go to state 128
+    COMMA           shift and go to state 129
+
+
+state 120
+
+    (32) createStruct -> STRUCT ID attList END .
+
+    SEMICOLON       reduce using rule 32 (createStruct -> STRUCT ID attList END .)
+
+
+state 121
+
+    (33) attList -> attList SEMICOLON . ID SEMICOLON
+
+    ID              shift and go to state 130
+
+
+state 122
+
+    (27) ifST -> IF expression statement ELSE statement . END
+
+    END             shift and go to state 131
+
+
+state 123
+
+    (28) ifST -> IF expression statement elseIfList END .
+
+    SEMICOLON       reduce using rule 28 (ifST -> IF expression statement elseIfList END .)
+
+
+state 124
+
+    (29) elseIfList -> ELSEIF expression . statement
+    (30) elseIfList -> ELSEIF expression . statement ELSE statement
+    (31) elseIfList -> ELSEIF expression . statement elseIfList
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+    (16) statement -> . instructions
+    (2) instructions -> . instructions instruction
+    (3) instructions -> . instruction
+    (4) instruction -> . printST SEMICOLON
+    (5) instruction -> . ifST SEMICOLON
+    (6) instruction -> . declarationST SEMICOLON
+    (7) instruction -> . whileST SEMICOLON
+    (8) instruction -> . callFunc SEMICOLON
+    (9) instruction -> . declareFunc SEMICOLON
+    (10) instruction -> . returnST SEMICOLON
+    (11) instruction -> . breakST SEMICOLON
+    (12) instruction -> . continueST SEMICOLON
+    (13) instruction -> . createStruct SEMICOLON
+    (14) instruction -> . declareStructST SEMICOLON
+    (15) instruction -> . assignAccessST SEMICOLON
+    (24) printST -> . PRINTLN LEPAR expression RIPAR
+    (25) printST -> . PRINT LEPAR expression RIPAR
+    (26) ifST -> . IF expression statement END
+    (27) ifST -> . IF expression statement ELSE statement END
+    (28) ifST -> . IF expression statement elseIfList END
+    (23) declarationST -> . ID EQUALS expression
+    (37) whileST -> . WHILE expression statement END
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (17) declareFunc -> . FUNCTION ID LEPAR RIPAR statement END
+    (18) declareFunc -> . FUNCTION ID LEPAR decParams RIPAR statement END
+    (21) returnST -> . RETURN
+    (22) returnST -> . RETURN expression
+    (38) breakST -> . BREAK
+    (39) continueST -> . CONTINUE
+    (32) createStruct -> . STRUCT ID attList END
+    (35) declareStructST -> . ID COLON COLON ID
+    (36) assignAccessST -> . ID POINT ID EQUALS expression
+
+    PLUS            shift and go to state 65
+    MINUS           shift and go to state 66
+    TIMES           shift and go to state 67
+    DIV             shift and go to state 68
+    GREATER         shift and go to state 69
+    LESS            shift and go to state 70
+    GREATEREQUAL    shift and go to state 71
+    LESSEQUAL       shift and go to state 72
+    EQUALSEQUALS    shift and go to state 73
+    DISTINT         shift and go to state 74
+    OR              shift and go to state 75
+    AND             shift and go to state 76
+    PRINTLN         shift and go to state 16
+    PRINT           shift and go to state 17
+    IF              shift and go to state 18
+    ID              shift and go to state 19
+    WHILE           shift and go to state 20
+    FUNCTION        shift and go to state 21
+    RETURN          shift and go to state 22
+    BREAK           shift and go to state 23
+    CONTINUE        shift and go to state 24
+    STRUCT          shift and go to state 25
+
+    statement                      shift and go to state 132
+    instructions                   shift and go to state 77
+    instruction                    shift and go to state 3
+    printST                        shift and go to state 4
+    ifST                           shift and go to state 5
+    declarationST                  shift and go to state 6
+    whileST                        shift and go to state 7
+    callFunc                       shift and go to state 8
+    declareFunc                    shift and go to state 9
+    returnST                       shift and go to state 10
+    breakST                        shift and go to state 11
+    continueST                     shift and go to state 12
+    createStruct                   shift and go to state 13
+    declareStructST                shift and go to state 14
+    assignAccessST                 shift and go to state 15
+
+state 125
+
+    (42) expList -> expList COMMA expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    RIPAR           reduce using rule 42 (expList -> expList COMMA expression .)
+    COMMA           reduce using rule 42 (expList -> expList COMMA expression .)
+    PLUS            shift and go to state 65
+    MINUS           shift and go to state 66
+    TIMES           shift and go to state 67
+    DIV             shift and go to state 68
+    GREATER         shift and go to state 69
+    LESS            shift and go to state 70
+    GREATEREQUAL    shift and go to state 71
+    LESSEQUAL       shift and go to state 72
+    EQUALSEQUALS    shift and go to state 73
+    DISTINT         shift and go to state 74
+    OR              shift and go to state 75
+    AND             shift and go to state 76
+
+
+state 126
+
+    (36) assignAccessST -> ID POINT ID EQUALS expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIV expression
+    (50) expression -> expression . GREATER expression
+    (51) expression -> expression . LESS expression
+    (52) expression -> expression . GREATEREQUAL expression
+    (53) expression -> expression . LESSEQUAL expression
+    (54) expression -> expression . EQUALSEQUALS expression
+    (55) expression -> expression . DISTINT expression
+    (56) expression -> expression . OR expression
+    (57) expression -> expression . AND expression
+
+    SEMICOLON       reduce using rule 36 (assignAccessST -> ID POINT ID EQUALS expression .)
+    PLUS            shift and go to state 65
+    MINUS           shift and go to state 66
+    TIMES           shift and go to state 67
+    DIV             shift and go to state 68
+    GREATER         shift and go to state 69
+    LESS            shift and go to state 70
+    GREATEREQUAL    shift and go to state 71
+    LESSEQUAL       shift and go to state 72
+    EQUALSEQUALS    shift and go to state 73
+    DISTINT         shift and go to state 74
+    OR              shift and go to state 75
+    AND             shift and go to state 76
+
+
+state 127
+
+    (17) declareFunc -> FUNCTION ID LEPAR RIPAR statement . END
+
+    END             shift and go to state 133
+
+
+state 128
+
+    (18) declareFunc -> FUNCTION ID LEPAR decParams RIPAR . statement END
+    (16) statement -> . instructions
+    (2) instructions -> . instructions instruction
+    (3) instructions -> . instruction
+    (4) instruction -> . printST SEMICOLON
+    (5) instruction -> . ifST SEMICOLON
+    (6) instruction -> . declarationST SEMICOLON
+    (7) instruction -> . whileST SEMICOLON
+    (8) instruction -> . callFunc SEMICOLON
+    (9) instruction -> . declareFunc SEMICOLON
+    (10) instruction -> . returnST SEMICOLON
+    (11) instruction -> . breakST SEMICOLON
+    (12) instruction -> . continueST SEMICOLON
+    (13) instruction -> . createStruct SEMICOLON
+    (14) instruction -> . declareStructST SEMICOLON
+    (15) instruction -> . assignAccessST SEMICOLON
+    (24) printST -> . PRINTLN LEPAR expression RIPAR
+    (25) printST -> . PRINT LEPAR expression RIPAR
+    (26) ifST -> . IF expression statement END
+    (27) ifST -> . IF expression statement ELSE statement END
+    (28) ifST -> . IF expression statement elseIfList END
+    (23) declarationST -> . ID EQUALS expression
+    (37) whileST -> . WHILE expression statement END
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (17) declareFunc -> . FUNCTION ID LEPAR RIPAR statement END
+    (18) declareFunc -> . FUNCTION ID LEPAR decParams RIPAR statement END
+    (21) returnST -> . RETURN
+    (22) returnST -> . RETURN expression
+    (38) breakST -> . BREAK
+    (39) continueST -> . CONTINUE
+    (32) createStruct -> . STRUCT ID attList END
+    (35) declareStructST -> . ID COLON COLON ID
+    (36) assignAccessST -> . ID POINT ID EQUALS expression
+
+    PRINTLN         shift and go to state 16
+    PRINT           shift and go to state 17
+    IF              shift and go to state 18
+    ID              shift and go to state 19
+    WHILE           shift and go to state 20
+    FUNCTION        shift and go to state 21
+    RETURN          shift and go to state 22
+    BREAK           shift and go to state 23
+    CONTINUE        shift and go to state 24
+    STRUCT          shift and go to state 25
+
+    statement                      shift and go to state 134
+    instructions                   shift and go to state 77
+    instruction                    shift and go to state 3
+    printST                        shift and go to state 4
+    ifST                           shift and go to state 5
+    declarationST                  shift and go to state 6
+    whileST                        shift and go to state 7
+    callFunc                       shift and go to state 8
+    declareFunc                    shift and go to state 9
+    returnST                       shift and go to state 10
+    breakST                        shift and go to state 11
+    continueST                     shift and go to state 12
+    createStruct                   shift and go to state 13
+    declareStructST                shift and go to state 14
+    assignAccessST                 shift and go to state 15
+
+state 129
+
+    (19) decParams -> decParams COMMA . ID
+
+    ID              shift and go to state 135
+
+
+state 130
+
+    (33) attList -> attList SEMICOLON ID . SEMICOLON
+
+    SEMICOLON       shift and go to state 136
+
+
+state 131
+
+    (27) ifST -> IF expression statement ELSE statement END .
+
+    SEMICOLON       reduce using rule 27 (ifST -> IF expression statement ELSE statement END .)
+
+
+state 132
+
+    (29) elseIfList -> ELSEIF expression statement .
+    (30) elseIfList -> ELSEIF expression statement . ELSE statement
+    (31) elseIfList -> ELSEIF expression statement . elseIfList
+    (29) elseIfList -> . ELSEIF expression statement
+    (30) elseIfList -> . ELSEIF expression statement ELSE statement
+    (31) elseIfList -> . ELSEIF expression statement elseIfList
+
+    END             reduce using rule 29 (elseIfList -> ELSEIF expression statement .)
+    ELSE            shift and go to state 137
+    ELSEIF          shift and go to state 97
+
+    elseIfList                     shift and go to state 138
+
+state 133
+
+    (17) declareFunc -> FUNCTION ID LEPAR RIPAR statement END .
+
+    SEMICOLON       reduce using rule 17 (declareFunc -> FUNCTION ID LEPAR RIPAR statement END .)
+
+
+state 134
+
+    (18) declareFunc -> FUNCTION ID LEPAR decParams RIPAR statement . END
+
+    END             shift and go to state 139
+
+
+state 135
+
+    (19) decParams -> decParams COMMA ID .
+
+    RIPAR           reduce using rule 19 (decParams -> decParams COMMA ID .)
+    COMMA           reduce using rule 19 (decParams -> decParams COMMA ID .)
+
+
+state 136
+
+    (33) attList -> attList SEMICOLON ID SEMICOLON .
+
+    END             reduce using rule 33 (attList -> attList SEMICOLON ID SEMICOLON .)
+    SEMICOLON       reduce using rule 33 (attList -> attList SEMICOLON ID SEMICOLON .)
+
+
+state 137
+
+    (30) elseIfList -> ELSEIF expression statement ELSE . statement
+    (16) statement -> . instructions
+    (2) instructions -> . instructions instruction
+    (3) instructions -> . instruction
+    (4) instruction -> . printST SEMICOLON
+    (5) instruction -> . ifST SEMICOLON
+    (6) instruction -> . declarationST SEMICOLON
+    (7) instruction -> . whileST SEMICOLON
+    (8) instruction -> . callFunc SEMICOLON
+    (9) instruction -> . declareFunc SEMICOLON
+    (10) instruction -> . returnST SEMICOLON
+    (11) instruction -> . breakST SEMICOLON
+    (12) instruction -> . continueST SEMICOLON
+    (13) instruction -> . createStruct SEMICOLON
+    (14) instruction -> . declareStructST SEMICOLON
+    (15) instruction -> . assignAccessST SEMICOLON
+    (24) printST -> . PRINTLN LEPAR expression RIPAR
+    (25) printST -> . PRINT LEPAR expression RIPAR
+    (26) ifST -> . IF expression statement END
+    (27) ifST -> . IF expression statement ELSE statement END
+    (28) ifST -> . IF expression statement elseIfList END
+    (23) declarationST -> . ID EQUALS expression
+    (37) whileST -> . WHILE expression statement END
+    (40) callFunc -> . ID LEPAR RIPAR
+    (41) callFunc -> . ID LEPAR expList RIPAR
+    (17) declareFunc -> . FUNCTION ID LEPAR RIPAR statement END
+    (18) declareFunc -> . FUNCTION ID LEPAR decParams RIPAR statement END
+    (21) returnST -> . RETURN
+    (22) returnST -> . RETURN expression
+    (38) breakST -> . BREAK
+    (39) continueST -> . CONTINUE
+    (32) createStruct -> . STRUCT ID attList END
+    (35) declareStructST -> . ID COLON COLON ID
+    (36) assignAccessST -> . ID POINT ID EQUALS expression
+
+    PRINTLN         shift and go to state 16
+    PRINT           shift and go to state 17
+    IF              shift and go to state 18
+    ID              shift and go to state 19
+    WHILE           shift and go to state 20
+    FUNCTION        shift and go to state 21
+    RETURN          shift and go to state 22
+    BREAK           shift and go to state 23
+    CONTINUE        shift and go to state 24
+    STRUCT          shift and go to state 25
+
+    statement                      shift and go to state 140
+    instructions                   shift and go to state 77
+    instruction                    shift and go to state 3
+    printST                        shift and go to state 4
+    ifST                           shift and go to state 5
+    declarationST                  shift and go to state 6
+    whileST                        shift and go to state 7
+    callFunc                       shift and go to state 8
+    declareFunc                    shift and go to state 9
+    returnST                       shift and go to state 10
+    breakST                        shift and go to state 11
+    continueST                     shift and go to state 12
+    createStruct                   shift and go to state 13
+    declareStructST                shift and go to state 14
+    assignAccessST                 shift and go to state 15
+
+state 138
+
+    (31) elseIfList -> ELSEIF expression statement elseIfList .
+
+    END             reduce using rule 31 (elseIfList -> ELSEIF expression statement elseIfList .)
+
+
+state 139
+
+    (18) declareFunc -> FUNCTION ID LEPAR decParams RIPAR statement END .
+
+    SEMICOLON       reduce using rule 18 (declareFunc -> FUNCTION ID LEPAR decParams RIPAR statement END .)
+
+
+state 140
+
+    (30) elseIfList -> ELSEIF expression statement ELSE statement .
+
+    END             reduce using rule 30 (elseIfList -> ELSEIF expression statement ELSE statement .)
+
