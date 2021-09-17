@@ -1,33 +1,27 @@
-from Symbol import *
+from Symbol.Symbol import *
 
 class Environment:
     
     def __init__(self, prev):
         self.prev = prev
+        
+        # NUEVO
+        self.size = 0
+        if(prev != None):
+            self.size = self.prev.size
+        
         self.variables = {}
         self.functions = {}
         self.structs = {}
     
-    def saveVar(self, idVar, value, typeVar):
-        env = self
-        newSymbol = Symbol(value, idVar, typeVar)
-        while env != None:
-            if idVar in env.variables.keys():
-                env.variables[idVar] = newSymbol
-                return
-            env = env.prev
-        self.variables[idVar] = newSymbol
-    
-    def saveVarStruct(self, idVar, attrs, type):
-        env = self
-        newSymbol = Symbol(None, idVar, Type.STRUCT, type)
-        newSymbol.attributes = attrs
-        while env != None:
-            if idVar in env.variables.keys():
-                env.variables[idVar] = newSymbol
-                return
-            env = env.prev
-        self.variables[idVar] = newSymbol
+    def saveVar(self, idVar, symType, inHeap):
+        if idVar in self.variables.keys():
+            print("Variable ya existe")
+        else:
+            newSymbol = Symbol(idVar, symType, self.size, self.prev == None, inHeap)
+            self.size += 1
+            self.variables[idVar] = newSymbol
+        return self.variables[idVar]
 
     def saveFunc(self, idFunc, function):
         if idFunc in self.functions.keys():

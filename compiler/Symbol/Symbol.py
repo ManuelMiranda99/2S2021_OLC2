@@ -2,10 +2,11 @@ from Abstract.Return import *
 
 class Symbol:
 
-    def __init__(self, value, symbolID, symbolType, symbolOBJ = ""):
-        self.value = value
-        self.symbolID = symbolID
+    def __init__(self, symbolID, symbolType, position, globalVar, inHeap):
+        self.id = symbolID
         self.type = symbolType
-        # Structs
-        self.obj = symbolOBJ
-        self.attributes = {}
+        self.pos = position
+        self.isGlobal = globalVar
+        self.inHeap = inHeap
+
+        self.value = None

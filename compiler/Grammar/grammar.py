@@ -21,6 +21,7 @@ from Expressions.Access import *
 from Expressions.CallFunc import *
 from Instruction.Functions.ReturnST import *
 from Expressions.AccessStruct import *
+from Expressions.Logical import *
 
 # LEXICAL ANALYSIS
 rw = {
@@ -385,11 +386,10 @@ def p_expression(t):
         elif t[2] == "!=":
             t[0] = Relational(t[1], t[3], RelationalOption.DISTINT, t.lineno(2), t.lexpos(2))
         elif t[2] == "||":
-            # OR
-            t[0] = 0
+            t[0] = Logical(t[1], t[3], LogicalOption.OR, t.lineno(2), t.lexpos(2))
         elif t[2] == "&&":
             # AND
-            t[0] = 0
+            t[0] = Logical(t[1], t[3], LogicalOption.AND, t.lineno(2), t.lexpos(2))
 
 def p_finalExp(t):
     '''finalExp : LEPAR expression RIPAR

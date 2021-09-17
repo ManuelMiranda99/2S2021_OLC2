@@ -21,3 +21,5 @@ class Return:
         self.type = retType
         self.auxType = auxType
         self.isTemp = isTemp
+        self.trueLbl = ''
+        self.falseLbl = ''
