@@ -7,3 +7,5 @@ class CreateStruct(Instruction):
         self.id = id
         self.attr = attr
     
+    def compile(self, environment):
+        environment.saveStruct(self.id, self.attr)

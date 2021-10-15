@@ -1,6 +1,6 @@
 from Abstract.Instruction import *
 
-class Param(Instruction):
+class StructAttr(Instruction):
 
     def __init__(self, id, type, line, column):
         Instruction.__init__(self, line, column)

@@ -7,18 +7,24 @@ class Environment:
         
         # NUEVO
         self.size = 0
+        self.breakLbl = ''
+        self.continueLbl = ''
+        self.returnLbl = ''
         if(prev != None):
             self.size = self.prev.size
-        
+            self.breakLbl = self.prev.breakLbl
+            self.continueLbl = self.prev.continueLbl
+            self.returnLbl = self.prev.returnLbl
+
         self.variables = {}
         self.functions = {}
         self.structs = {}
     
-    def saveVar(self, idVar, symType, inHeap):
+    def saveVar(self, idVar, symType, inHeap, structType = ""):
         if idVar in self.variables.keys():
             print("Variable ya existe")
         else:
-            newSymbol = Symbol(idVar, symType, self.size, self.prev == None, inHeap)
+            newSymbol = Symbol(idVar, symType, self.size, self.prev == None, inHeap, structType)
             self.size += 1
             self.variables[idVar] = newSymbol
         return self.variables[idVar]
@@ -44,10 +50,11 @@ class Environment:
         return None
     
     def getFunc(self, idFunc):
-        if idFunc in self.functions.keys():
-            return self.functions[idFunc]
-        else:
-            return None
+        env = self
+        while env != None:
+            if idFunc in env.functions.keys():
+                return env.functions[idFunc]
+        return None
         
     def getStruct(self, idStruct):
         env = self

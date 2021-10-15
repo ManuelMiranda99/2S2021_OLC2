@@ -93,7 +93,7 @@ class Relational(Expression):
         elif self.type == RelationalOption.LESS:
             return '<'
         elif self.type == RelationalOption.GREATEREQUAL:
-            return '<='
+            return '>='
         elif self.type == RelationalOption.LESSEQUAL:
             return '<='
         elif self.type == RelationalOption.EQUALSEQUALS:

@@ -8,6 +8,7 @@ class Expression(ABC):
         self.column = column
         self.trueLbl = ''
         self.falseLbl = ''
+        self.structType = ''
     
     @abstractmethod
     def compile(self, environment):

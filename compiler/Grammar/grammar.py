@@ -12,6 +12,7 @@ from Instruction.Variables.Declaration import *
 from Instruction.Structs.CreateStruct import *
 from Instruction.Structs.DeclareStruct import *
 from Instruction.Structs.AssignAccess import *
+from Instruction.Structs.StructAttr import *
 
 # Expressions
 from Expressions.Arithmetic import *
@@ -29,6 +30,11 @@ rw = {
     "END" : "END",
     "TRUE" : "TRUE",
     "FALSE" : "FALSE",
+
+    # TYPES
+    "INT64": "INT64",
+    "STRING": "STRING",
+    "BOOL": "BOOL",
 
     # FUNCTIONS SENTENCE
     "FUNCTION" : "FUNCTION",
@@ -75,6 +81,7 @@ tokens = [
     "MINUS",
     "TIMES",
     "DIV",
+    "POT",
 
     # LOGICAL SYMBOLS
     "AND",
@@ -107,6 +114,7 @@ t_PLUS                  = r'\+'
 t_MINUS                 = r'-'
 t_TIMES                 = r'\*'
 t_DIV                   = r'/'
+t_POT                   = r'\^'
 
 # LOGICAL SYMBOLS
 t_AND                   = r'&&'
@@ -212,6 +220,18 @@ def p_instruction(t):
                     | assignAccessST SEMICOLON'''
     t[0] = t[1]
 
+# TYPES
+def p_type(t):
+    '''types : INT64
+            |  STRING
+            |  BOOL'''
+    if t[1] == "Int64":
+        t[0] = Type.INT
+    elif t[1] == "String":
+        t[0] = Type.STRING
+    else:
+        t[0] = Type.BOOLEAN
+
 # STATEMENT
 def p_statement(t):
     '''statement : instructions'''
@@ -219,20 +239,20 @@ def p_statement(t):
 
 # FUNCTION ST
 def p_function(t):
-    '''declareFunc :  FUNCTION ID LEPAR RIPAR statement END
-                    | FUNCTION ID LEPAR decParams RIPAR statement END'''
+    '''declareFunc :  FUNCTION ID LEPAR RIPAR COLON COLON types statement END
+                    | FUNCTION ID LEPAR decParams RIPAR COLON COLON types statement END'''
     if len(t) == 7:
-        t[0] = Function(t[2], [], t[5], t.lineno(1), t.lexpos(1))
+        t[0] = Function(t[2], [], t[7], t[8], t.lineno(1), t.lexpos(1))
     else:
-        t[0] = Function(t[2], t[4], t[6], t.lineno(1), t.lexpos(1))
+        t[0] = Function(t[2], t[4], t[8], t[9], t.lineno(1), t.lexpos(1))
 
 def p_decParams(t):
-    '''decParams :    decParams COMMA ID
-                    | ID'''
-    if len(t) == 2:
-        t[0] = [Param(t[1], t.lineno(1), t.lexpos(1))]
+    '''decParams :    decParams COMMA ID COLON COLON types
+                    | ID COLON COLON types'''
+    if len(t) == 5:
+        t[0] = [Param(t[1], t[4], t.lineno(1), t.lexpos(1))]
     else:
-        t[1].append(Param(t[3], t.lineno(3), t.lexpos(3)))
+        t[1].append(Param(t[3], t[6], t.lineno(3), t.lexpos(3)))
         t[0] = t[1]
 
 # RETURN ST
@@ -288,12 +308,14 @@ def p_createStruct(t):
     t[0] = CreateStruct(t[2], t[3], t.lineno(1), t.lexpos(1))
 
 def p_attList(t):
-    '''attList :  attList SEMICOLON ID SEMICOLON
-                | ID'''
-    if len(t) == 2:
-        t[0] = [t[1]]
+    '''attList :  attList SEMICOLON ID COLON COLON types SEMICOLON
+                | ID COLON COLON types'''
+    if len(t) == 5:
+        prueba = t[4]
+        t[0] = [StructAttr(t[1], t[4], t.lineno(1), t.lexpos(1))]
     else:
-        t[1].append(t[3])
+        prueba = t[6]
+        t[1].append(StructAttr(t[3], t[6], t.lineno(2), t.lexpos(2)))
         t[0] = t[1]
 
 # DECLARE STRUCT
@@ -349,6 +371,7 @@ def p_expression(t):
                     | expression MINUS expression
                     | expression TIMES expression
                     | expression DIV expression
+                    | expression POT expression
 
                     | expression GREATER expression
                     | expression LESS expression
@@ -373,6 +396,8 @@ def p_expression(t):
             t[0] = Arithmetic(t[1], t[3], ArithmeticOption.TIMES, t.lineno(2), t.lexpos(0))
         elif t[2] == "/":
             t[0] = Arithmetic(t[1], t[3], ArithmeticOption.DIV, t.lineno(2), t.lexpos(0))
+        elif t[2] == "^":
+            t[0] = Arithmetic(t[1], t[3], ArithmeticOption.POT, t.lineno(2), t.lexpos(0))
         elif t[2] == ">":
             t[0] = Relational(t[1], t[3], RelationalOption.GREATER, t.lineno(2), t.lexpos(2))
         elif t[2] == "<":

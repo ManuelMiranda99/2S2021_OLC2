@@ -16,6 +16,7 @@ class Generator:
         self.temps = []
         # Lista de Nativas
         self.printString = False
+        self.potencia = False
         
     def cleanAll(self):
         # Contadores
@@ -31,6 +32,7 @@ class Generator:
         self.temps = []
         # Lista de Nativas
         self.printString = False
+        self.potencia = False
         Generator.generator = Generator()
     
     #############
@@ -117,7 +119,7 @@ class Generator:
     ###################
     def addBeginFunc(self, id):
         if(not self.inNatives):
-            self.inFunc = true
+            self.inFunc = True
         self.codeIn(f'func {id}(){{\n', '')
     
     def addEndFunc(self):
@@ -216,5 +218,39 @@ class Generator:
         self.addGoto(compareLbl)
 
         self.putLabel(returnLbl)
+        self.addEndFunc()
+        self.inNatives = False
+    
+    def fPotencia(self):
+        if(self.potencia):
+            return
+        self.potencia = True
+        self.inNatives = True
+
+        self.addBeginFunc('potencia')
+        
+        t0 = self.addTemp()
+        self.addExp(t0, 'P', '1', '+')
+
+        t1 = self.addTemp()
+        self.getStack(t1, t0)
+
+        self.addExp(t0, t0, '1', '+')
+
+        t2 = self.addTemp()
+        self.getStack(t2, t0)
+        self.addExp(t0, t1, '', '')
+
+        L0 = self.newLabel()
+        L1 = self.newLabel()
+
+        self.putLabel(L0)
+        self.addIf(t2, '1', '<=', L1)
+        self.addExp(t1, t1, t0, '*')
+        self.addExp(t2, t2, '1', '-')
+        self.addGoto(L0)
+        self.putLabel(L1)
+        self.setStack('P', t1)
+        
         self.addEndFunc()
         self.inNatives = False

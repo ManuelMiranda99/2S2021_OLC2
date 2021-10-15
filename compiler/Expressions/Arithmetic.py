@@ -9,6 +9,7 @@ class ArithmeticOption(Enum):
     MINUS = 1
     TIMES = 2
     DIV = 3
+    POT = 4
 
 class Arithmetic(Expression):
     
@@ -34,5 +35,26 @@ class Arithmetic(Expression):
             op = '*'
         elif(self.type == ArithmeticOption.DIV):
             op = '/'    
-        generator.addExp(temp, leftValue.value, rightValue.value, op)
-        return Return(temp, Type.INT, True)
+        
+        if (self.type == ArithmeticOption.POT):
+            generator.fPotencia()
+            paramTemp = generator.addTemp()
+
+            generator.addExp(paramTemp, 'P', env.size, '+')
+            generator.addExp(paramTemp, paramTemp, '1', '+')
+            generator.setStack(paramTemp, leftValue.value)
+            
+            generator.addExp(paramTemp, paramTemp, '1', '+')
+            generator.setStack(paramTemp, rightValue.value)
+            
+            generator.newEnv(env.size)
+            generator.callFun('potencia')
+
+            temp = generator.addTemp()
+            generator.getStack(temp, 'P')
+            generator.retEnv(env.size)
+
+            return Return(temp, Type.INT, True)
+        else:
+            generator.addExp(temp, leftValue.value, rightValue.value, op)
+            return Return(temp, Type.INT, True)

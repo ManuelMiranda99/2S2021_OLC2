@@ -20,7 +20,10 @@ class Declaration(Instruction):
         generator.addComment("Fin de valor de variable")
 
         # Guardado y obtencion de variable. Esta tiene la posicion, lo que nos sirve para asignarlo en el heap
-        newVar = environment.saveVar(self.id, val.type, (val.type == Type.STRING or val.type == Type.STRUCT))
+        newVar = environment.getVar(self.id)
+        if newVar == None:
+            newVar = environment.saveVar(self.id, val.type, (val.type == Type.STRING or val.type == Type.STRUCT), self.value.structType)
+        newVar.type = val.type
 
         # Obtencion de posicion de la variable
         tempPos = newVar.pos

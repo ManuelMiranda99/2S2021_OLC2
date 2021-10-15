@@ -8,3 +8,8 @@ class Statement(Instruction):
         Instruction.__init__(self, line, column)
         self.instructions = instructions
     
+    def compile(self, environment):
+        for ins in self.instructions:
+            ret = ins.compile(environment)
+            if ret != None:
+                return ret
