@@ -39,14 +39,14 @@ class Generator:
     # CODE
     #############
     def getHeader(self):
-        ret = '/*----HEADER----*/\npackage main;\n\nimport (\n\t"fmt"\n)\n\n'
+        ret = '/*----HEADER----*/\npackage main;\n\nimport (\n\t"fmt"\n);\n\n'
         if len(self.temps) > 0:
             ret += 'var '
             for temp in range(len(self.temps)):
                 ret += self.temps[temp]
                 if temp != (len(self.temps) - 1):
                     ret += ", "
-            ret += " float64\n"
+            ret += " float64;\n"
         ret += "var P, H float64;\nvar stack [30101999]float64;\nvar heap [30101999]float64;\n\n"
         return ret
 

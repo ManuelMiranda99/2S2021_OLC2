@@ -458,4 +458,4 @@ import ply.yacc as yacc
 parser = yacc.yacc()
 
 def parse(input):
-    return parser.parse(input)
+    return parser.parse(input, lexer=lexer)

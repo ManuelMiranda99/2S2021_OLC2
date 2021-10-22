@@ -9,6 +9,7 @@
 <body>
     <h1>JOLC Interpreter</h1>
     <a href="#" id="execute"><button class="btn btn-e">Compile</button></a>
+    <a href="#" id="optimize"><button class="btn btn-o">Optimize</button></a>
     <pre id="code"></pre>
     <pre id="output">SALIDA:</pre>
 
@@ -24,15 +25,12 @@
     var output = ace.edit("output");
     output.setTheme("ace/theme/monokai");
     output.session.setMode("ace/mode/golang");
-    output.setReadOnly(true);
     output.setShowPrintMargin(false);
-    output.renderer.setShowGutter(false);
     document.getElementById('output').style.fontSize='18px';
     
     $(function(){
         $('a#execute').on('click', function(e) {
             var code = codeEditor.getValue();
-            console.log(code);
             e.preventDefault();
             $.ajax({
                 type: 'POST',
@@ -40,6 +38,21 @@
                 data: JSON.stringify({ input: code }),
                 success: function(data){
                     console.log(data);
+                    output.setValue(data.msg);
+                },
+                contentType: 'application/json',
+                dataType: 'json'
+            });
+        });
+        $('a#optimize').on('click', function(e) {
+            console.log('Optimizar');
+            var code = output.getValue();
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '/optimize',
+                data: JSON.stringify({ input: code }),
+                success: function(data){
                     output.setValue(data.msg);
                 },
                 contentType: 'application/json',
