@@ -99,3 +99,53 @@ function suma(a::Int64, b::Int64)::Int64
 end;
 
 println(suma(10, 20));
+
+#=
+/*----HEADER----*/
+package main;
+
+import (
+	"fmt"
+);
+
+var t0, t1, t2, t3, t4 float64;
+var P, H float64;
+var stack [30101999]float64;
+var heap [30101999]float64;
+
+func main(){
+
+	t0=5-10;                        // Lider
+	if t0 < 0 {goto L0;}
+	goto L1;                        // Lider
+	
+	L0:                             // Lider
+	fmt.Printf("%d", int(1));
+	fmt.Printf("%c", int(10));
+	goto L2;
+	L1:                             // Lider
+	fmt.Printf("%d", int(0));
+	fmt.Printf("%c", int(10));
+	L2:                             // Lider
+	stack[int(0)]=10;
+	
+	L3:                             // Lider
+	t1=stack[int(0)];
+	
+	if t1 > 0 {goto L4;}
+	goto L5;                        // Lider
+	
+	L4:                             // Lider
+	t2=stack[int(0)];
+	
+	fmt.Printf("%d", int(t2));
+	fmt.Printf("%c", int(10));
+	t3=stack[int(0)];
+	
+	t4=t3-1;
+	stack[int(0)]=t4;
+	
+	goto L3;
+	L5:                             // Lider
+}
+=#

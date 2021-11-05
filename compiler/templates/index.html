@@ -9,7 +9,8 @@
 <body>
     <h1>JOLC Interpreter</h1>
     <a href="#" id="execute"><button class="btn btn-e">Compile</button></a>
-    <a href="#" id="optimize"><button class="btn btn-o">Optimize</button></a>
+    <a href="#" id="optimize"><button class="btn btn-o">Mirilla</button></a>
+    <a href="#" id="bloques"><button class="btn btn-g">Bloques</button></a>
     <pre id="code"></pre>
     <pre id="output">SALIDA:</pre>
 
@@ -51,7 +52,7 @@
             $.ajax({
                 type: 'POST',
                 url: '/optimize',
-                data: JSON.stringify({ input: code }),
+                data: JSON.stringify({ input: code, type: 'mirilla' }),
                 success: function(data){
                     output.setValue(data.msg);
                 },
@@ -59,6 +60,21 @@
                 dataType: 'json'
             });
         });
+        $('a#bloques').on('click', function(e){
+            console.log('Optimizar Bloques');
+            var code = output.getValue();
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '/optimize',
+                data: JSON.stringify({ input: code, type: 'bloques' }),
+                success: function(data){
+                    output.setValue(data.msg);
+                },
+                contentType: 'application/json',
+                dataType: 'json'
+            })
+        })
     })
 </script>
 </body>

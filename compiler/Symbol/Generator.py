@@ -14,6 +14,7 @@ class Generator:
         self.inNatives = False
         # Lista de Temporales
         self.temps = []
+        self.tempsRecover = {}
         # Lista de Nativas
         self.printString = False
         self.potencia = False
@@ -30,6 +31,7 @@ class Generator:
         self.inNatives = False
         # Lista de Temporales
         self.temps = []
+        self.tempsRecover = {}
         # Lista de Nativas
         self.printString = False
         self.potencia = False
@@ -83,7 +85,50 @@ class Generator:
         temp = f't{self.countTemp}'
         self.countTemp += 1
         self.temps.append(temp)
+        self.tempsRecover[temp] = temp
         return temp
+
+    def freeAllTemps(self):
+        self.tempsRecover = {}
+
+    def freeTemp(self, temp):
+        if(temp in self.tempsRecover):
+            self.tempsRecover.pop(temp, None)
+
+    def saveTemps(self, env):
+        size = 0
+        if len(self.tempsRecover) > 0:
+            temp = self.addTemp()
+            self.freeTemp(temp)
+
+            self.addComment('Guardado de temporales')
+            self.addExp(temp, 'P', env.size, '+')
+            for value in self.tempsRecover:
+                size += 1
+                self.setStack(temp, value, False)
+                if size != len(self.tempsRecover):
+                    self.addExp(temp, temp, '1', '+')
+            self.addComment('Fin Guardado de temporales')
+        ptr = env.size
+        env.size = ptr + size
+        return ptr
+    
+    def recoverTemps(self, env, pos):
+        if len(self.tempsRecover) > 0:
+            temp = self.addTemp()
+            self.freeTemp(temp)
+
+            size = 0
+
+            self.addComment('Recuperacion de temporales')
+            self.addExp(temp, 'P', pos, '+')
+            for value in self.tempsRecover:
+                size += 1
+                self.getStack(value, temp)
+                if size != len(self.tempsRecover):
+                    self.addExp(temp, temp, '1', '+')
+            env.size = pos
+            self.addComment('Fin Recuperacion de temporales')
 
     #####################
     # Manejo de Labels
@@ -106,12 +151,16 @@ class Generator:
     # IF
     ###################
     def addIf(self, left, right, op, label):
+        self.freeTemp(left)
+        self.freeTemp(right)
         self.codeIn(f'if {left} {op} {right} {{goto {label};}}\n')
 
     ###################
     # EXPRESIONES
     ###################
     def addExp(self, result, left, right, op):
+        self.freeTemp(left)
+        self.freeTemp(right)
         self.codeIn(f'{result}={left}{op}{right};\n')
     
     ###################
@@ -130,10 +179,14 @@ class Generator:
     ###############
     # STACK
     ###############
-    def setStack(self, pos, value):
+    def setStack(self, pos, value, FreeValue = True):
+        self.freeTemp(pos)
+        if FreeValue:
+            self.freeTemp(value)
         self.codeIn(f'stack[int({pos})]={value};\n')
     
     def getStack(self, place, pos):
+        self.freeTemp(pos)
         self.codeIn(f'{place}=stack[int({pos})];\n')
 
     #############
@@ -152,9 +205,12 @@ class Generator:
     # HEAP
     ###############
     def setHeap(self, pos, value):
+        self.freeTemp(pos)
+        self.freeTemp(value)
         self.codeIn(f'heap[int({pos})]={value};\n')
 
     def getHeap(self, place, pos):
+        self.freeTemp(pos)
         self.codeIn(f'{place}=heap[int({pos})];\n')
 
     def nextHeap(self):
@@ -162,6 +218,7 @@ class Generator:
 
     # INSTRUCCIONES
     def addPrint(self, type, value):
+        self.freeTemp(value)
         self.codeIn(f'fmt.Printf("%{type}", int({value}));\n')
     
     def printTrue(self):
@@ -220,6 +277,9 @@ class Generator:
         self.putLabel(returnLbl)
         self.addEndFunc()
         self.inNatives = False
+        self.freeTemp(tempP)
+        self.freeTemp(tempH)
+        self.freeTemp(tempC)
     
     def fPotencia(self):
         if(self.potencia):
@@ -254,3 +314,6 @@ class Generator:
         
         self.addEndFunc()
         self.inNatives = False
+        self.freeTemp(t0)
+        self.freeTemp(t1)
+        self.freeTemp(t2)

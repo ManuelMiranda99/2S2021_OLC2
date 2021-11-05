@@ -13,6 +13,9 @@ class Function(C3DInstruction):
             auxText = ins.getCode()
             if(auxText == ''):
                 continue
-            ret = ret + f'\t{auxText}\n'
+            ret = ret + f'\t{auxText}'
+            if ins.isLeader:
+                ret = ret + "\t\t\t\t\t\t\t// Lider"
+            ret = ret + "\n"
         ret = ret + '}'
         return ret

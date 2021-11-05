@@ -12,11 +12,15 @@ from Optimization.Instructions.Label import *
 from Optimization.Instructions.Print import *
 from Optimization.Instructions.Return import *
 
+from Optimization.Blocks import *
+
 class Optimizador:
     def __init__(self, packages, temps, code):
         self.packages = packages
         self.temps = temps
         self.code = code
+
+        self.blocks = []
     
     def getCode(self):
         ret = f'package main;\n\nimport (\n\t"{self.packages}"\n);\n'
@@ -28,6 +32,9 @@ class Optimizador:
             ret = ret + func.getCode() + '\n\n'
         return ret
     
+    ########################
+    #########MIRILLA########
+    ########################
     def Mirilla(self):
         # Por cada funcion
         for func in self.code:
@@ -50,6 +57,82 @@ class Optimizador:
                 if not flagOpt:
                     tamanio = tamanio + 5
     
+    ########################
+    #########BLOQUES########
+    ########################
+    def Bloques(self):
+        self.blocks = []
+        self.GenerarBloques()
+
+        # APLICAR REGLAS A NIVEL LOCAL Y GLOBAL
+
+    def GenerarBloques(self):
+        self.GenerarLideres()
+        self.CrearBloques()
+        self.ConnectBloques()
+        print('Prueba')
+
+    def GenerarLideres(self):
+        # Por cada funcion
+        for func in self.code:
+            # La primera instrucción de tres direcciones en el código intermedio es líder
+            func.instr[0].isLeader = True
+
+            # Cualquier instrucción que siga justo después de un salto
+            # condicional o incondicional es líder
+            flag = False
+            for instr in func.instr:
+                if flag:
+                    instr.isLeader = True
+                    flag = False
+                if type(instr) is Goto or type(instr) is If:
+                    flag = True
+
+    def CrearBloques(self):
+        # Por cada funcion
+        for func in self.code:
+            # Bloques de la funcion actual
+            blocks = []
+            block = None
+            for instr in func.instr:
+                if instr.isLeader:
+                    # Si ya hay un bloque creado. Agregarlo al arreglo de bloques
+                    if block != None:
+                        blocks.append(block)
+                    block = Blocks(instr)
+                block.code.append(instr)
+            # EOF
+            blocks.append(block)
+            # Guardo mis bloques de la funcion
+            self.blocks.append(blocks)
+
+    def ConnectBloques(self):
+        # Por cada arreglo de bloques en una función
+        for func in self.blocks:
+            prevBlock = None
+            # Por cada bloque en la funcion. Los uniremos en cascada
+            for block in func:
+                if prevBlock == None:
+                    prevBlock = block
+                    continue
+                prevBlock.nexts.append(block)
+                prevBlock = block
+            
+            # Revisar saltos entre bloques
+            for block in func:
+                # Obtener ultima instruccion
+                lastIns = block.code[len(block.code) - 1]
+                if type(lastIns) is Goto or type(lastIns) is If:
+                    label = lastIns.label
+                    # Revisando todos los bloques
+                    for check in func:
+                        if type(check.first) is Label and check.first.id == label:
+                            block.nexts.append(check)
+                            break
+
+    ########################
+    ##########REGLAS########
+    ########################
     def Regla3(self, array):
         # Auxiliar para verificar que la regla se implemento
         ret = False

@@ -23,6 +23,8 @@ class Function(Instruction):
         for param in self.params:
             newEnv.saveVar(param.id, param.type, (param.type == Type.STRING or param.type == Type.STRUCT))
         
+        generator.freeAllTemps()
+
         generator.addBeginFunc(self.id)
 
         try:
@@ -32,4 +34,5 @@ class Function(Instruction):
         
         generator.putLabel(returnLbl)
         generator.addEndFunc()
+        generator.freeAllTemps()
         

@@ -11,5 +11,3 @@ class Statement(Instruction):
     def compile(self, environment):
         for ins in self.instructions:
             ret = ins.compile(environment)
-            if ret != None:
-                return ret

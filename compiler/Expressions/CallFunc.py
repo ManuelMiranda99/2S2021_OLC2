@@ -18,12 +18,14 @@ class CallFunc(Expression):
 
                 genAux = Generator()
                 generator = genAux.getInstance()
-                size = environment.size
+
+                size = generator.saveTemps(environment)
+
                 for param in self.params:
                     paramValues.append(param.compile(environment))
                 temp = generator.addTemp()
 
-                generator.addExp(temp, 'P', size+1, '+')
+                generator.addExp(temp, 'P', environment.size+1, '+')
                 aux = 0
                 for param in paramValues:
                     aux = aux +1
@@ -31,10 +33,12 @@ class CallFunc(Expression):
                     if aux != len(paramValues):
                         generator.addExp(temp, temp, '1', '+')
                 
-                generator.newEnv(size)
+                generator.newEnv(environment.size)
                 generator.callFun(self.id)
                 generator.getStack(temp, 'P')
-                generator.retEnv(size)
+                generator.retEnv(environment.size)
+
+                generator.recoverTemps(environment, size)
                 
                 # TODO: Verificar tipo de la funcion. Boolean es distinto
                 return Return(temp, func.type, True)

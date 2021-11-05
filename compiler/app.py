@@ -31,10 +31,14 @@ def compile():
 def optimize():
     try:
         inpt = request.json['input']
+        optType = request.json['type']
 
         instructions = optimization.parse(inpt)
         
-        instructions.Mirilla()
+        if optType == 'mirilla':
+            instructions.Mirilla()
+        else:
+            instructions.Bloques()
 
         out = instructions.getCode()
 
